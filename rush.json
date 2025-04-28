@@ -755,6 +755,11 @@
           "tags": ["level-1", "team-flow", "demo"]
       },
       {
+        "packageName": "@flowgram.ai/demo-variable",
+        "projectFolder": "apps/demo-variable",
+        "tags": ["level-1", "team-flow", "demo"]
+    },
+      {
           "packageName": "@flowgram.ai/demo-nextjs",
           "projectFolder": "apps/demo-nextjs",
           "versionPolicyName": "appPolicy",

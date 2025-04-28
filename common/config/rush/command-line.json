@@ -300,6 +300,14 @@
           "shellCommand": "concurrently --kill-others --prefix \"{name}\" --names [watch],[demo] -c white,blue \"rush build:watch --to-except @flowgram.ai/demo-free-layout-simple\" \"cd apps/demo-free-layout-simple && rushx dev\""
       },
       {
+          "name": "dev:demo-variable",
+          "commandKind": "global",
+          "summary": "⭐️️ run dev in app/demo-variable",
+          "autoinstallerName": "rush-commands",
+          "safeForSimultaneousRushProcesses": true,
+          "shellCommand": "concurrently --kill-others --prefix \"{name}\" --names [watch],[demo] -c white,blue \"rush build:watch --to-except @flowgram.ai/demo-variable\" \"cd apps/demo-variable && rushx dev\""
+      },
+      {
           "name": "dev:demo-nextjs",
           "commandKind": "global",
           "summary": "⭐️️ run dev in app/demo-nextjs",
