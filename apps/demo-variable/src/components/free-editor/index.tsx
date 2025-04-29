@@ -6,16 +6,22 @@ import {
   WorkflowJSON,
 } from '@flowgram.ai/free-layout-editor';
 
+import { DEFAULT_DEMO_REGISTRY } from './node-registries';
+import { DEFAULT_INITIAL_DATA } from './initial-data';
 import { useEditorProps } from './hooks/use-editor-props';
-import '@flowgram.ai/free-layout-editor/index.css';
 import './index.css';
-interface EditorProps {
+
+interface FreeEditorProps {
   registries?: FlowNodeRegistry[];
   initialData?: WorkflowJSON;
   plugins?: Plugin[];
 }
 
-export const Editor = ({ registries = [], initialData, plugins = [] }: EditorProps) => {
+export const FreeEditor = ({
+  registries = [DEFAULT_DEMO_REGISTRY],
+  initialData = DEFAULT_INITIAL_DATA,
+  plugins = [],
+}: FreeEditorProps) => {
   const editorProps = useEditorProps({ registries, initialData, plugins });
   return (
     <FreeLayoutEditorProvider {...editorProps}>

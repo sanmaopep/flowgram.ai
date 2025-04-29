@@ -31,8 +31,10 @@
     "@douyinfe/semi-icons": "^2.72.3",
     "@douyinfe/semi-ui": "^2.72.3",
     "@flowgram.ai/free-layout-editor": "workspace:*",
+    "@flowgram.ai/fixed-layout-editor": "workspace:*",
     "@flowgram.ai/free-snap-plugin": "workspace:*",
     "@flowgram.ai/minimap-plugin": "workspace:*",
+    "@flowgram.ai/fixed-semi-materials": "workspace:*",
     "react": "^18",
     "react-dom": "^18",
     "styled-components": "^5"

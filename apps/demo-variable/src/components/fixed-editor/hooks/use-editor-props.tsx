@@ -1,33 +1,32 @@
 import { useMemo } from 'react';
 
 import { createMinimapPlugin } from '@flowgram.ai/minimap-plugin';
-import { createFreeSnapPlugin } from '@flowgram.ai/free-snap-plugin';
+import { defaultFixedSemiMaterials } from '@flowgram.ai/fixed-semi-materials';
 import {
-  FreeLayoutProps,
-  WorkflowNodeProps,
-  WorkflowNodeRenderer,
   Field,
-  useNodeRender,
+  type FixedLayoutProps,
+  FlowDocumentJSON,
   FlowNodeRegistry,
-  WorkflowJSON,
+  FlowTextKey,
   Plugin,
-} from '@flowgram.ai/free-layout-editor';
+} from '@flowgram.ai/fixed-layout-editor';
 
-import { DEFAULT_DEMO_REGISTRY } from '../node-registries';
-import { DEFAULT_INITIAL_DATA } from '../initial-data';
+import { BaseNode } from '../components/base-node';
 
-interface EditorProps {
-  registries?: FlowNodeRegistry[];
-  initialData?: WorkflowJSON;
-  plugins?: Plugin[];
+/** semi materials */
+
+interface FixedEditorProps {
+  initialData: FlowDocumentJSON; // 初始化数据
+  registries: FlowNodeRegistry[]; // 节点定义
+  plugins: Plugin[];
 }
 
-export const useEditorProps = ({
-  registries = [DEFAULT_DEMO_REGISTRY],
-  initialData = DEFAULT_INITIAL_DATA,
-  plugins = [],
-}: EditorProps) =>
-  useMemo<FreeLayoutProps>(
+export function useEditorProps({
+  initialData,
+  registries,
+  plugins,
+}: FixedEditorProps): FixedLayoutProps {
+  return useMemo<FixedLayoutProps>(
     () => ({
       /**
        * Whether to enable the background
@@ -43,8 +42,7 @@ export const useEditorProps = ({
        */
       initialData,
       /**
-       * Node registries
-       * 节点注册
+       * 画布节点定义
        */
       nodeRegistries: registries,
       /**
@@ -64,9 +62,9 @@ export const useEditorProps = ({
             render: () => (
               <>
                 <Field<string> name="title">
-                  {({ field }) => <div className="demo-free-node-title">{field.value}</div>}
+                  {({ field }) => <div className="demo-fixed-node-title">{field.value}</div>}
                 </Field>
-                <div className="demo-free-node-content">
+                <div className="demo-fixed-node-content">
                   <Field<string> name="content">
                     <input />
                   </Field>
@@ -77,52 +75,44 @@ export const useEditorProps = ({
         };
       },
       materials: {
-        /**
-         * Render Node
-         */
-        renderDefaultNode: (props: WorkflowNodeProps) => {
-          const { form } = useNodeRender();
-          return (
-            <WorkflowNodeRenderer className="demo-free-node" node={props.node}>
-              {form?.render()}
-            </WorkflowNodeRenderer>
-          );
+        renderNodes: {
+          ...defaultFixedSemiMaterials,
+        },
+        renderDefaultNode: BaseNode,
+        renderTexts: {
+          [FlowTextKey.LOOP_END_TEXT]: 'loop end',
+          [FlowTextKey.LOOP_TRAVERSE_TEXT]: 'looping',
         },
       },
       /**
-       * Content change
+       * Node engine enable, you can configure formMeta in the FlowNodeRegistry
        */
-      onContentChange(ctx, event) {
-        // console.log('Auto Save: ', event, ctx.document.toJSON());
-      },
-      // /**
-      //  * Node engine enable, you can configure formMeta in the FlowNodeRegistry
-      //  */
       nodeEngine: {
         enable: true,
       },
-      /**
-       * Redo/Undo enable
-       */
       history: {
         enable: true,
         enableChangeNode: true, // Listen Node engine data change
+        onApply(ctx, opt) {
+          // Listen change to trigger auto save
+          // console.log('auto save: ', ctx.document.toJSON(), opt);
+        },
       },
       /**
-       * Playground init
+       * 画布初始化
        */
-      onInit: (ctx) => {},
-      /**
-       * Playground render
-       */
-      onAllLayersRendered(ctx) {
-        //  Fitview
-        ctx.document.fitView(false);
+      onInit: (ctx) => {
+        /**
+         * Data can also be dynamically loaded via fromJSON
+         * 也可以通过 fromJSON 动态加载数据
+         */
+        // ctx.document.fromJSON(initialData)
+        console.log('---- Playground Init ----');
       },
       /**
-       * Playground dispose
+       * 画布销毁
        */
-      onDispose() {
+      onDispose: () => {
         console.log('---- Playground Dispose ----');
       },
       plugins: () => [
@@ -132,6 +122,7 @@ export const useEditorProps = ({
          */
         createMinimapPlugin({
           disableLayer: true,
+          enableDisplayAllNodes: true,
           canvasStyle: {
             canvasWidth: 182,
             canvasHeight: 102,
@@ -151,19 +142,9 @@ export const useEditorProps = ({
           },
           inactiveDebounceTime: 1,
         }),
-        /**
-         * Snap plugin
-         * 自动对齐及辅助线插件
-         */
-        createFreeSnapPlugin({
-          edgeColor: '#00B2B2',
-          alignColor: '#00B2B2',
-          edgeLineWidth: 1,
-          alignLineWidth: 1,
-          alignCrossWidth: 8,
-        }),
         ...plugins,
       ],
     }),
     []
   );
+}
