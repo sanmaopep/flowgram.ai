@@ -1,3 +1,4 @@
+import { DynamicValueInput } from '@flowgram.ai/form-materials';
 import { Field } from '@flowgram.ai/fixed-layout-editor';
 
 import { FxExpression } from '../fx-expression';
@@ -26,11 +27,12 @@ export function FormInputs() {
                   type={property.type as string}
                   required={required.includes(key)}
                 >
-                  <FxExpression
+                  <DynamicValueInput
                     value={field.value}
                     onChange={field.onChange}
                     readonly={readonly}
                     hasError={Object.keys(fieldState?.errors || {}).length > 0}
+                    schema={property}
                   />
                   <Feedback errors={fieldState?.errors} />
                 </FormItem>
