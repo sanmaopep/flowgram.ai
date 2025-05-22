@@ -1,7 +1,6 @@
 import { DynamicValueInput } from '@flowgram.ai/form-materials';
 import { Field } from '@flowgram.ai/fixed-layout-editor';
 
-import { FxExpression } from '../fx-expression';
 import { FormItem } from '../form-item';
 import { Feedback } from '../feedback';
 import { JsonSchema } from '../../typings';
