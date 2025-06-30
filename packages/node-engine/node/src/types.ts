@@ -136,6 +136,7 @@ export function isFormMetaV2(formMeta: IFormMeta | FormMeta) {
 
 export type FormPluginCtx = {
   formModel: FormModelV2;
+  mergeEffect: (effect: Record<string, EffectOptions[]>) => void;
 } & NodeContext;
 
 export interface onFormValueChangeInPayload<TValue = FieldValue, TFormValues = FieldValue> {
