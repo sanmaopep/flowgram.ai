@@ -6,4 +6,7 @@ export {
   ScopeChainTransformService,
   getNodeScope,
   getNodePrivateScope,
+  FlowNodeScopeType,
+  type FlowNodeScopeMeta,
+  type FlowNodeScope,
 } from '@flowgram.ai/variable-layout';

@@ -9,6 +9,7 @@ import {
   ScopeChainTransformService,
   type EffectOptions,
   type FormPluginCreator,
+  FlowNodeScopeType,
 } from '@flowgram.ai/editor';
 
 import { IFlowRefValue } from '../../typings';
@@ -27,7 +28,7 @@ export const provideBatchOutputsEffect: EffectOptions[] = createEffectFromVariab
             key: _key,
             initializer: ASTFactory.createWrapArrayExpression({
               wrapFor: ASTFactory.createKeyPathExpression({
-                keyPath: value.content || [],
+                keyPath: value?.content || [],
               }),
             }),
           })
@@ -66,7 +67,13 @@ export const createBatchOutputsFormPlugin: FormPluginCreator<{}> = defineFormPlu
           return covers;
         },
         transformDeps(scopes, ctx) {
-          const node = ctx.scope.meta?.node;
+          const scopeMeta = ctx.scope.meta;
+
+          if (scopeMeta?.type === FlowNodeScopeType.private) {
+            return scopes;
+          }
+
+          const node = scopeMeta?.node;
 
           // Public of Loop Node depends on child Node
           if (node?.flowNodeType === batchNodeType) {
@@ -86,7 +93,7 @@ export const createBatchOutputsFormPlugin: FormPluginCreator<{}> = defineFormPlu
     },
     effect: {
       // NOTICE: modify according to your
-      outputs: provideBatchOutputsEffect,
+      batchOutputs: provideBatchOutputsEffect,
     },
   }
 );
