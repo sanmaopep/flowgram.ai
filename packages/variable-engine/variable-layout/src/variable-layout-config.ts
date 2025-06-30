@@ -18,13 +18,11 @@ export interface VariableLayoutConfig {
   getFreeParent?: (node: FlowNodeEntity) => FlowNodeEntity | undefined;
 
   /**
-   * @deprecated
    * 对依赖作用域进行微调
    */
   transformDeps?: IScopeTransformer;
 
   /**
-   * @deprecated
    * 对依赖作用域进行微调
    */
   transformCovers?: IScopeTransformer;
