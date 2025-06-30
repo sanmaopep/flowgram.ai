@@ -41,9 +41,8 @@ export const provideBatchOutputsEffect: EffectOptions[] = createEffectFromVariab
 /**
  * Free Layout only right now
  */
-export const createBatchOutputsFormPlugin: FormPluginCreator<{}> = defineFormPluginCreator(
-  'batch-outputs-plugin',
-  {
+export const createBatchOutputsFormPlugin: FormPluginCreator<{ outputKey: string }> =
+  defineFormPluginCreator('batch-outputs-plugin', {
     onInit(ctx, opts) {
       const chainTransformService = ctx.node.getService(ScopeChainTransformService);
 
@@ -91,9 +90,8 @@ export const createBatchOutputsFormPlugin: FormPluginCreator<{}> = defineFormPlu
         },
       });
     },
-    effect: {
+    effect: ({ outputKey }) => ({
       // NOTICE: modify according to your
-      batchOutputs: provideBatchOutputsEffect,
-    },
-  }
-);
+      [outputKey]: provideBatchOutputsEffect,
+    }),
+  });

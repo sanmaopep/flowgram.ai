@@ -73,6 +73,6 @@ export const LoopNodeRegistry: FlowNodeRegistry = {
     effect: {
       batchFor: provideBatchInputEffect,
     },
-    plugins: [createBatchOutputsFormPlugin({})],
+    plugins: [createBatchOutputsFormPlugin({ outputKey: 'batchOutputs' })],
   },
 };
