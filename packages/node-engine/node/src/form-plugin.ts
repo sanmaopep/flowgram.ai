@@ -14,7 +14,7 @@ export interface FormPluginConfig<Opts = any> {
   /**
    * 同 FormMeta 中的effects 会与 FormMeta 中的effects 合并
    */
-  effect?: Record<string, EffectOptions[]>;
+  effect?: Record<string, EffectOptions[]> | ((opts: Opts) => Record<string, EffectOptions[]>);
   /**
    * FormModel 销毁时执行
    * @param ctx
@@ -29,6 +29,8 @@ export class FormPlugin<Opts = any> implements Disposable {
 
   readonly config: FormPluginConfig;
 
+  readonly effect?: Record<string, EffectOptions[]>;
+
   readonly opts?: Opts;
 
   protected _formModel: FormModelV2;
@@ -37,6 +39,15 @@ export class FormPlugin<Opts = any> implements Disposable {
     this.name = name;
     this.pluginId = `${name}__${nanoid()}`;
     this.config = config;
+
+    if (this.config.effect) {
+      if (typeof this.config.effect === 'function') {
+        this.effect = this.config.effect(opts);
+      } else {
+        this.effect = this.config.effect;
+      }
+    }
+
     this.opts = opts;
   }
 

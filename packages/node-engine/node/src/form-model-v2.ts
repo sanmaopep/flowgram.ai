@@ -195,8 +195,8 @@ export class FormModelV2 extends FormModel implements Disposable {
     this.plugins = plugins;
     plugins.forEach((plugin) => {
       plugin.init(this);
-      if (plugin.config?.effect) {
-        mergeEffectMap(this.effectMap, plugin.config.effect);
+      if (plugin?.effect) {
+        mergeEffectMap(this.effectMap, plugin.effect);
       }
     });
   }
