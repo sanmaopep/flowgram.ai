@@ -64,7 +64,12 @@ export class FormPlugin<Opts = any> implements Disposable {
   }
 }
 
-export function defineFormPluginCreator<Opts>(name: string, config: FormPluginConfig) {
+export type FormPluginCreator<Opts> = (opts: Opts) => FormPlugin<Opts>;
+
+export function defineFormPluginCreator<Opts>(
+  name: string,
+  config: FormPluginConfig
+): FormPluginCreator<Opts> {
   return function (opts: Opts) {
     return new FormPlugin(name, config, opts);
   };
