@@ -27,8 +27,8 @@ runFixedLayoutTest('Variable Fixed Layout transform empty', freeLayout1, {
     test('check has transformer', () => {
       const transformService = container.get(ScopeChainTransformService);
       expect(transformService.hasTransformer('MOCK')).to.be.true;
-      expect(transformService.hasTransformer('VARIABLE_LAYOUT_CONFIG')).to.be.true;
-      expect(transformService.hasTransformer('NOT_EXIST')).to.be.true;
+      expect(transformService.hasTransformer('VARIABLE_LAYOUT_CONFIG')).to.be.false;
+      expect(transformService.hasTransformer('NOT_EXIST')).to.be.false;
     });
   },
 });
