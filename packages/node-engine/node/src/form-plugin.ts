@@ -7,6 +7,11 @@ import { FormModelV2 } from './form-model-v2';
 
 export interface FormPluginConfig<Opts = any> {
   /**
+   * form plugin name, for debug use
+   */
+  name?: string;
+
+  /**
    * setup formMeta
    * @param ctx
    * @returns
@@ -36,9 +41,9 @@ export class FormPlugin<Opts = any> implements Disposable {
 
   protected _formModel: FormModelV2;
 
-  constructor(name: string, config: FormPluginConfig, opts?: Opts) {
-    this.name = name;
-    this.pluginId = `${name}__${nanoid()}`;
+  constructor(config: FormPluginConfig, opts?: Opts) {
+    this.name = config?.name || '';
+    this.pluginId = `${this.name}__${nanoid()}`;
     this.config = config;
 
     this.opts = opts;
@@ -113,11 +118,8 @@ export class FormPlugin<Opts = any> implements Disposable {
 
 export type FormPluginCreator<Opts> = (opts: Opts) => FormPlugin<Opts>;
 
-export function defineFormPluginCreator<Opts>(
-  name: string,
-  config: FormPluginConfig
-): FormPluginCreator<Opts> {
+export function defineFormPluginCreator<Opts>(config: FormPluginConfig): FormPluginCreator<Opts> {
   return function (opts: Opts) {
-    return new FormPlugin(name, config, opts);
+    return new FormPlugin(config, opts);
   };
 }

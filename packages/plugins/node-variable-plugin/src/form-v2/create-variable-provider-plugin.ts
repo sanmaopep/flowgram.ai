@@ -1,6 +1,7 @@
 import { DataEvent, defineFormPluginCreator } from '@flowgram.ai/node';
 
-export const createVariableProviderPlugin = defineFormPluginCreator('VariableProviderPlugin', {
+export const createVariableProviderPlugin = defineFormPluginCreator({
+  name: 'VariableProviderPlugin',
   onInit: (ctx, opts) => {
     // todo
     // console.log('>>> VariableProviderPlugin init', ctx, opts);

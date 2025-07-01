@@ -42,7 +42,8 @@ export const provideBatchOutputsEffect: EffectOptions[] = createEffectFromVariab
  * Free Layout only right now
  */
 export const createBatchOutputsFormPlugin: FormPluginCreator<{ outputKey: string }> =
-  defineFormPluginCreator('batch-outputs-plugin', {
+  defineFormPluginCreator({
+    name: 'batch-outputs-plugin',
     onSetupFormMeta({ mergeEffect }, { outputKey }) {
       mergeEffect({
         [outputKey]: provideBatchOutputsEffect,
