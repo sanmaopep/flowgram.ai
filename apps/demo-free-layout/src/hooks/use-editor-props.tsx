@@ -298,6 +298,11 @@ export function useEditorProps(
           //   protocol: 'http',
           // },
         }),
+
+        /**
+         * Variable panel plugin
+         * 变量面板插件
+         */
         createVariablePanelPlugin({}),
       ],
     }),
