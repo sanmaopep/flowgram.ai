@@ -26,11 +26,11 @@ export function VariablePanel() {
       <Collapsible isOpen={isOpen}>
         <div className={styles['panel-container']}>
           <Tabs>
-            <Tabs.TabPane itemKey="global" tab="Global Editor">
-              <GlobalVariableEditor />
-            </Tabs.TabPane>
             <Tabs.TabPane itemKey="variables" tab="Variable List">
               <FullVariableList />
+            </Tabs.TabPane>
+            <Tabs.TabPane itemKey="global" tab="Global Editor">
+              <GlobalVariableEditor />
             </Tabs.TabPane>
           </Tabs>
         </div>
