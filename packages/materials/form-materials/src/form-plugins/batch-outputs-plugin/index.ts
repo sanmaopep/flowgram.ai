@@ -43,11 +43,12 @@ export const provideBatchOutputsEffect: EffectOptions[] = createEffectFromVariab
  */
 export const createBatchOutputsFormPlugin: FormPluginCreator<{ outputKey: string }> =
   defineFormPluginCreator('batch-outputs-plugin', {
-    onInit(ctx, { outputKey }) {
-      ctx.mergeEffect({
+    onSetupFormMeta({ mergeEffect }, { outputKey }) {
+      mergeEffect({
         [outputKey]: provideBatchOutputsEffect,
       });
-
+    },
+    onInit(ctx, { outputKey }) {
       const chainTransformService = ctx.node.getService(ScopeChainTransformService);
 
       const batchNodeType = ctx.node.flowNodeType;

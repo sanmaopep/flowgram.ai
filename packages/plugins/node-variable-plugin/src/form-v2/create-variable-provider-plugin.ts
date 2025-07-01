@@ -5,16 +5,18 @@ export const createVariableProviderPlugin = defineFormPluginCreator('VariablePro
     // todo
     // console.log('>>> VariableProviderPlugin init', ctx, opts);
   },
-  effect: {
-    arr: [
-      {
-        event: DataEvent.onValueInitOrChange,
-        effect: () => {
-          // todo
-          // console.log('>>> VariableProviderPlugin effect triggered');
+  onSetupFormMeta({ mergeEffect }) {
+    mergeEffect({
+      arr: [
+        {
+          event: DataEvent.onValueInitOrChange,
+          effect: () => {
+            // todo
+            // console.log('>>> VariableProviderPlugin effect triggered');
+          },
         },
-      },
-    ],
+      ],
+    });
   },
   onDispose: (ctx, opts) => {
     // todo

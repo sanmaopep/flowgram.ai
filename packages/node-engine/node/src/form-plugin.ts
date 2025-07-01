@@ -1,10 +1,18 @@
 import { nanoid } from 'nanoid';
 import { Disposable } from '@flowgram.ai/utils';
+import { type NodeFormContext } from '@flowgram.ai/form-core';
 
-import { EffectOptions, FormPluginCtx } from './types';
+import { type FormMeta, type FormPluginCtx, type FormPluginSetupMetaCtx } from './types';
 import { FormModelV2 } from './form-model-v2';
 
 export interface FormPluginConfig<Opts = any> {
+  /**
+   * setup formMeta
+   * @param ctx
+   * @returns
+   */
+  onSetupFormMeta?: (ctx: FormPluginSetupMetaCtx, opts: Opts) => void;
+
   /**
    * FormModel 初始化时执行
    * @param ctx
@@ -12,12 +20,7 @@ export interface FormPluginConfig<Opts = any> {
   onInit?: (ctx: FormPluginCtx, opts: Opts) => void;
 
   /**
-   * 同 FormMeta 中的effects 会与 FormMeta 中的effects 合并
-   */
-  effect?: Record<string, EffectOptions[]>;
-  /**
    * FormModel 销毁时执行
-   * @param ctx
    */
   onDispose?: (ctx: FormPluginCtx, opts: Opts) => void;
 }
@@ -33,18 +36,10 @@ export class FormPlugin<Opts = any> implements Disposable {
 
   protected _formModel: FormModelV2;
 
-  protected _effect: Record<string, EffectOptions[]> = {};
-
-  get effect() {
-    return this._effect;
-  }
-
   constructor(name: string, config: FormPluginConfig, opts?: Opts) {
     this.name = name;
     this.pluginId = `${name}__${nanoid()}`;
     this.config = config;
-
-    this._effect = config.effect || {};
 
     this.opts = opts;
   }
@@ -58,15 +53,50 @@ export class FormPlugin<Opts = any> implements Disposable {
       formModel: this.formModel,
       node: this.formModel.nodeContext.node,
       playgroundContext: this.formModel.nodeContext.playgroundContext,
-      mergeEffect: this.mergeEffect.bind(this),
     };
   }
 
-  mergeEffect(effect: Record<string, EffectOptions[]>) {
-    this._effect = {
-      ...this._effect,
-      ...effect,
+  setupFormMeta(formMeta: FormMeta, nodeContext: NodeFormContext): FormMeta {
+    const nextFormMeta: FormMeta = {
+      ...formMeta,
     };
+
+    this.config.onSetupFormMeta?.(
+      {
+        mergeEffect: (effect) => {
+          nextFormMeta.effect = {
+            ...(nextFormMeta.effect || {}),
+            ...effect,
+          };
+        },
+        mergeValidate: (validate) => {
+          nextFormMeta.validate = {
+            ...(nextFormMeta.validate || {}),
+            ...validate,
+          };
+        },
+        addFormatOnInit: (formatOnInit) => {
+          if (!nextFormMeta.formatOnInit) {
+            nextFormMeta.formatOnInit = formatOnInit;
+            return;
+          }
+          const legacyFormatOnInit = nextFormMeta.formatOnInit;
+          nextFormMeta.formatOnInit = (v, c) => formatOnInit?.(legacyFormatOnInit(v, c), c);
+        },
+        addFormatOnSubmit: (formatOnSubmit) => {
+          if (!nextFormMeta.formatOnSubmit) {
+            nextFormMeta.formatOnSubmit = formatOnSubmit;
+            return;
+          }
+          const legacyFormatOnSubmit = nextFormMeta.formatOnSubmit;
+          nextFormMeta.formatOnSubmit = (v, c) => formatOnSubmit?.(legacyFormatOnSubmit(v, c), c);
+        },
+        ...nodeContext,
+      },
+      this.opts
+    );
+
+    return nextFormMeta;
   }
 
   init(formModel: FormModelV2) {
