@@ -6,7 +6,13 @@
 import React, { useMemo } from 'react';
 
 import { last } from 'lodash';
-import { ArrayType, ASTMatch, BaseVariableField, useScopeAvailable } from '@flowgram.ai/editor';
+import {
+  type ArrayType,
+  ASTMatch,
+  type BaseType,
+  type BaseVariableField,
+  useScopeAvailable,
+} from '@flowgram.ai/editor';
 import { TreeNodeData } from '@douyinfe/semi-ui/lib/es/tree';
 import { Tree } from '@douyinfe/semi-ui';
 
@@ -23,7 +29,7 @@ export function InputsPicker({
 }) {
   const available = useScopeAvailable();
 
-  const getArrayDrilldown = (type: ArrayType, depth = 1) => {
+  const getArrayDrilldown = (type: ArrayType, depth = 1): { type: BaseType; depth: number } => {
     if (ASTMatch.isArray(type.items)) {
       return getArrayDrilldown(type.items, depth + 1);
     }
