@@ -14,3 +14,4 @@ export * from './batch-outputs';
 export * from './prompt-editor';
 export * from './prompt-editor-with-variables';
 export * from './prompt-editor-with-inputs';
+export * from './code-editor';
