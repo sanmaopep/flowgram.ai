@@ -4,6 +4,7 @@
  */
 
 import { languages } from '@coze-editor/editor/preset-code';
+// import { typescript } from '@coze-editor/editor/language-typescript';
 import { shell } from '@coze-editor/editor/language-shell';
 import { python } from '@coze-editor/editor/language-python';
 import { json } from '@coze-editor/editor/language-json';
