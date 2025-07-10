@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { createRenderer, EditorProvider } from '@coze-editor/editor/react';
 import preset, { type EditorAPI } from '@coze-editor/editor/preset-code';
@@ -37,6 +37,13 @@ export function CodeEditor({
   children,
 }: CodeEditorPropsType) {
   const editorRef = useRef<EditorAPI | null>(null);
+
+  useEffect(() => {
+    // listen to value change
+    if (editorRef.current?.getValue() !== value) {
+      editorRef.current?.setValue(String(value || ''));
+    }
+  }, [value]);
 
   return (
     <EditorProvider>
