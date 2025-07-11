@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "design": {
+      "type": "string",
+      "enum": [
+        "semi",
+        "antd"
+      ]
+    },
+    "alias": {
+      "type": "object",
+      "properties": {
+        "form-components": {
+          "type": "string"
+        },
+        "form-effects": {
+          "type": "string"
+        },
+        "form-plugins": {
+          "type": "string"
+        },
+        "form-hooks": {
+          "type": "string"
+        },
+        "plugins": {
+          "type": "string"
+        },
+        "nodes": {
+          "type": "string"
+        },
+        "typings": {
+          "type": "string"
+        },
+        "utils": {
+          "type": "string"
+        }
+      }
+    },
+    "sync": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

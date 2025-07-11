@@ -1,0 +1,19 @@
+{
+  "alias": {
+    // sync materials to target directory
+    "form-components": "@/form-components",
+    "form-effects": "@/form-effects",
+    "form-plugins": "@/form-plugins",
+    "plugins": "@/plugins",
+    "nodes": "@/nodes"
+  },
+  "design": "semi",
+  // npx @flowgram.ai/cli sync
+  // npx @flowgram.ai/cli sync --interactive
+  // npx @flowgram.ai/cli sync form-components/json-schema-editor
+  // npx @flowgram.ai/cli sync --all (sync all materials)
+  "sync": [
+    "form-components/json-schema-editor",
+    "form-effects/auto-rename-ref"
+  ]
+}
