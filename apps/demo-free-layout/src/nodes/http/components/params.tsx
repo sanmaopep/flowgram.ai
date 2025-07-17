@@ -3,10 +3,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { useNodeRenderContext } from '../../../hooks';
-
 export function Params() {
-  const { readonly } = useNodeRenderContext();
-
-  return <Params />;
+  return <div>params</div>;
 }

@@ -20,6 +20,7 @@ interface FormItemProps {
   description?: string;
   labelWidth?: number;
   vertical?: boolean;
+  style?: React.CSSProperties;
 }
 export function FormItem({
   children,
@@ -29,14 +30,15 @@ export function FormItem({
   type,
   labelWidth,
   vertical,
+  style,
 }: FormItemProps): JSX.Element {
   const renderTitle = useCallback(
     (showTooltip?: boolean) => (
       <div style={{ width: '0', display: 'flex', flex: '1' }}>
         <Text style={{ width: '100%' }} ellipsis={{ showTooltip: !!showTooltip }}>
           {name}
+          {required && <span style={{ color: '#f93920', paddingLeft: '2px' }}>*</span>}
         </Text>
-        {required && <span style={{ color: '#f93920', paddingLeft: '2px' }}>*</span>}
       </div>
     ),
     []
@@ -56,6 +58,7 @@ export function FormItem({
               justifyContent: 'center',
               alignItems: 'center',
             }),
+        ...style,
       }}
     >
       <div
@@ -64,6 +67,8 @@ export function FormItem({
           alignItems: 'center',
           color: 'var(--semi-color-text-0)',
           width: labelWidth || 118,
+          minWidth: labelWidth || 118,
+          maxWidth: labelWidth || 118,
           position: 'relative',
           display: 'flex',
           columnGap: 4,
