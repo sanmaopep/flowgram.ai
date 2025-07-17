@@ -15,7 +15,7 @@ const { Text } = Typography;
 interface FormItemProps {
   children: React.ReactNode;
   name: string;
-  type: string;
+  type?: string;
   required?: boolean;
   description?: string;
   labelWidth?: number;
@@ -70,7 +70,7 @@ export function FormItem({
           flexShrink: 0,
         }}
       >
-        <TypeTag className="form-item-type-tag" type={type} />
+        {type && <TypeTag className="form-item-type-tag" type={type} />}
         {description ? <Tooltip content={description}>{renderTitle()}</Tooltip> : renderTitle(true)}
       </div>
 
