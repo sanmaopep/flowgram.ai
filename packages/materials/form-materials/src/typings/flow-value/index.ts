@@ -33,3 +33,7 @@ export type IFlowValue =
   | IFlowTemplateValue;
 
 export type IFlowConstantRefValue = IFlowConstantValue | IFlowRefValue;
+
+export interface IInputsValues {
+  [key: string]: IFlowValue | IInputsValues | undefined;
+}

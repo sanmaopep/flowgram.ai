@@ -5,6 +5,7 @@
 
 import React from 'react';
 
+import { isObject } from 'lodash';
 import { Button, IconButton, Input } from '@douyinfe/semi-ui';
 import { IconDelete, IconPlus } from '@douyinfe/semi-icons';
 
@@ -20,6 +21,8 @@ export function InputsValues({ value, onChange, style, readonly, constantProps }
     onChange,
   });
 
+  const isDrilldown = isObject(value);
+
   return (
     <div>
       <UIRows style={style}>
@@ -29,6 +32,7 @@ export function InputsValues({ value, onChange, style, readonly, constantProps }
               style={{ width: 100, minWidth: 100, maxWidth: 100 }}
               disabled={readonly}
               size="small"
+              placeholder="Input Name"
               value={item.key}
               onChange={(v) => updateKey(item.id, v)}
             />
@@ -39,7 +43,17 @@ export function InputsValues({ value, onChange, style, readonly, constantProps }
               onChange={(v) => updateValue(item.id, v)}
               constantProps={{
                 ...constantProps,
-                strategies: [...(constantProps?.strategies || [])],
+                strategies: [
+                  {
+                    hit: (schema) => schema.type === 'object',
+                    Renderer: () => (
+                      <Button size="small" theme="borderless" icon={<IconPlus />}>
+                        Add child field
+                      </Button>
+                    ),
+                  },
+                  ...(constantProps?.strategies || []),
+                ],
               }}
             />
             <IconButton
