@@ -4,11 +4,11 @@
  */
 
 import { Strategy } from '../constant-input/types';
-import { IFlowConstantRefValue } from '../../typings';
+import { IFlowValue } from '../../typings';
 
 export interface PropsType {
-  value?: Record<string, IFlowConstantRefValue>;
-  onChange: (value?: Record<string, IFlowConstantRefValue>) => void;
+  value?: Record<string, IFlowValue | undefined>;
+  onChange: (value?: Record<string, IFlowValue | undefined>) => void;
   readonly?: boolean;
   hasError?: boolean;
   style?: React.CSSProperties;

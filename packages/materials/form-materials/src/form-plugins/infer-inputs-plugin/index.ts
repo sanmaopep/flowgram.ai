@@ -35,6 +35,8 @@ export const createInferInputsPlugin = defineFormPluginCreator<InputConfig>({
           scope === 'private' ? getNodePrivateScope(ctx.node) : getNodeScope(ctx.node)
         )
       );
+
+      return formData;
     });
   },
 });

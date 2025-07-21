@@ -16,7 +16,7 @@ import { UIRow, UIRows } from './styles';
 export function BatchOutputs(props: PropsType) {
   const { readonly, style } = props;
 
-  const { list, add, update, remove } = useObjectList(props);
+  const { list, add, updateKey, updateValue, remove } = useObjectList(props);
 
   return (
     <div>
@@ -28,21 +28,13 @@ export function BatchOutputs(props: PropsType) {
               disabled={readonly}
               size="small"
               value={item.key}
-              onChange={(v) => update({ ...item, key: v })}
+              onChange={(v) => updateKey(item.id, v)}
             />
             <VariableSelector
               style={{ flexGrow: 1 }}
               readonly={readonly}
               value={item.value?.content}
-              onChange={(v) =>
-                update({
-                  ...item,
-                  value: {
-                    type: 'ref',
-                    content: v,
-                  },
-                })
-              }
+              onChange={(v) => updateValue(item.id, { type: 'ref', content: v })}
             />
             <Button
               disabled={readonly}

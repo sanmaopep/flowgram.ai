@@ -40,7 +40,7 @@ export function useObjectList<ValueType>({
         .map((item) => ({
           id: item.id,
           key: item.key,
-          value: item.key ? value?.[item.key!] : undefined,
+          value: item.key ? value?.[item.key!] : item.value,
         }))
         .concat(
           addKeys.map((_key) => ({
@@ -61,11 +61,36 @@ export function useObjectList<ValueType>({
     ]);
   };
 
-  const update = (item: ListItem<ValueType>) => {
+  const updateValue = (itemId: string, value: ValueType) => {
     setList((prevList) => {
       const nextList = prevList.map((_item) => {
-        if (_item.id === item.id) {
-          return item;
+        if (_item.id === itemId) {
+          return {
+            ..._item,
+            value,
+          };
+        }
+        return _item;
+      });
+
+      onChange(
+        Object.fromEntries(
+          nextList.filter((item) => item.key).map((item) => [item.key!, item.value])
+        )
+      );
+
+      return nextList;
+    });
+  };
+
+  const updateKey = (itemId: string, key: string) => {
+    setList((prevList) => {
+      const nextList = prevList.map((_item) => {
+        if (_item.id === itemId) {
+          return {
+            ..._item,
+            key,
+          };
         }
         return _item;
       });
@@ -94,5 +119,5 @@ export function useObjectList<ValueType>({
     });
   };
 
-  return { list, add, update, remove };
+  return { list, add, updateKey, updateValue, remove };
 }
