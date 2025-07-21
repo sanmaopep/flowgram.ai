@@ -39,12 +39,6 @@ export const PropertyEdit: React.FC<PropertyEditProps> = (props) => {
   return (
     <Row>
       <LeftColumn>
-        <TypeSelector
-          value={value}
-          disabled={disabled}
-          style={{ position: 'absolute', top: 2, left: 4, zIndex: 1, padding: '0 5px', height: 20 }}
-          onChange={(val) => partialUpdateProperty(val)}
-        />
         <Input
           value={inputKey}
           disabled={disabled}
