@@ -62,7 +62,7 @@ export function DynamicValueInput({
     return (
       <ConstantInput
         value={value?.content}
-        onChange={(_v) => onChange({ type: 'constant', content: _v })}
+        onChange={(_v) => onChange({ type: 'constant', content: _v, schema })}
         schema={schema || { type: 'string' }}
         readonly={readonly}
         {...constantProps}

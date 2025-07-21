@@ -8,15 +8,15 @@ import React from 'react';
 import { Button, Input } from '@douyinfe/semi-ui';
 import { IconDelete, IconPlus } from '@douyinfe/semi-icons';
 
-import { useList } from './use-list';
 import { PropsType } from './types';
 import { VariableSelector } from '../variable-selector';
+import { useObjectList } from '../../hooks';
 import { UIRow, UIRows } from './styles';
 
 export function BatchOutputs(props: PropsType) {
   const { readonly, style } = props;
 
-  const { list, add, update, remove } = useList(props);
+  const { list, add, update, remove } = useObjectList(props);
 
   return (
     <div>

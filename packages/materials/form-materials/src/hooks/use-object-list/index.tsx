@@ -5,17 +5,29 @@
 
 import { useEffect, useState } from 'react';
 
+import { nanoid } from 'nanoid';
 import { difference } from 'lodash';
 
-import { OutputItem, PropsType } from './types';
-
-let _id = 0;
 function genId() {
-  return _id++;
+  return nanoid();
 }
 
-export function useList({ value, onChange }: PropsType) {
-  const [list, setList] = useState<OutputItem[]>([]);
+interface ListItem<ValueType> {
+  id: string;
+  key?: string;
+  value?: ValueType;
+}
+
+type ObjectType<ValueType> = Record<string, ValueType | undefined>;
+
+export function useObjectList<ValueType>({
+  value,
+  onChange,
+}: {
+  value?: ObjectType<ValueType>;
+  onChange: (value?: ObjectType<ValueType>) => void;
+}) {
+  const [list, setList] = useState<ListItem<ValueType>[]>([]);
 
   useEffect(() => {
     setList((_prevList) => {
@@ -49,7 +61,7 @@ export function useList({ value, onChange }: PropsType) {
     ]);
   };
 
-  const update = (item: OutputItem) => {
+  const update = (item: ListItem<ValueType>) => {
     setList((prevList) => {
       const nextList = prevList.map((_item) => {
         if (_item.id === item.id) {
@@ -68,7 +80,7 @@ export function useList({ value, onChange }: PropsType) {
     });
   };
 
-  const remove = (itemId: number) => {
+  const remove = (itemId: string) => {
     setList((prevList) => {
       const nextList = prevList.filter((_item) => _item.id !== itemId);
 
