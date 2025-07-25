@@ -4,7 +4,7 @@
  */
 
 import { Strategy } from '../constant-input/types';
-import { IFlowValue } from '../../typings';
+import { IFlowValue, IJsonSchema } from '../../typings';
 
 export interface PropsType {
   value?: Record<string, IFlowValue | undefined>;
@@ -12,6 +12,7 @@ export interface PropsType {
   readonly?: boolean;
   hasError?: boolean;
   style?: React.CSSProperties;
+  schema?: IJsonSchema;
   constantProps?: {
     strategies?: Strategy[];
     [key: string]: any;
