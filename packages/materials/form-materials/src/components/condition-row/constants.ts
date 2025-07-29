@@ -13,8 +13,8 @@ export const rules: IRules = {
     [Op.NOT_CONTAINS]: 'string',
     [Op.IN]: 'array',
     [Op.NIN]: 'array',
-    [Op.IS_EMPTY]: 'string',
-    [Op.IS_NOT_EMPTY]: 'string',
+    [Op.IS_EMPTY]: null,
+    [Op.IS_NOT_EMPTY]: null,
   },
   number: {
     [Op.EQ]: 'number',
