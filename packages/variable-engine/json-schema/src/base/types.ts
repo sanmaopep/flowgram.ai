@@ -18,11 +18,6 @@ export interface BaseTypeRegistry {
    * and the new definition will override the inherited definition.
    */
   extend?: string;
-
-  /**
-   *
-   */
-  onRegister?: () => void;
 }
 
 /**
