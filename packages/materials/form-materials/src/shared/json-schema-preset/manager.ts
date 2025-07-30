@@ -3,11 +3,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-import {
-  type IJsonSchema,
-  JsonSchemaTypeManager,
-  jsonSchemaTypeManager as originJsonSchemaTypeManager,
-} from '@flowgram.ai/json-schema';
 import { JsonSchemaTypeRegistry as OriginJsonSchemaTypeRegistry } from '@flowgram.ai/json-schema';
 
 export interface ConstantRendererProps<Value = any> {
@@ -21,9 +16,3 @@ export interface JsonSchemaTypeRegistry<Value = any> extends OriginJsonSchemaTyp
    */
   ConstantRenderer: React.FC<ConstantRendererProps<Value>>;
 }
-
-export const jsonSchemaTypeManager: JsonSchemaTypeManager<IJsonSchema, JsonSchemaTypeRegistry> =
-  originJsonSchemaTypeManager as unknown as JsonSchemaTypeManager<
-    IJsonSchema,
-    JsonSchemaTypeRegistry
-  >;

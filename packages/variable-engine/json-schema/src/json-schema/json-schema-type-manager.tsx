@@ -123,4 +123,9 @@ export class JsonSchemaTypeManager<
     const registry = this.getTypeBySchema(type);
     return registry?.getTypeSchemaProperties(type);
   };
+
+  public getJsonPaths = (type: Schema) => {
+    const registry = this.getTypeBySchema(type);
+    return registry?.getJsonPaths(type);
+  };
 }

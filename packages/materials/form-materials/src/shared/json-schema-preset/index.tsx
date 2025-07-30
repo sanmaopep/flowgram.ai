@@ -11,22 +11,13 @@ import {
   TypePresetProvider as OriginTypePresetProvider,
   JsonSchemaTypeManager,
 } from '@flowgram.ai/json-schema';
-import { usePlaygroundContainer } from '@flowgram.ai/editor';
 
 import { jsonSchemaTypePreset } from './type-definition';
 import { type JsonSchemaTypeRegistry, type ConstantRendererProps } from './manager';
-import { createTypePresetPlugin, TypeManager } from './create-type-preset-plugin';
+import { createTypePresetPlugin } from './create-type-preset-plugin';
 
-const useTypeManager = () => {
-  const container = usePlaygroundContainer();
-
-  // Get TypeManager from container
-  const typeManager = useOriginTypeManager<JsonSchemaTypeRegistry>(
-    container?.isBound(TypeManager) ? container.get(TypeManager) : undefined
-  );
-
-  return typeManager as JsonSchemaTypeManager<IJsonSchema, JsonSchemaTypeRegistry>;
-};
+const useTypeManager = () =>
+  useOriginTypeManager() as JsonSchemaTypeManager<IJsonSchema, JsonSchemaTypeRegistry>;
 
 const JsonSchemaTypePresetProvider = ({
   types = [],

@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: MIT
  */
 
+import { type BaseTypeManager } from './base-type-manager';
+
 /**
  * Base information for TypeRegistry
  */
@@ -26,6 +28,8 @@ export interface BaseTypeRegistry {
 /**
  * TypeRegistryCreator
  */
-export type TypeRegistryCreator<Registry extends BaseTypeRegistry, Manager> = (ctx: {
-  typeManager: Manager;
-}) => Partial<Registry>;
+export type TypeRegistryCreator<
+  Schema,
+  Registry extends BaseTypeRegistry,
+  Manager extends BaseTypeManager<Schema, Registry, Manager>
+> = (ctx: { typeManager: Manager }) => Partial<Registry>;

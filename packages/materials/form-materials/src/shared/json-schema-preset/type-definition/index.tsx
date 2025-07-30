@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { jsonSchemaTypeManager } from '../manager';
+import { jsonSchemaTypeManager } from '@flowgram.ai/json-schema';
+
 import { stringRegistry } from './string';
 import { objectRegistry } from './object';
 import { numberRegistry } from './number';

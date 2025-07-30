@@ -7,3 +7,4 @@ export * from './base';
 export * from './json-schema';
 
 export { useTypeManager, TypePresetProvider } from './context';
+export { jsonSchemaContainerModule } from './container-module';

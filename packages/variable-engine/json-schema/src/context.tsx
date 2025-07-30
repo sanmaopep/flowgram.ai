@@ -5,30 +5,32 @@
 
 import React, { createContext, useContext, useMemo } from 'react';
 
+import { usePlaygroundContainer } from '@flowgram.ai/core';
+
 import {
   IJsonSchema,
   jsonSchemaTypeManager,
   JsonSchemaTypeManager,
   JsonSchemaTypeRegistry,
 } from './json-schema';
-import { TypeRegistryCreator } from './base';
+import { BaseTypeManager, TypeRegistryCreator } from './base';
 
 // use global default
 const TypePresetContext = createContext<JsonSchemaTypeManager | null>(null);
 
-export const useTypeManager = <Registry extends JsonSchemaTypeRegistry = JsonSchemaTypeRegistry>(
-  backupTypeManager?: JsonSchemaTypeManager<IJsonSchema, Registry>
-) => {
-  const typeManager = useContext(TypePresetContext);
+export const useTypeManager = () => {
+  const typeManagerFromContext = useContext(TypePresetContext);
+  const container = usePlaygroundContainer();
 
-  if (typeManager) {
-    return typeManager;
+  if (typeManagerFromContext) {
+    return typeManagerFromContext;
   }
 
-  if (backupTypeManager) {
-    return backupTypeManager;
+  if (container?.isBound(BaseTypeManager)) {
+    return container.get(BaseTypeManager);
   }
 
+  // Global Singleton
   return jsonSchemaTypeManager;
 };
 
@@ -40,7 +42,7 @@ export const TypePresetProvider = <
 }: React.PropsWithChildren<{
   types: (
     | Partial<Registry>
-    | TypeRegistryCreator<Registry, JsonSchemaTypeManager<IJsonSchema, Registry>>
+    | TypeRegistryCreator<IJsonSchema, Registry, JsonSchemaTypeManager<IJsonSchema, Registry>>
   )[];
 }>) => {
   const schemaManager = useMemo(() => {

@@ -161,4 +161,4 @@ export type JsonSchemaTypeRegistryCreator<
   Schema extends Partial<IJsonSchema> = IJsonSchema,
   Registry extends JsonSchemaTypeRegistry<Schema> = JsonSchemaTypeRegistry<Schema>,
   Manager extends JsonSchemaTypeManager<Schema, Registry> = JsonSchemaTypeManager<Schema, Registry>
-> = TypeRegistryCreator<Registry, Manager>;
+> = TypeRegistryCreator<Schema, Registry, Manager>;

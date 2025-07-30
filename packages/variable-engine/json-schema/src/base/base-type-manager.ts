@@ -43,7 +43,9 @@ export abstract class BaseTypeManager<
   /**
    * 注册 TypeRegistry
    */
-  register(originRegistry: Partial<Registry> | TypeRegistryCreator<Registry, Manager>): void {
+  register(
+    originRegistry: Partial<Registry> | TypeRegistryCreator<Schema, Registry, Manager>
+  ): void {
     const registry =
       typeof originRegistry === 'function'
         ? originRegistry({ typeManager: this as unknown as Manager })
