@@ -50,7 +50,7 @@ export function TypeSelector(props: PropTypes) {
 
   const typeManager = useTypeManager();
 
-  const icon = typeManager.getTypeBySchema(value || {})?.getDisplayIcon(value || {});
+  const icon = typeManager.getDisplayIcon(value || {});
 
   const options = useMemo(
     () =>
@@ -67,10 +67,15 @@ export function TypeSelector(props: PropTypes) {
           value: _type.type,
           children: isArray
             ? typeManager.getTypeRegistriesWithParentType('array').map((_type) => ({
-                icon: _type.icon,
                 label: (
                   <div style={labelStyle}>
-                    <Icon size="small" svg={_type.icon} />
+                    <Icon
+                      size="small"
+                      svg={typeManager.getDisplayIcon({
+                        type: 'array',
+                        items: { type: _type.type },
+                      })}
+                    />
                     {firstUppercase(_type.type)}
                   </div>
                 ),

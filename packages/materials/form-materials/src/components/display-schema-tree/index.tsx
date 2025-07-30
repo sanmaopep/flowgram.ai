@@ -36,7 +36,7 @@ function SchemaTree(props: PropsType) {
 
   const config = typeManager.getTypeBySchema(schema);
   const title = typeManager.getComplexText(schema);
-  const icon = config?.getDisplayIcon(schema);
+  const icon = typeManager?.getDisplayIcon(schema);
   let properties: IJsonSchema['properties'] =
     drilldown && config ? config.getTypeSchemaProperties(schema) : {};
   const childEntries = Object.entries(properties || {});

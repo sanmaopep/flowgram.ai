@@ -31,6 +31,7 @@ export const defaultTypeDefinitionRegistry: JsonSchemaTypeRegistryCreator = ({ t
   getStringValueByTypeSchema: (type: IJsonSchema): string | undefined => type.type,
 
   getTypeSchemaProperties: () => undefined,
+
   getDisplayLabel: (schema) => (
     <div
       style={{

@@ -21,9 +21,8 @@ interface PropsType {
 
 export function DisplaySchemaTag({ value = {}, showIconInTree, title, warning }: PropsType) {
   const typeManager = useTypeManager();
-  const config = typeManager.getTypeBySchema(value);
   const icon =
-    config?.getDisplayIcon(value) || typeManager.getTypeByName('unknown')?.getDisplayIcon({});
+    typeManager?.getDisplayIcon(value) || typeManager.getDisplayIcon({ type: 'unknown' });
 
   return (
     <Popover

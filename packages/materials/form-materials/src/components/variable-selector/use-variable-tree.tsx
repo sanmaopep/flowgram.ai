@@ -39,12 +39,7 @@ export function useVariableTree(params: {
 
     const schema = JsonSchemaUtils.astToSchema(variable.type, { drilldownObject: false });
 
-    return (
-      <Icon
-        size="small"
-        svg={typeManager.getTypeBySchema(schema || {})?.getDisplayIcon(schema || {})}
-      />
-    );
+    return <Icon size="small" svg={typeManager.getDisplayIcon(schema || {})} />;
   }, []);
 
   const renderVariable = (

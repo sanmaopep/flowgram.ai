@@ -2,6 +2,7 @@
  * Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
  * SPDX-License-Identifier: MIT
  */
+import React from 'react';
 
 import { injectable } from 'inversify';
 
@@ -67,7 +68,7 @@ export class JsonSchemaTypeManager<
   }
 
   /**
-   * 根据当前的 parentType 获取 TypeRegistries
+   * Get TypeRegistries based on the current parentType
    */
   public getTypeRegistriesWithParentType = (parentType = ''): Registry[] =>
     this.getAllTypeRegistries()
@@ -75,7 +76,7 @@ export class JsonSchemaTypeManager<
       .filter((v) => !v.parentType || v.parentType.includes(parentType));
 
   /**
-   * 获取字段的最深子字段
+   * Get the deepest child field of a field
    * Array<Array<String>> -> String
    */
   getTypeSchemaDeepChildField = (type: Schema) => {
@@ -92,10 +93,10 @@ export class JsonSchemaTypeManager<
   };
 
   /**
-   * 获取 type schema 纯文本展示字符串，例如：
-   * Array<Array<String>>，Map<String，Number>
+   * Get the plain text display string of the type schema, for example:
+   * Array<Array<String>>, Map<String, Number>
    */
-  getComplexText = (type: Schema): string => {
+  public getComplexText = (type: Schema): string => {
     const registry = this.getTypeBySchema(type);
 
     if (registry?.customComplexText) {
@@ -111,5 +112,15 @@ export class JsonSchemaTypeManager<
     } else {
       return registry?.label || type.type || 'unknown';
     }
+  };
+
+  public getDisplayIcon = (type: Schema) => {
+    const registry = this.getTypeBySchema(type);
+    return registry?.getDisplayIcon(type) || registry?.icon || <></>;
+  };
+
+  public getTypeSchemaProperties = (type: Schema) => {
+    const registry = this.getTypeBySchema(type);
+    return registry?.getTypeSchemaProperties(type);
   };
 }

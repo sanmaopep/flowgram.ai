@@ -39,29 +39,29 @@ export interface IJsonSchema<T = string> {
 export type IBasicJsonSchema = IJsonSchema<JsonSchemaBasicType>;
 
 /**
- * 基于 IJsonSchema 的 TypeRegistry
+ * TypeRegistry based on IJsonSchema
  */
 export interface JsonSchemaTypeRegistry<Schema extends Partial<IJsonSchema> = IJsonSchema>
   extends BaseTypeRegistry {
   /**
-   * 该类型 icon
+   * The icon of this type
    */
   icon: React.JSX.Element;
   /**
-   * 该类型展示文本，不包含 icon
+   * The display text of this type, not including the icon
    */
   label: string;
   /**
-   * 是否是容器类型
+   * Whether it is a container type
    */
   container: boolean;
   /**
-   * 支持的父类型，部分类型在类型选择中仅能作为子类型出现，而不能作为的基本类型出现
+   * Supported parent types. Some types can only appear as subtypes in type selection, but not as basic types.
    */
   parentType?: string[];
 
   /*
-   * 获取支持的子类型
+   * Get supported sub-types
    */
   getSupportedItemTypes?: (ctx: {
     level: number;
@@ -69,71 +69,73 @@ export interface JsonSchemaTypeRegistry<Schema extends Partial<IJsonSchema> = IJ
   }) => Array<{ type: string; disabled?: string }>;
 
   /**
-   * 获取展示 label
+   * Get the display label
    */
   getDisplayLabel: (typeSchema: Schema) => React.JSX.Element;
+
   /**
-   * 获取 展示 text
+   * Get the display text
    */
   getDisplayText: (typeSchema: Schema) => string | undefined;
+
   /**
-   * 获取子类型
+   * Get the sub-type
    */
   getItemType?: (typeSchema: Schema) => Schema | undefined;
 
   /**
-   * 生成 default Schema
+   * Generate default Schema
    */
   getDefaultSchema: () => Schema;
 
   /**
-   * onInit 初始化逻辑，在外部合适的时机调用，将数据注册到类型系统之中
+   * onInit initialization logic, which is called at the appropriate time externally to register data into the type system
    */
   onInit?: () => void;
 
   /**
-   * 是否允许添加字段，例如 object
+   * Whether to allow adding fields, such as object
    */
   canAddField: (typeSchema: Schema) => boolean;
 
   /**
-   * 获取 string 的 value，比如
+   * Get the string value, for example
    *  { type: "array", items: { type: "string" } }
-   *  值为 "array-string"
+   *  The value is "array-string"
    *
-   * 使用场景为，在一些 ui 组件中，需要生成 string value
+   * The use case is that in some UI components, a string value needs to be generated
    */
   getStringValueByTypeSchema?: (optionValue: Schema) => string | undefined;
 
   /**
-   * 将 string value 还原成 typeSchema
-   * "array-string" 还原为
+   * Restore the string value to typeSchema
+   * "array-string" is restored to
    *  { type: "array", items: { type: "string" } }
    */
   getTypeSchemaByStringValue?: (type: string) => Schema;
 
   /**
-   * 获取展示用的 icon，array 的 复合 icon 也有处理
+   * Get the display icon, and the composite icon of the array is also processed
    */
   getDisplayIcon: (typeSchema: Schema) => JSX.Element;
 
   /**
-   * 获取子属性
+   * Get sub-properties
    */
   getTypeSchemaProperties: (typeSchema: Schema) => Record<string, Schema> | undefined;
 
   /**
-   * 获取默认值
+   * Get the default value
    */
   getDefaultValue: () => unknown;
 
   /**
-   * 根据值获取展示的文本
+   * Get the display text based on the value
    */
   getValueText: (value?: unknown) => string;
   /**
-   * 获取某个类型在 flow schema 的 json path
-   * 比如
+   * Get the json path of a certain type in the flow schema
+   * For example
    * { type: "object", properties: { name: { type: "string" } } }
    * -> ['properties', 'name']
    * { type: "array", items: { type: "string" } }
@@ -142,15 +144,15 @@ export interface JsonSchemaTypeRegistry<Schema extends Partial<IJsonSchema> = IJ
   getJsonPaths: (typeSchema: Schema) => string[];
 
   /**
-   * 获取子字段的父节点
-   * object 是自身
-   * array<object> 是 items
-   * map<object> 是 additionalProperties
+   * Get the parent node of the sub-field
+   * object is itself
+   * array<object> is items
+   * map<object> is additionalProperties
    */
   getPropertiesParent: (typeSchema: Schema) => Schema | undefined;
   /**
-   * 自定义类型的 complexText
-   * 比如 Array<string>，可以进行修改
+   * The complexText of a custom type
+   * For example, Array<string>, can be modified
    */
   customComplexText?: (typeSchema: Schema) => string;
 }
