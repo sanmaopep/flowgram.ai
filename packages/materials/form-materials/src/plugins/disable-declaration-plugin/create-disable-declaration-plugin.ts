@@ -3,11 +3,18 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { ASTMatch, definePluginCreator, VariableEngine } from '@flowgram.ai/editor';
+import {
+  ASTMatch,
+  definePluginCreator,
+  type GlobalEventActionType,
+  VariableEngine,
+} from '@flowgram.ai/editor';
 
 export const createDisableDeclarationPlugin = definePluginCreator<void>({
   onInit(ctx) {
-    ctx.get(VariableEngine).onGlobalEvent('NewAST', (action) => {
+    const variableEngine = ctx.get(VariableEngine);
+
+    const handleEvent = (action: GlobalEventActionType) => {
       if (ASTMatch.isVariableDeclaration(action.ast)) {
         if (!action.ast.meta?.disabled) {
           action.ast.updateMeta({
@@ -16,16 +23,9 @@ export const createDisableDeclarationPlugin = definePluginCreator<void>({
           });
         }
       }
-    });
-    ctx.get(VariableEngine).onGlobalEvent('UpdateAST', (action) => {
-      if (ASTMatch.isVariableDeclaration(action.ast)) {
-        if (!action.ast.meta?.disabled) {
-          action.ast.updateMeta({
-            ...(action.ast.meta || {}),
-            disabled: true,
-          });
-        }
-      }
-    });
+    };
+
+    variableEngine.onGlobalEvent('NewAST', handleEvent);
+    variableEngine.onGlobalEvent('UpdateAST', handleEvent);
   },
 });
