@@ -53,6 +53,8 @@ export const rules: IRules = {
     [Op.IS_NOT_EMPTY]: null,
     [Op.CONTAINS]: 'array',
     [Op.NOT_CONTAINS]: 'array',
+    [Op.EQ]: 'array',
+    [Op.NEQ]: 'array',
   },
   map: {
     [Op.IS_EMPTY]: null,
