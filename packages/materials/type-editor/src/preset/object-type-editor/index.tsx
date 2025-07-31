@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
+ * SPDX-License-Identifier: MIT
+ */
+
 import React, { useMemo } from 'react';
 
 import { IJsonSchema } from '@flowgram.ai/json-schema';
@@ -44,7 +49,7 @@ export function ObjectTypeEditor(props: PropsType) {
         })}
         getRootSchema={(type) => type.properties![rootKey]}
         onEditRowDataSource={(dataSource) => {
-          // 对于 output 特化处理，不允许该行编辑 key、required
+          // 不允许该行编辑 key、required
           if (dataSource[0]) {
             dataSource[0].disableEditColumn = [
               {
