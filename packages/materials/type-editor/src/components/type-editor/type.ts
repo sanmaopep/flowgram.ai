@@ -103,7 +103,7 @@ export interface TypeEditorProp<
   /**
    * 每个列的配置
    */
-  viewConfigs: (TypeEditorColumnViewConfig & {
+  viewConfigs?: (TypeEditorColumnViewConfig & {
     config?: Partial<Omit<TypeEditorColumnConfig<TypeSchema>, 'type'>>;
   })[];
 

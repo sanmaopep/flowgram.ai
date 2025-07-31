@@ -2,8 +2,10 @@
  * Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
  * SPDX-License-Identifier: MIT
  */
+import React from 'react';
 
 import { IJsonSchema } from '@flowgram.ai/json-schema';
+import { Space, Typography } from '@douyinfe/semi-ui';
 
 import { TypeEditorRegistry } from '../types';
 import { TypeEditorRegistryManager } from '../services/type-registry-manager';
@@ -37,6 +39,16 @@ export const registryFormatter = <TypeSchema extends Partial<IJsonSchema>>(
 
   return {
     ...res,
+    getDisplayLabel: (type: IJsonSchema) => (
+      <Space style={{ width: '100%' }}>
+        {manager?.getDisplayIcon(type as TypeSchema)}
+        <div style={{ flex: 1, width: 0, display: 'flex' }}>
+          <Typography.Text size="small" ellipsis={{ showTooltip: true }}>
+            {manager.getComplexText(type as TypeSchema)}
+          </Typography.Text>
+        </div>
+      </Space>
+    ),
     getIJsonSchemaDeepField: (type: TypeSchema) => manager.getTypeSchemaDeepChildField(type),
   } as unknown as TypeEditorRegistry<TypeSchema>;
 };
