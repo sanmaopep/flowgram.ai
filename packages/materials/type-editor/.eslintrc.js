@@ -12,5 +12,6 @@ module.exports = defineConfig({
     'no-console': 'off',
     'react/no-deprecated': 'off',
     '@flowgram.ai/e2e-data-testid': 'off',
+    'react/prop-types': 'off',
   },
 });
