@@ -756,6 +756,9 @@ importers:
       less:
         specifier: ^4.1.2
         version: 4.3.0
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
       vite:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@18.19.68)(less@4.3.0)

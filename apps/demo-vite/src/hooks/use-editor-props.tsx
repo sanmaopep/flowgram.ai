@@ -79,15 +79,6 @@ export const useEditorProps = () =>
                 <Field<string> name="title">
                   {({ field }) => <div className="demo-free-node-title">{field.value}</div>}
                 </Field>
-                <Field<string> name="code" defaultValue={defaultCode}>
-                  {({ field }) => (
-                    <CodeEditor
-                      languageId="typescript"
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
-                  )}
-                </Field>
                 <div className="demo-free-node-content">
                   <Field<string> name="content">
                     <input />
