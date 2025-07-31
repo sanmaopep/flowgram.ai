@@ -47,7 +47,7 @@ const TableInner = <Mode extends TypeEditorMode, TypeSchema extends Partial<IJso
   onPaste,
   typeRegistryCreators,
   onFieldChange,
-  getRootIJsonSchema,
+  getRootSchema,
   onCustomSetValue,
   extraConfig: originExtraConfig = {},
 }: TypeEditorProp<Mode, TypeSchema>) => {
@@ -424,7 +424,7 @@ const TableInner = <Mode extends TypeEditorMode, TypeSchema extends Partial<IJso
         handleTypeSchemaChange();
       }
     },
-    [initialSchema, getRootIJsonSchema]
+    [initialSchema, getRootSchema]
   );
 
   useEffect(() => {

@@ -94,7 +94,7 @@ export interface TypeEditorProp<
   /**
    * 获取全局 add 的 root schema
    */
-  getRootIJsonSchema?: (schema: TypeSchema) => TypeSchema;
+  getRootSchema?: (schema: TypeSchema) => TypeSchema;
   /**
    *
    */

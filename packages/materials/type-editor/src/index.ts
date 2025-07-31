@@ -10,3 +10,4 @@ export * from './components';
 export * from './services/type-editor-service';
 export * from './services/type-registry-manager';
 export * from '@flowgram.ai/json-schema';
+export * from './preset';
