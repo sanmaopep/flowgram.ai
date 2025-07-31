@@ -9,40 +9,12 @@ import { noop } from 'lodash';
 import { IJsonSchema } from '@flowgram.ai/json-schema';
 import { Space } from '@douyinfe/semi-ui';
 
-import { TypeEditorColumnType } from '../../types';
 import { fixedTSForwardRef } from './utils';
 import { TypeEditorTable } from './type-editor';
 import { TypeEditorMode, TypeEditorProp, TypeEditorRef } from './type';
 import { ToolBar } from './tool-bar';
 export * from './type';
 export { columnConfigs as TypeEditorColumnConfigs } from './columns';
-
-const defaultViewConfigs = [
-  {
-    type: TypeEditorColumnType.Key,
-    visible: true,
-  },
-  {
-    type: TypeEditorColumnType.Type,
-    visible: true,
-  },
-  {
-    type: TypeEditorColumnType.Description,
-    visible: true,
-  },
-  {
-    type: TypeEditorColumnType.Required,
-    visible: true,
-  },
-  {
-    type: TypeEditorColumnType.Default,
-    visible: true,
-  },
-  {
-    type: TypeEditorColumnType.Operate,
-    visible: true,
-  },
-];
 
 const TypeEditorContainer = <Mode extends TypeEditorMode, TypeSchema extends Partial<IJsonSchema>>(
   props: TypeEditorProp<Mode, TypeSchema>,
@@ -71,7 +43,6 @@ const TypeEditorContainer = <Mode extends TypeEditorMode, TypeSchema extends Par
         onInit={(editor) => {
           setInstance(editor.current);
         }}
-        viewConfigs={defaultViewConfigs}
         {...props}
       />
     </Space>

@@ -7,8 +7,35 @@ import React, { useMemo } from 'react';
 
 import { IJsonSchema } from '@flowgram.ai/json-schema';
 
-import { TypeEditorColumnType } from '../../types';
+import { TypeEditorColumnType, TypeEditorColumnViewConfig } from '../../types';
 import { ToolbarKey, TypeEditor } from '../../components';
+
+const defaultViewConfigs = [
+  {
+    type: TypeEditorColumnType.Key,
+    visible: true,
+  },
+  {
+    type: TypeEditorColumnType.Type,
+    visible: true,
+  },
+  {
+    type: TypeEditorColumnType.Description,
+    visible: true,
+  },
+  {
+    type: TypeEditorColumnType.Required,
+    visible: true,
+  },
+  {
+    type: TypeEditorColumnType.Default,
+    visible: true,
+  },
+  {
+    type: TypeEditorColumnType.Operate,
+    visible: true,
+  },
+];
 
 interface PropsType {
   value?: IJsonSchema;
@@ -16,13 +43,14 @@ interface PropsType {
   readonly?: boolean;
   config?: {
     rootKey?: string;
+    viewConfigs?: TypeEditorColumnViewConfig[];
   };
 }
 
 export function ObjectTypeEditor(props: PropsType) {
   const { value, onChange, config, readonly } = props;
 
-  const { rootKey = 'outputs' } = config || {};
+  const { rootKey = 'outputs', viewConfigs = defaultViewConfigs } = config || {};
 
   const wrapValue: IJsonSchema = useMemo(
     () => ({
@@ -32,6 +60,21 @@ export function ObjectTypeEditor(props: PropsType) {
     [value, rootKey]
   );
 
+  const disableEditColumn = useMemo(() => {
+    const res: any[] = [];
+
+    if (readonly) {
+      viewConfigs.forEach((v) => {
+        res.push({
+          column: v.type,
+          reason: 'This field is not editable.',
+        });
+      });
+    }
+
+    return res;
+  }, [readonly, viewConfigs]);
+
   return (
     <div>
       <TypeEditor
@@ -40,6 +83,7 @@ export function ObjectTypeEditor(props: PropsType) {
         toolbarConfig={[ToolbarKey.Import, ToolbarKey.UndoRedo]}
         rootLevel={1}
         value={wrapValue}
+        disableEditColumn={disableEditColumn}
         onChange={(_v) => onChange?.(_v?.properties?.[rootKey])}
         onCustomSetValue={(newType) => ({
           type: 'object',
@@ -48,6 +92,7 @@ export function ObjectTypeEditor(props: PropsType) {
           },
         })}
         getRootSchema={(type) => type.properties![rootKey]}
+        viewConfigs={defaultViewConfigs}
         onEditRowDataSource={(dataSource) => {
           // 不允许该行编辑 key、required
           if (dataSource[0]) {
