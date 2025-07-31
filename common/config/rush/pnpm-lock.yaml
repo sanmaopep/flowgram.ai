@@ -2254,6 +2254,9 @@ importers:
       react-dnd-html5-backend:
         specifier: 16.0.1
         version: 16.0.1
+      reflect-metadata:
+        specifier: ~0.2.2
+        version: 0.2.2
     devDependencies:
       '@flowgram.ai/eslint-config':
         specifier: workspace:*
