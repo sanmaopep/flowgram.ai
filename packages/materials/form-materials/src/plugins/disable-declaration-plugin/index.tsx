@@ -3,4 +3,4 @@
  * SPDX-License-Identifier: MIT
  */
 
-export {} from './create-disable-declaration-plugin';
+export { createDisableDeclarationPlugin } from './create-disable-declaration-plugin';

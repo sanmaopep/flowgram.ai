@@ -9,10 +9,22 @@ export const createDisableDeclarationPlugin = definePluginCreator<void>({
   onInit(ctx) {
     ctx.get(VariableEngine).onGlobalEvent('NewAST', (action) => {
       if (ASTMatch.isVariableDeclaration(action.ast)) {
-        action.ast.updateMeta({
-          ...(action.ast.meta || {}),
-          disabled: true,
-        });
+        if (!action.ast.meta?.disabled) {
+          action.ast.updateMeta({
+            ...(action.ast.meta || {}),
+            disabled: true,
+          });
+        }
+      }
+    });
+    ctx.get(VariableEngine).onGlobalEvent('UpdateAST', (action) => {
+      if (ASTMatch.isVariableDeclaration(action.ast)) {
+        if (!action.ast.meta?.disabled) {
+          action.ast.updateMeta({
+            ...(action.ast.meta || {}),
+            disabled: true,
+          });
+        }
       }
     });
   },
