@@ -843,6 +843,15 @@
             ]
         },
         {
+            "packageName": "@flowgram.ai/material-cli-tools",
+            "projectFolder": "packages/materials/cli-tools",
+            "versionPolicyName": "publishPolicy",
+            "tags": [
+                "level-1",
+                "team-flow"
+            ]
+        },
+        {
             "packageName": "@flowgram.ai/form-materials",
             "projectFolder": "packages/materials/form-materials",
             "versionPolicyName": "publishPolicy",
