@@ -10,6 +10,7 @@ import {
   syncVariableTitle,
   DisplayOutputs,
   validateFlowValue,
+  validateWhenVariableSync,
 } from '@flowgram.ai/form-materials';
 import { Divider } from '@douyinfe/semi-ui';
 
@@ -67,6 +68,6 @@ export const defaultFormMeta: FormMeta<FlowNodeJSON> = {
   effect: {
     title: syncVariableTitle,
     outputs: provideJsonSchemaOutputs,
-    inputsValues: autoRenameRefEffect,
+    inputsValues: [...autoRenameRefEffect, ...validateWhenVariableSync({ scope: 'public' })],
   },
 };
