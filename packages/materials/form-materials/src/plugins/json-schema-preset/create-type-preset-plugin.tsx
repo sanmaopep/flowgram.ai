@@ -14,7 +14,7 @@ import { jsonSchemaTypePreset } from './type-definition';
 import { JsonSchemaTypeRegistry } from './manager';
 
 export const createTypePresetPlugin = definePluginCreator<{
-  types?: Partial<JsonSchemaTypeRegistry>[];
+  types?: Partial<JsonSchemaTypeRegistry> & Pick<JsonSchemaTypeRegistry, 'type'>[];
   unregisterTypes?: string[];
 }>({
   onInit(ctx, opts) {
