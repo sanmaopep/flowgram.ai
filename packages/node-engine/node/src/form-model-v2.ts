@@ -261,23 +261,25 @@ export class FormModelV2 extends FormModel implements Disposable {
     }
 
     // Form 数据变更时触发对应的effect
-    nativeFormModel.onFormValuesChange(({ values, prevValues, name }) => {
+    nativeFormModel.onFormValuesChange(({ values, prevValues, name, options }) => {
       Object.keys(this.effectMap).forEach((pattern) => {
         // 找到匹配 pattern 的数据路径
         const paths = uniq([
           ...Glob.findMatchPaths(values, pattern),
           ...Glob.findMatchPaths(prevValues, pattern),
-        ]).filter((path) => {
-          // for path === name, trigger effect anyway
-          if (path === name) {
-            return true;
+        ]).filter(
+          (path) =>
+            // trigger effect by compare if value changed
+            get(values, path) !== get(prevValues, path)
+        );
+
+        if (Glob.isMatchOrParent(pattern, name)) {
+          const currentName = Glob.getParentPathByPattern(pattern, name);
+          if (!paths.includes(currentName)) {
+            // trigger effect anyway
+            paths.push(currentName);
           }
-          if (Glob.isMatchOrParent(name, path)) {
-            // for path inside name, trigger effect by compare if value changed
-            return get(values, path) !== get(prevValues, path);
-          }
-          return false;
-        });
+        }
 
         const effectOptionsArr = this.effectMap[pattern];
 
