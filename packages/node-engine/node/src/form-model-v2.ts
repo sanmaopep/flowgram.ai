@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { get, groupBy, isEmpty, mapKeys, uniq } from 'lodash';
+import { get, groupBy, isEmpty, isNil, mapKeys, uniq } from 'lodash';
 import { Disposable, DisposableCollection, Emitter } from '@flowgram.ai/utils';
 import {
   FlowNodeFormData,
@@ -284,10 +284,17 @@ export class FormModelV2 extends FormModel implements Disposable {
         const effectOptionsArr = this.effectMap[pattern];
 
         paths.forEach((path) => {
-          // TODO Fix: 通过底层表单引擎解决
-          // const isPrevNil = isNil(get(prevValues, path));
+          let eventList = [DataEvent.onValueChange, DataEvent.onValueInitOrChange];
+          const isPrevNil = isNil(get(prevValues, path));
 
-          const eventList = [DataEvent.onValueChange, DataEvent.onValueInitOrChange];
+          if (isPrevNil) {
+            // HACK: For array append, onFormValuesInit will auto triggered for array[index]
+            if (options?.action === 'array-append' && Glob.isMatch(`${name}.*`, path)) {
+              eventList = [];
+            } else {
+              eventList = [DataEvent.onValueInit, DataEvent.onValueInitOrChange];
+            }
+          }
 
           // 对触发 init 事件的 name 或他的字 path 触发 effect
           runAndDeleteEffectReturn(this.effectReturnMap, path, eventList);

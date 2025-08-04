@@ -308,28 +308,24 @@ describe('FormModelV2 effects', () => {
     expect(mockChangeEffect).toHaveBeenCalledTimes(1);
 
     formModelV2.setValueIn('inputsValues', { b: 3 });
-    // TODO fix it in the future
-    // expect(mockInitEffect).toHaveBeenCalledTimes(2);
+    expect(mockInitEffect).toHaveBeenCalledTimes(2);
     expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(4);
-    expect(mockChangeEffect).toHaveBeenCalledTimes(3);
+    expect(mockChangeEffect).toHaveBeenCalledTimes(2);
 
     formModelV2.setValueIn('inputsValues', { b: 4 });
-    // TODO fix it in the future
-    // expect(mockInitEffect).toHaveBeenCalledTimes(2);
+    expect(mockInitEffect).toHaveBeenCalledTimes(2);
     expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(5);
-    expect(mockChangeEffect).toHaveBeenCalledTimes(4);
+    expect(mockChangeEffect).toHaveBeenCalledTimes(3);
 
     formModelV2.setValueIn('inputsValues', { a: 1, b: 4 });
-    // TODO fix it in the future
-    // expect(mockInitEffect).toHaveBeenCalledTimes(3);
+    expect(mockInitEffect).toHaveBeenCalledTimes(3);
     expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(6);
-    expect(mockChangeEffect).toHaveBeenCalledTimes(5);
+    expect(mockChangeEffect).toHaveBeenCalledTimes(3);
 
     formModelV2.setValueIn('inputsValues', {});
-    // TODO fix it in the future
-    // expect(mockInitEffect).toHaveBeenCalledTimes(3);
+    expect(mockInitEffect).toHaveBeenCalledTimes(3);
     expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(8);
-    expect(mockChangeEffect).toHaveBeenCalledTimes(7);
+    expect(mockChangeEffect).toHaveBeenCalledTimes(5);
   });
   it('should trigger all effects return when formModel dispose', () => {
     const mockEffectReturn1 = vi.fn();
