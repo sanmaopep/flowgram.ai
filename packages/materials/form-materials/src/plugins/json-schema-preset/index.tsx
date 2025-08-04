@@ -10,7 +10,7 @@ import {
   useTypeManager as useOriginTypeManager,
   TypePresetProvider as OriginTypePresetProvider,
   JsonSchemaTypeManager,
-  JsonSchemaBasicType,
+  type JsonSchemaBasicType,
 } from '@flowgram.ai/json-schema';
 
 import { jsonSchemaTypePreset } from './type-definition';

@@ -52,8 +52,7 @@ describe('FormModelV2', () => {
         b: 2,
       });
 
-      // @ts-expect-error
-      formItem?.value = { a: 3, b: 4 };
+      formItem!.value = { a: 3, b: 4 };
 
       expect(formItem?.value).toEqual({
         a: 3,
@@ -196,16 +195,22 @@ describe('FormModelV2', () => {
       formModelV2.init(formMeta);
       formModelV2.setValueIn('a', 2);
       expect(mockEffect).toHaveBeenCalledOnce();
+
+      formModelV2.setValueIn('a', {});
+      expect(mockEffect).toHaveBeenCalledTimes(2);
+
+      formModelV2.setValueIn('a.b', 2);
+      expect(mockEffect).toHaveBeenCalledTimes(3);
     });
     it('should trigger single item init effect when array append', () => {
-      const mockEffect = vi.fn();
+      const mockArrItemEffect = vi.fn();
       const formMeta = {
         render: vi.fn(),
         effect: {
           ['arr.*']: [
             {
               event: DataEvent.onValueInit,
-              effect: mockEffect,
+              effect: mockArrItemEffect,
             },
           ],
         },
@@ -214,7 +219,7 @@ describe('FormModelV2', () => {
       const arrModel = formModelV2.nativeFormModel?.createFieldArray('arr');
       arrModel?.append(1);
       arrModel?.append(2);
-      expect(mockEffect).toHaveBeenCalledTimes(2);
+      expect(mockArrItemEffect).toHaveBeenCalledTimes(2);
     });
     it('should trigger value change effects return when value change', () => {
       const mockEffectReturn = vi.fn();
@@ -302,6 +307,69 @@ describe('FormModelV2', () => {
 
       expect(mockEffectReturn).toHaveNthReturnedWith(1, 1);
       expect(mockEffectReturn).toHaveNthReturnedWith(2, 2);
+    });
+    it('should trigger effects when setValueIn called in parent name', () => {
+      const mockInitEffectReturn = vi.fn();
+      const mockInitEffect = vi.fn(() => mockInitEffectReturn);
+
+      const mockInitOrChangeEffectReturn = vi.fn();
+      const mockInitOrChangeEffect = vi.fn(() => mockInitOrChangeEffectReturn);
+
+      const mockChangeEffectReturn = vi.fn();
+      const mockChangeEffect = vi.fn(() => mockChangeEffectReturn);
+
+      const formMeta = {
+        render: vi.fn(),
+        effect: {
+          'inputsValues.*': [
+            {
+              event: DataEvent.onValueInit,
+              effect: mockInitEffect,
+            },
+            {
+              event: DataEvent.onValueInitOrChange,
+              effect: mockInitOrChangeEffect,
+            },
+            {
+              event: DataEvent.onValueChange,
+              effect: mockChangeEffect,
+            },
+          ],
+        },
+      };
+      formModelV2.init(formMeta, { inputsValues: { a: 1 } });
+      expect(mockInitEffect).toHaveBeenCalledTimes(1);
+      expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(1);
+      expect(mockChangeEffect).toHaveBeenCalledTimes(0);
+
+      formModelV2.setValueIn('inputsValues', { a: 2 });
+      expect(mockInitEffect).toHaveBeenCalledTimes(1);
+      expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(2);
+      expect(mockChangeEffect).toHaveBeenCalledTimes(1);
+
+      formModelV2.setValueIn('inputsValues', { b: 3 });
+      // TODO fix it in the future
+      // expect(mockInitEffect).toHaveBeenCalledTimes(2);
+      expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(4);
+      expect(mockChangeEffect).toHaveBeenCalledTimes(3);
+
+      formModelV2.setValueIn('inputsValues', { b: 4 });
+      // TODO fix it in the future
+      // expect(mockInitEffect).toHaveBeenCalledTimes(2);
+      expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(5);
+      expect(mockChangeEffect).toHaveBeenCalledTimes(4);
+
+      formModelV2.setValueIn('inputsValues', { a: 1, b: 4 });
+      // TODO fix it in the future
+      // expect(mockInitEffect).toHaveBeenCalledTimes(3);
+      expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(6);
+      expect(mockChangeEffect).toHaveBeenCalledTimes(5);
+
+      formModelV2.setValueIn('inputsValues', {});
+      // TODO fix it in the future
+      // expect(mockInitEffect).toHaveBeenCalledTimes(3);
+      expect(mockInitOrChangeEffect).toHaveBeenCalledTimes(8);
+      expect(mockChangeEffect).toHaveBeenCalledTimes(7);
     });
     it('should trigger all effects return when formModel dispose', () => {
       const mockEffectReturn1 = vi.fn();
@@ -452,6 +520,10 @@ describe('FormModelV2', () => {
       } as unknown as FormMeta;
 
       formModelV2.init(formMeta, { arr: [0], other: 1 });
+      expect(mockEffectOriginArrStar).not.toHaveBeenCalled();
+      expect(mockEffectPluginArrStar).not.toHaveBeenCalled();
+      expect(mockEffectPluginOther).not.toHaveBeenCalled();
+
       formModelV2.setValueIn('arr.0', 2);
       formModelV2.setValueIn('other', 2);
 

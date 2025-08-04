@@ -282,15 +282,17 @@ export class FormModelV2 extends FormModel implements Disposable {
         const effectOptionsArr = this.effectMap[pattern];
 
         paths.forEach((path) => {
+          // TODO Fix: 通过底层表单引擎解决
+          // const isPrevNil = isNil(get(prevValues, path));
+
+          const eventList = [DataEvent.onValueChange, DataEvent.onValueInitOrChange];
+
           // 对触发 init 事件的 name 或他的字 path 触发 effect
-          runAndDeleteEffectReturn(this.effectReturnMap, path, [
-            DataEvent.onValueChange,
-            DataEvent.onValueInitOrChange,
-          ]);
+          runAndDeleteEffectReturn(this.effectReturnMap, path, eventList);
 
           // 执行该事件配置下所有 onValueChange 事件的 effect
           effectOptionsArr.forEach(({ effect, event }: EffectOptions) => {
-            if (event === DataEvent.onValueChange || event === DataEvent.onValueInitOrChange) {
+            if (eventList.includes(event)) {
               // 执行 effect
               const effectReturn = (effect as Effect)({
                 name: path,
