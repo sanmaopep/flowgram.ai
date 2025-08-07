@@ -74,7 +74,7 @@ export class VariableTable implements IVariableTable {
   protected _version: number = 0;
 
   fireChange() {
-    this._version++;
+    this.bumpVersion();
     this.onDataChangeEmitter.fire();
     this.variables$.next(this.variables);
     this.parentTable?.fireChange();
@@ -84,6 +84,13 @@ export class VariableTable implements IVariableTable {
     return this._version;
   }
 
+  protected bumpVersion() {
+    this._version = this._version + 1;
+    if (this._version === Number.MAX_SAFE_INTEGER) {
+      this._version = 0;
+    }
+  }
+
   constructor(
     public parentTable?: IVariableTable // 父变量表，会包含所有子表的变量
   ) {
@@ -91,7 +98,7 @@ export class VariableTable implements IVariableTable {
       this.onDataChangeEmitter,
       // active share()
       this.onAnyVariableChange(() => {
-        this._version++;
+        this.bumpVersion();
       }),
     ]);
   }

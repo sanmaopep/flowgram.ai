@@ -40,13 +40,20 @@ export class ScopeAvailableData {
 
   protected _version: number = 0;
 
+  protected refresh$: Subject<void> = new Subject();
+
+  protected _variables: VariableDeclaration[] = [];
+
   get version() {
     return this._version;
   }
 
-  protected refresh$: Subject<void> = new Subject();
-
-  protected _variables: VariableDeclaration[] = [];
+  protected bumpVersion() {
+    this._version = this._version + 1;
+    if (this._version === Number.MAX_SAFE_INTEGER) {
+      this._version = 0;
+    }
+  }
 
   // 刷新可访问变量列表
   refresh(): void {
@@ -124,12 +131,12 @@ export class ScopeAvailableData {
         this._variables = _variables;
         this.memo.clear();
         this.onDataChangeEmitter.fire(this._variables);
-        this._version++;
+        this.bumpVersion();
         this.onListOrAnyVarChangeEmitter.fire(this._variables);
       }),
       this.onAnyVariableChange(() => {
         this.onDataChangeEmitter.fire(this._variables);
-        this._version++;
+        this.bumpVersion();
         this.onListOrAnyVarChangeEmitter.fire(this._variables);
       }),
       Disposable.create(() => {
