@@ -16,6 +16,9 @@ export class VariableTable implements IVariableTable {
 
   toDispose = new DisposableCollection();
 
+  /**
+   * @deprecated
+   */
   protected onDataChangeEmitter = new Emitter<void>();
 
   protected variables$: Subject<VariableDeclaration[]> = new Subject<VariableDeclaration[]>();
@@ -86,7 +89,7 @@ export class VariableTable implements IVariableTable {
   ) {
     this.toDispose.pushAll([
       this.onDataChangeEmitter,
-      // active share() and update version
+      // active share()
       this.onAnyVariableChange(() => {
         this._version++;
       }),
