@@ -38,6 +38,12 @@ export class ScopeAvailableData {
     return this.scope.variableEngine.globalVariableTable;
   }
 
+  protected _version: number = 0;
+
+  get version() {
+    return this._version;
+  }
+
   protected refresh$: Subject<void> = new Subject();
 
   protected _variables: VariableDeclaration[] = [];
@@ -118,10 +124,12 @@ export class ScopeAvailableData {
         this._variables = _variables;
         this.memo.clear();
         this.onDataChangeEmitter.fire(this._variables);
+        this._version++;
         this.onListOrAnyVarChangeEmitter.fire(this._variables);
       }),
       this.onAnyVariableChange(() => {
         this.onDataChangeEmitter.fire(this._variables);
+        this._version++;
         this.onListOrAnyVarChangeEmitter.fire(this._variables);
       }),
       Disposable.create(() => {

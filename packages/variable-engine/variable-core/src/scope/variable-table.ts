@@ -86,8 +86,10 @@ export class VariableTable implements IVariableTable {
   ) {
     this.toDispose.pushAll([
       this.onDataChangeEmitter,
-      // active share()
-      this.onAnyVariableChange(() => null),
+      // active share() and update version
+      this.onAnyVariableChange(() => {
+        this._version++;
+      }),
     ]);
   }
 
