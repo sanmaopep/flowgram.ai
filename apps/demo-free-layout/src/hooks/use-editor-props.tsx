@@ -18,7 +18,6 @@ import {
 } from '@flowgram.ai/free-layout-editor';
 import { createFreeGroupPlugin } from '@flowgram.ai/free-group-plugin';
 import { createContainerNodePlugin } from '@flowgram.ai/free-container-plugin';
-import { TypeSelector, VariableSelector } from '@flowgram.ai/form-materials';
 
 import { onDragLineEnd } from '../utils';
 import { FlowNodeRegistry, FlowDocumentJSON } from '../typings';
@@ -193,9 +192,7 @@ export function useEditorProps(
         enableScrollLimit: false,
       },
       materials: {
-        components: {
-          [TypeSelector.renderKey]: () => <div>Custom Type Selector</div>,
-        },
+        components: {},
         /**
          * Render Node
          */
