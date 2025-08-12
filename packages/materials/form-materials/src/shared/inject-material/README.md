@@ -2,6 +2,49 @@
 
 A material component wrapper with dependency injection support for implementing dynamic component replacement mechanisms.
 
+## Why Dependency Injection Matters
+
+### ❌ Tight Coupling: Traditional Dependency Issues
+
+```mermaid
+graph TD
+    A[Material A] --> B[Material B]
+    B --> D[Material D]
+    C[Material C] --> D
+
+    style D fill:#ff4757
+    style A fill:#ffa502
+    style B fill:#ffa502
+    style C fill:#ffa502
+
+    note["💥 Problem: D changes require modifications to A, B, C"]
+```
+
+**Issues:** Chain reactions, high maintenance costs
+
+### ✅ Decoupling: Dependency Injection Solution
+
+```mermaid
+graph TD
+    A[Material A] --> RenderKey[Material D RenderKey]
+    B[Material B] --> RenderKey
+    C[Material C] --> RenderKey
+
+    RenderKey -.-> BaseD[Origin D]
+    CustomD[Custom D] -.-> RenderKey
+
+    style RenderKey fill:#5f27cd
+    style BaseD fill:#2ed573
+    style CustomD fill:#26d0ce
+    style A fill:#a55eea
+    style B fill:#a55eea
+    style C fill:#a55eea
+
+    note2["✅ A, B, C depend on abstract interface, decoupled from D"]
+```
+
+**Benefits:** Hot-swapping, parallel development, version compatibility
+
 ## Features
 
 - 🔧 **Dependency Injection**: Support dynamic component replacement via FlowRendererRegistry

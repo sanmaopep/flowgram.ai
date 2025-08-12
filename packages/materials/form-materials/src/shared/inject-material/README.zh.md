@@ -1,6 +1,49 @@
 # InjectMaterial 组件
 
-一个支持依赖注入的材料组件包装器，用于实现动态组件替换机制。
+一个支持依赖注入的 Material 组件包装器，用于实现动态组件替换机制。
+
+## 为什么需要依赖注入
+
+### ❌ 紧耦合：传统依赖问题
+
+```mermaid
+graph TD
+    A[Material A] --> B[Material B]
+    B --> D[Material D]
+    C[Material C] --> D
+
+    style D fill:#ff4757
+    style A fill:#ffa502
+    style B fill:#ffa502
+    style C fill:#ffa502
+
+    note["💥 问题：D变更导致A、B、C全部需要修改"]
+```
+
+**问题：** 连锁反应、高维护成本
+
+### ✅ 解耦：依赖注入方案
+
+```mermaid
+graph TD
+    A[Material A] --> RenderKey[Material D RenderKey]
+    B[Material B] --> RenderKey
+    C[Material C] --> RenderKey
+
+    RenderKey -.-> BaseD[Origin D]
+    CustomD[Custom D] -.-> RenderKey
+
+    style RenderKey fill:#5f27cd
+    style BaseD fill:#2ed573
+    style CustomD fill:#26d0ce
+    style A fill:#a55eea
+    style B fill:#a55eea
+    style C fill:#a55eea
+
+    note2["✅ A、B、C依赖抽象接口，与D实现解耦"]
+```
+
+**优势：** 热插拔、并行开发、版本兼容
 
 ## 特性
 
@@ -15,13 +58,13 @@
 
 ## 使用
 
-### 1. 创建可注入的材料组件
+### 1. 创建可注入的 Material 组件件
 
 ```tsx
 import { createInjectMaterial } from '@flowgram.ai/form-materials';
 import { VariableSelector } from './VariableSelector';
 
-// 创建可注入的材料包装组件
+// 创建可注入的Material包装组件
 const InjectVariableSelector = createInjectMaterial(VariableSelector);
 
 // 现在你可以像使用普通组件一样使用它
