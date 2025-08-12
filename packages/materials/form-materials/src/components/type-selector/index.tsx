@@ -8,9 +8,8 @@ import React, { useMemo } from 'react';
 import { IJsonSchema } from '@flowgram.ai/json-schema';
 import { Cascader, Icon, IconButton } from '@douyinfe/semi-ui';
 
+import { createInjectMaterial } from '@/shared/inject-material';
 import { useTypeManager } from '@/plugins';
-
-import { createInjectMaterial } from '../../shared/inject-material';
 
 export interface TypeSelectorProps {
   value?: Partial<IJsonSchema>;
