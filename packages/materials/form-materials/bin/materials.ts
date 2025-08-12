@@ -142,7 +142,7 @@ export const copyMaterial = (
   );
   const targetDir = path.join(materialRoot, material.name);
 
-  if (!overwrite && fs.readdirSync(targetDir)?.length > 0) {
+  if (!overwrite && fs.existsSync(targetDir) && fs.readdirSync(targetDir).length > 0) {
     console.log(`Material ${material.name} already exists in ${materialRoot}, skip copying.`);
     return;
   }

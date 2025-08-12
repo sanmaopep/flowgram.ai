@@ -84,10 +84,6 @@ program
       return _pkg;
     });
 
-    console.log(chalk.bold('These npm dependencies will be added to your project'));
-    console.log(packagesToInstall);
-    installDependencies(packagesToInstall, projectInfo);
-
     // 5. Copy the materials to the project
     console.log(chalk.bold('These Materials will be added to your project'));
     console.log(allMaterials);
@@ -100,6 +96,11 @@ program
       // Add type for mat
       copyMaterial(mat, projectInfo, { overwrite: false });
     });
+
+    // 6. Install the dependencies
+    console.log(chalk.bold('These npm dependencies will be added to your project'));
+    console.log(packagesToInstall);
+    installDependencies(packagesToInstall, projectInfo);
   });
 
 program.parse(process.argv);
