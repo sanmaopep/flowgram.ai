@@ -10,7 +10,7 @@ import { IconDelete, IconPlus } from '@douyinfe/semi-icons';
 
 import { IFlowConstantRefValue, IFlowValue } from '@/typings';
 import { useObjectList } from '@/hooks';
-import { DynamicValueInput } from '@/components/dynamic-value-input';
+import { InjectDynamicValueInput } from '@/components/dynamic-value-input';
 
 import { PropsType } from './types';
 import { UIRow, UIRows } from './styles';
@@ -44,7 +44,7 @@ export function InputsValues({
               onChange={(v) => updateKey(item.id, v)}
               placeholder="Input Key"
             />
-            <DynamicValueInput
+            <InjectDynamicValueInput
               style={{ flexGrow: 1 }}
               readonly={readonly}
               value={item.value as IFlowConstantRefValue}

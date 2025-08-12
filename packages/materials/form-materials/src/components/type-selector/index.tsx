@@ -10,7 +10,9 @@ import { Cascader, Icon, IconButton } from '@douyinfe/semi-ui';
 
 import { useTypeManager } from '@/plugins';
 
-interface PropTypes {
+import { createInjectMaterial } from '../../shared/inject-material';
+
+export interface TypeSelectorProps {
   value?: Partial<IJsonSchema>;
   onChange?: (value?: Partial<IJsonSchema>) => void;
   readonly?: boolean;
@@ -41,7 +43,7 @@ export const parseTypeSelectValue = (value?: string[]): Partial<IJsonSchema> | u
   return { type };
 };
 
-export function TypeSelector(props: PropTypes) {
+export function TypeSelector(props: TypeSelectorProps) {
   const { value, onChange, readonly, disabled, style } = props;
 
   const selectValue = useMemo(() => getTypeSelectValue(value), [value]);
@@ -101,3 +103,6 @@ export function TypeSelector(props: PropTypes) {
     />
   );
 }
+
+TypeSelector.renderKey = 'type-selector-render-key';
+export const InjectTypeSelector = createInjectMaterial(TypeSelector);
