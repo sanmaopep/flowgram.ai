@@ -5,6 +5,7 @@
 
 import React from 'react';
 
+import { I18n } from '@flowgram.ai/editor';
 import { Button, IconButton } from '@douyinfe/semi-ui';
 import { IconDelete, IconPlus } from '@douyinfe/semi-icons';
 
@@ -42,7 +43,7 @@ export function InputsValues({
               size="small"
               value={item.key}
               onChange={(v) => updateKey(item.id, v)}
-              placeholder="Input Key"
+              placeholder={I18n.t('Input Key')}
             />
             <InjectDynamicValueInput
               style={{ flexGrow: 1 }}
