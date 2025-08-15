@@ -18,6 +18,7 @@ import {
 } from '@douyinfe/semi-icons';
 
 import { InjectTypeSelector } from '@/components/type-selector';
+import { BlurInput } from '@/components/blur-input';
 
 import { ConfigType, PropertyValueType } from './types';
 import {
@@ -39,7 +40,6 @@ import { UIName } from './styles';
 import { DefaultValueWrapper, UIRow } from './styles';
 import { usePropertiesEdit } from './hooks';
 import { DefaultValue } from './default-value';
-import { BlurInput } from './components/blur-input';
 
 const DEFAULT = { type: 'object' };
 
