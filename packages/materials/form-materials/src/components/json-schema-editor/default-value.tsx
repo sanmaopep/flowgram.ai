@@ -20,10 +20,7 @@ import { ConstantInputWrapper } from './styles';
 export function DefaultValue(props: {
   value: any;
   schema?: IJsonSchema;
-  name?: string;
-  type?: string;
   placeholder?: string;
-  jsonFormatText?: string;
   onChange: (value: any) => void;
 }) {
   const { value, schema, onChange, placeholder } = props;

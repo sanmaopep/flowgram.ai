@@ -242,9 +242,7 @@ function PropertyEdit(props: {
                     <DefaultValue
                       value={defaultValue}
                       schema={value}
-                      type={type}
                       placeholder={config?.defaultValuePlaceholder ?? I18n.t('Default Value')}
-                      jsonFormatText={config?.jsonFormatText}
                       onChange={(value) => onChange('default', value)}
                     />
                   </DefaultValueWrapper>
