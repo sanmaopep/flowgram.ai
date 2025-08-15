@@ -59,7 +59,7 @@ export function JsonSchemaEditor(props: {
   return (
     <UIContainer className={props.className}>
       <UIProperties>
-        {propertyList.map((_property, index) => (
+        {propertyList.map((_property) => (
           <PropertyEdit
             readonly={readonly}
             key={_property.key}
@@ -94,19 +94,9 @@ function PropertyEdit(props: {
   onRemove?: () => void;
   readonly?: boolean;
   $isLast?: boolean;
-  $showLine?: boolean;
   $level?: number; // 添加层级属性
 }) {
-  const {
-    value,
-    config,
-    readonly,
-    $level = 0,
-    onChange: onChangeProps,
-    onRemove,
-    $isLast,
-    $showLine,
-  } = props;
+  const { value, config, readonly, $level = 0, onChange: onChangeProps, onRemove, $isLast } = props;
 
   const [expand, setExpand] = useState(false);
   const [collapse, setCollapse] = useState(false);
@@ -129,7 +119,7 @@ function PropertyEdit(props: {
 
   return (
     <>
-      <UIPropertyLeft $isLast={$isLast} $showLine={$showLine} $showCollapse={showCollapse}>
+      <UIPropertyLeft $isLast={$isLast} $showLine={$level > 0} $showCollapse={showCollapse}>
         {showCollapse && (
           <UICollapseTrigger onClick={() => setCollapse((_collapse) => !_collapse)}>
             {collapse ? <IconChevronDown size="small" /> : <IconChevronRight size="small" />}
@@ -245,7 +235,6 @@ function PropertyEdit(props: {
                     onRemoveProperty(_property.key!);
                   }}
                   $isLast={index === propertyList.length - 1}
-                  $showLine={true}
                 />
               ))}
             </UIProperties>
