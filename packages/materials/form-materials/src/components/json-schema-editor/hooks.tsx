@@ -53,7 +53,7 @@ export function usePropertiesEdit(
           key: item.key,
           name: item.name,
           isPropertyRequired: drilldownSchema?.required?.includes(item.name || '') || false,
-          ...(drilldownSchema?.properties?.[item.name || ''] || {}),
+          ...(drilldownSchema?.properties?.[item.name || ''] || item || {}),
         }))
         .concat(
           addNames.map((_name) => ({
