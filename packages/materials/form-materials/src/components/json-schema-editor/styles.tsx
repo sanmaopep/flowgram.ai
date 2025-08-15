@@ -39,7 +39,7 @@ export const UILabel = styled.div`
   margin-bottom: 2px;
 `;
 
-export const UIProperties = styled.div<{ $shrink?: boolean }>`
+export const UITreeItems = styled.div<{ $shrink?: boolean }>`
   display: grid;
   grid-template-columns: auto 1fr;
 
@@ -51,7 +51,7 @@ export const UIProperties = styled.div<{ $shrink?: boolean }>`
     `}
 `;
 
-export const UIPropertyLeft = styled.div<{
+export const UITreeItemLeft = styled.div<{
   $isLast?: boolean;
   $showLine?: boolean;
   $showCollapse?: boolean;
@@ -95,7 +95,7 @@ export const UIPropertyLeft = styled.div<{
   }}
 `;
 
-export const UIPropertyRight = styled.div`
+export const UITreeItemRight = styled.div`
   grid-column: 2;
   margin-bottom: 10px;
 
@@ -104,7 +104,7 @@ export const UIPropertyRight = styled.div`
   }
 `;
 
-export const UIPropertyMain = styled.div<{}>`
+export const UITreeItemMain = styled.div<{}>`
   display: flex;
   flex-direction: column;
   gap: 10px;

@@ -29,10 +29,10 @@ import {
   UIContainer,
   UIExpandDetail,
   UILabel,
-  UIProperties,
-  UIPropertyLeft,
-  UIPropertyMain,
-  UIPropertyRight,
+  UITreeItems,
+  UITreeItemLeft,
+  UITreeItemMain,
+  UITreeItemRight,
   UIRequired,
   UIType,
 } from './styles';
@@ -58,7 +58,7 @@ export function JsonSchemaEditor(props: {
 
   return (
     <UIContainer className={props.className}>
-      <UIProperties>
+      <UITreeItems>
         {propertyList.map((_property) => (
           <PropertyEdit
             readonly={readonly}
@@ -73,7 +73,7 @@ export function JsonSchemaEditor(props: {
             }}
           />
         ))}
-      </UIProperties>
+      </UITreeItems>
       <Button
         disabled={readonly}
         size="small"
@@ -119,15 +119,15 @@ function PropertyEdit(props: {
 
   return (
     <>
-      <UIPropertyLeft $isLast={$isLast} $showLine={$level > 0} $showCollapse={showCollapse}>
+      <UITreeItemLeft $isLast={$isLast} $showLine={$level > 0} $showCollapse={showCollapse}>
         {showCollapse && (
           <UICollapseTrigger onClick={() => setCollapse((_collapse) => !_collapse)}>
             {collapse ? <IconChevronDown size="small" /> : <IconChevronRight size="small" />}
           </UICollapseTrigger>
         )}
-      </UIPropertyLeft>
-      <UIPropertyRight>
-        <UIPropertyMain>
+      </UITreeItemLeft>
+      <UITreeItemRight>
+        <UITreeItemMain>
           <UIRow>
             <UIName>
               <BlurInput
@@ -217,10 +217,10 @@ function PropertyEdit(props: {
               )}
             </UIExpandDetail>
           )}
-        </UIPropertyMain>
+        </UITreeItemMain>
         {showCollapse && (
           <UICollapsible $collapse={collapse}>
-            <UIProperties $shrink={true}>
+            <UITreeItems $shrink={true}>
               {propertyList.map((_property, index) => (
                 <PropertyEdit
                   readonly={readonly}
@@ -237,10 +237,10 @@ function PropertyEdit(props: {
                   $isLast={index === propertyList.length - 1}
                 />
               ))}
-            </UIProperties>
+            </UITreeItems>
           </UICollapsible>
         )}
-      </UIPropertyRight>
+      </UITreeItemRight>
     </>
   );
 }
