@@ -65,7 +65,6 @@ export function JsonSchemaEditor(props: {
             key={_property.key}
             value={_property}
             config={config}
-            $index={index}
             onChange={(_v) => {
               onEditProperty(_property.key!, _v);
             }}
@@ -95,10 +94,6 @@ function PropertyEdit(props: {
   onRemove?: () => void;
   readonly?: boolean;
   $isLast?: boolean;
-  $index?: number;
-  $isFirst?: boolean;
-  $parentExpand?: boolean;
-  $parentType?: string;
   $showLine?: boolean;
   $level?: number; // 添加层级属性
 }) {
@@ -109,11 +104,7 @@ function PropertyEdit(props: {
     $level = 0,
     onChange: onChangeProps,
     onRemove,
-    $index,
-    $isFirst,
     $isLast,
-    $parentExpand = false,
-    $parentType = '',
     $showLine,
   } = props;
 
@@ -138,16 +129,7 @@ function PropertyEdit(props: {
 
   return (
     <>
-      <UIPropertyLeft
-        type={type}
-        $index={$index}
-        $isFirst={$isFirst}
-        $isLast={$isLast}
-        $showLine={$showLine}
-        $isExpand={expand}
-        $parentExpand={$parentExpand}
-        $parentType={$parentType}
-      >
+      <UIPropertyLeft $isLast={$isLast} $showLine={$showLine} $showCollapse={showCollapse}>
         {showCollapse && (
           <UICollapseTrigger onClick={() => setCollapse((_collapse) => !_collapse)}>
             {collapse ? <IconChevronDown size="small" /> : <IconChevronRight size="small" />}
@@ -155,12 +137,7 @@ function PropertyEdit(props: {
         )}
       </UIPropertyLeft>
       <UIPropertyRight>
-        <UIPropertyMain
-          $showCollapse={showCollapse}
-          $collapse={collapse}
-          $expand={expand}
-          type={type}
-        >
+        <UIPropertyMain>
           <UIRow>
             <UIName>
               <BlurInput
@@ -261,8 +238,6 @@ function PropertyEdit(props: {
                   value={_property}
                   config={config}
                   $level={$level + 1} // 传递递增的层级
-                  $parentExpand={expand}
-                  $parentType={type}
                   onChange={(_v) => {
                     onEditProperty(_property.key!, _v);
                   }}
@@ -270,8 +245,6 @@ function PropertyEdit(props: {
                     onRemoveProperty(_property.key!);
                   }}
                   $isLast={index === propertyList.length - 1}
-                  $isFirst={index === 0}
-                  $index={index}
                   $showLine={true}
                 />
               ))}

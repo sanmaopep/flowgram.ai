@@ -32,6 +32,7 @@ export function DefaultValue(props: {
         onChange={(_v) => onChange(_v)}
         schema={schema || { type: 'string' }}
         placeholder={placeholder ?? I18n.t('Default value if parameter is not provided')}
+        enableMultiLineStr
       />
     </ConstantInputWrapper>
   );
