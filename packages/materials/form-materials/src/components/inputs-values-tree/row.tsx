@@ -3,13 +3,12 @@
  * SPDX-License-Identifier: MIT
  */
 
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
 import { I18n } from '@flowgram.ai/editor';
 import { IconButton, Input } from '@douyinfe/semi-ui';
 import { IconChevronDown, IconChevronRight, IconDelete } from '@douyinfe/semi-icons';
 
-import { FlowValueUtils } from '@/shared';
 import { ConstantInputStrategy } from '@/components/constant-input';
 
 import { PropsType } from './types';
