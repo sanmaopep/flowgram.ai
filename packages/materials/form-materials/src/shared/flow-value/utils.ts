@@ -170,7 +170,7 @@ export namespace FlowValueUtils {
    * @returns
    */
   export function inferJsonSchema(values: any, scope: Scope): IJsonSchema | undefined {
-    if (isObject(values)) {
+    if (isPlainObject(values)) {
       if (isConstant(values)) {
         return inferConstantJsonSchema(values);
       }
