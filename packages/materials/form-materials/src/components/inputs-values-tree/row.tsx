@@ -86,8 +86,6 @@ export function InputValueRow(
     [hasChildren, value]
   );
 
-  console.log('debugger flowDisplayValue', keyName, flowDisplayValue);
-
   return (
     <>
       <UITreeItemLeft $isLast={$isLast} $showLine={$level > 0} $showCollapse={hasChildren}>
