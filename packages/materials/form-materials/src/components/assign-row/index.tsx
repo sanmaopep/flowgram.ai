@@ -11,9 +11,9 @@ import { IconMinus } from '@douyinfe/semi-icons';
 import { IFlowConstantRefValue } from '@/shared';
 import { InjectVariableSelector } from '@/components/variable-selector';
 import { InjectDynamicValueInput } from '@/components/dynamic-value-input';
+import { BlurInput } from '@/components/blur-input';
 
 import { AssignRowProps } from './types';
-import { BlurInput } from './components/blur-input';
 
 export function AssignRow(props: AssignRowProps) {
   const {
