@@ -8,7 +8,7 @@ import React from 'react';
 import { IconButton } from '@douyinfe/semi-ui';
 import { IconMinus } from '@douyinfe/semi-icons';
 
-import { IFlowConstantRefValue } from '@/typings';
+import { IFlowConstantRefValue } from '@/shared';
 import { InjectVariableSelector } from '@/components/variable-selector';
 import { InjectDynamicValueInput } from '@/components/dynamic-value-input';
 
@@ -81,4 +81,4 @@ export function AssignRow(props: AssignRowProps) {
   );
 }
 
-export { AssignValueType } from './types';
+export { type AssignValueType } from './types';

@@ -24,6 +24,7 @@
     "build": "npm run build:fast -- --dts-resolve",
     "build:fast": "tsup src/index.ts --format cjs,esm --sourcemap --legacy-output",
     "build:watch": "npm run build:fast -- --dts-resolve",
+    "name-export": "node scripts/name-export.js",
     "clean": "rimraf dist",
     "test": "exit 0",
     "test:cov": "exit 0",

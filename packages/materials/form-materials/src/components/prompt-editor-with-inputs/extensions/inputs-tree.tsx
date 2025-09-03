@@ -15,7 +15,7 @@ import {
 } from '@coze-editor/editor/react';
 import { EditorAPI } from '@coze-editor/editor/preset-prompt';
 
-import { IFlowValue } from '@/typings';
+import { IFlowValue } from '@/shared';
 
 import { InputsPicker } from '../inputs-picker';
 
