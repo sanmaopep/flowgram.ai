@@ -11,7 +11,7 @@
  * import D, { type E, F } from 'module';
  * import A, { B as B1 } from 'module';
  */
-interface ImportDeclaration {
+export interface ImportDeclaration {
   // origin statement
   statement: string;
 
