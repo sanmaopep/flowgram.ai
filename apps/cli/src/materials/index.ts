@@ -19,7 +19,7 @@ export async function syncMaterial(opts: {
   const { materialName, refreshProjectImports } = opts;
 
   // materialName can be undefined
-  console.log(chalk.bgGreenBright("🚀 Welcome to @flowgram.ai form-materials!"));
+  console.log(chalk.bold("🚀 Welcome to @flowgram.ai form-materials!"));
 
   const project = await Project.getSingleton();
   project.printInfo();
