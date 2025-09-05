@@ -112,23 +112,23 @@ function addLicenseHeader(targetDir, licenseContent, options = {}) {
 }
 
 addLicenseHeader(
-  src,
-  header,
-  {
-    includeExts: ['.js', '.ts', '.tsx', '.jsx', '.mjs', '.cjs', '.scss', '.less', '.prisma', '.styl', '.css'],
-    commentPrefix: '/**',
-    commentLinePrefix: ' *',
-    commentSuffix: ' */',
-    force: false
-  }
+    src,
+    header,
+    {
+        includeExts: ['.js', '.ts', '.tsx', '.jsx', '.mjs', '.cjs', '.scss', '.less', '.prisma', '.styl', '.css'],
+        commentPrefix: '/**',
+        commentLinePrefix: ' *',
+        commentSuffix: ' */',
+        force: false
+    }
 );
 
 addLicenseHeader(
-  src,
-  header,
-  {
-    includeExts: ['.sh'],
-    commentLinePrefix: '# ',
-    force: false
-  }
+    src,
+    header,
+    {
+        includeExts: ['.sh'],
+        commentLinePrefix: '# ',
+        force: false
+    }
 );
