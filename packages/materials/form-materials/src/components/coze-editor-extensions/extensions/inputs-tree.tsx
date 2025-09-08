@@ -185,7 +185,7 @@ export function InputsTree({
         position="topLeft"
         rePosKey={posKey}
         content={
-          <div style={{ width: 300 }}>
+          <div style={{ width: 300, maxHeight: 300, overflowY: 'auto' }}>
             <InputsPicker
               inputsValues={inputsValues}
               onSelect={(v) => {

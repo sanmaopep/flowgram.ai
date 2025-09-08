@@ -5,14 +5,29 @@
 
 import { lazy } from 'react';
 
-export const EditorVariableTree = lazy(() =>
-  import('./extensions/variable-tree').then((module) => ({ default: module.VariableTree }))
+import { createInjectMaterial } from '@/shared';
+
+export const EditorVariableTree = createInjectMaterial(
+  lazy(() =>
+    import('./extensions/variable-tree').then((module) => ({ default: module.VariableTree }))
+  ),
+  {
+    renderKey: 'EditorVariableTree',
+  }
 );
 
-export const EditorVariableTagInject = lazy(() =>
-  import('./extensions/variable-tag').then((module) => ({ default: module.VariableTagInject }))
+export const EditorVariableTagInject = createInjectMaterial(
+  lazy(() =>
+    import('./extensions/variable-tag').then((module) => ({ default: module.VariableTagInject }))
+  ),
+  {
+    renderKey: 'EditorVariableTagInject',
+  }
 );
 
-export const EditorInputsTree = lazy(() =>
-  import('./extensions/inputs-tree').then((module) => ({ default: module.InputsTree }))
+export const EditorInputsTree = createInjectMaterial(
+  lazy(() => import('./extensions/inputs-tree').then((module) => ({ default: module.InputsTree }))),
+  {
+    renderKey: 'EditorInputsTree',
+  }
 );
