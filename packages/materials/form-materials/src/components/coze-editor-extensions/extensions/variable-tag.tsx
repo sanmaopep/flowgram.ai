@@ -29,8 +29,6 @@ import { IPolyfillRoot, polyfillCreateRoot } from '@/shared';
 
 import { UIPopoverContent, UIRootTitle, UITag, UIVarName } from '../styles';
 
-console.log('debugger loaded 2');
-
 class VariableTagWidget extends WidgetType {
   keyPath?: string[];
 
