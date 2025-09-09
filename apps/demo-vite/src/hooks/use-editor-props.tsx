@@ -14,7 +14,7 @@ import {
   Field,
   useNodeRender,
 } from '@flowgram.ai/free-layout-editor';
-import { VariableSelector } from '@flowgram.ai/form-materials';
+import { VariableSelector } from '@flowgram.ai/form-materials/components/variable-selector';
 
 import { nodeRegistries } from '../node-registries';
 import { initialData } from '../initial-data';
