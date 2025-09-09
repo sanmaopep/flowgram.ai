@@ -12,6 +12,7 @@
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.mjs",
   "types": "./dist/types/index.d.ts",
+  "sideEffects": false,
   "bin": {
     "flowgram-form-materials": "./bin/run.sh"
   },
