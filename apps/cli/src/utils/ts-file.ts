@@ -81,7 +81,9 @@ class TsFile extends File {
         const lastImportStatement = newImports[oldImports.length - 1].statement;
         content = content.replace(
           lastImportStatement,
-          `${lastImportStatement}\n${restNewImports.map((item) => item.statement).join('\n')}\n`
+          `${lastImportStatement}
+${restNewImports.map((item) => item.statement).join('\n')}
+`
         );
       }
       this.imports.push(...restNewImports);
