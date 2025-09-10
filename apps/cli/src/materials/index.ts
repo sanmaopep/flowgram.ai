@@ -55,20 +55,20 @@ export async function syncMaterial(cliOpts: MaterialCliOptions) {
     targetFormMaterialRoot,
   };
 
-  // 3. Refresh project imports
-  if (refreshProjectImports) {
-    console.log(chalk.bold('🚀 Refresh imports in your project'));
-    executeRefreshProjectImport(context);
-  }
-
-  // 4. Copy the materials to the project
+  // Copy the materials to the project
   console.log(chalk.bold('🚀 The following materials will be added to your project'));
   console.log(selectedMaterials.map((material) => `📦 ${material.fullName}`).join('\n'));
   console.log('\n');
 
   let { packagesToInstall } = copyMaterials(context);
 
-  // 4. Install the dependencies
+  // Refresh project imports
+  if (refreshProjectImports) {
+    console.log(chalk.bold('🚀 Refresh imports in your project'));
+    executeRefreshProjectImport(context);
+  }
+
+  // Install the dependencies
   await project.addDependencies(packagesToInstall);
   console.log(chalk.bold('\n✅ These npm dependencies is added to your package.json'));
   packagesToInstall.forEach((_package) => {
