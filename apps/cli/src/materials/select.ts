@@ -22,19 +22,16 @@ export const getSelectedMaterials = async (
 
   // 1. Check if materialName is provided and exists in materials
   if (materialName) {
-    const selectedMaterial = materials.find((m) => m.fullName === materialName);
-    if (selectedMaterial) {
-      selectedMaterials = [selectedMaterial];
-      console.log(chalk.green(`Using material: ${materialName}`));
-    } else {
-      console.log(
-        chalk.yellow(`Material "${materialName}" not found. Please select from the list:`)
-      );
-    }
+    const selectedMaterials = materialName
+      .split(',')
+      .map((_name) => materials.find((_m) => _m.fullName === _name.trim()))
+      .filter(Boolean);
   }
 
   // 2. If material not found or materialName not provided, prompt user to select
   if (!selectedMaterials.length) {
+    console.log(chalk.yellow(`Material "${materialName}" not found. Please select from the list:`));
+
     const choices = materials.map((_material) => ({
       name: _material.fullName,
       value: _material,
@@ -47,7 +44,7 @@ export const getSelectedMaterials = async (
         {
           type: 'checkbox',
           name: 'material',
-          message: 'Select one material to add:',
+          message: 'Select multiple materials to add:',
           choices: choices,
         },
       ]);
@@ -64,7 +61,6 @@ export const getSelectedMaterials = async (
           choices: choices,
         },
       ]);
-      console.log('debugger result', result);
       selectedMaterials = [result.material];
     }
   }

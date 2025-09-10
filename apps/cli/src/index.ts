@@ -32,7 +32,7 @@ program
     'Material name or names\nExample 1: components/variable-selector \nExample2: components/variable-selector,effect/provideJsonSchemaOutputs'
   )
   .option('--refresh-project-imports', 'Refresh project imports to copied materials', false)
-  .option('--target-material-root-dir', 'Target directory to copy materials')
+  .option('--target-material-root-dir <string>', 'Target directory to copy materials')
   .option('--select-multiple', 'Select multiple materials', false)
   .action(async (materialName, options) => {
     await syncMaterial({

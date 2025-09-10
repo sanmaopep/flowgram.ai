@@ -24,6 +24,11 @@ export async function syncMaterial(cliOpts: MaterialCliOptions) {
   const project = await Project.getSingleton();
   project.printInfo();
 
+  // where to place all material in target project
+  const targetFormMaterialRoot =
+    targetMaterialRootDir || path.join(project.projectPath, 'src', 'form-materials');
+  console.log(chalk.black(`  - Target material root: ${targetFormMaterialRoot}`));
+
   if (!project.flowgramVersion) {
     throw new Error(
       chalk.red(
@@ -41,10 +46,6 @@ export async function syncMaterial(cliOpts: MaterialCliOptions) {
     console.error(chalk.red('No material selected. Exiting.'));
     process.exit(1);
   }
-
-  // where to place all material in target project
-  const targetFormMaterialRoot =
-    targetMaterialRootDir || path.join(project.projectPath, 'src', 'form-materials');
 
   const context: SyncMaterialContext = {
     selectedMaterials: selectedMaterials,
