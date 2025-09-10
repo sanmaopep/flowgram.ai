@@ -12,9 +12,4 @@ module.exports = defineConfig({
     'no-console': 'off',
     'react/prop-types': 'off',
   },
-  settings: {
-    react: {
-      version: 'detect', // 自动检测 React 版本
-    },
-  },
 });
