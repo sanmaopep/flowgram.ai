@@ -22,6 +22,8 @@ import {
   getNodeForm,
 } from '@flowgram.ai/free-layout-editor';
 
+import { GetGlobalVariableSchema } from '@/plugins/variable-panel-plugin/variable-panel-plugin';
+
 import { WorkflowRuntimeClient } from '../client';
 import { WorkflowNodeType } from '../../../nodes';
 
@@ -40,6 +42,8 @@ export class WorkflowRuntimeService {
   @inject(WorkflowDocument) document: WorkflowDocument;
 
   @inject(WorkflowRuntimeClient) runtimeClient: WorkflowRuntimeClient;
+
+  @inject(GetGlobalVariableSchema) getGlobalVariableSchema: GetGlobalVariableSchema;
 
   private runningNodes: WorkflowNodeEntity[] = [];
 
@@ -84,7 +88,11 @@ export class WorkflowRuntimeService {
       });
       return;
     }
-    const schema = this.document.toJSON();
+    const schema = {
+      ...this.document.toJSON(),
+      globalVariable: this.getGlobalVariableSchema(),
+    };
+
     const validateResult = await this.runtimeClient.TaskValidate({
       schema: JSON.stringify(schema),
       inputs,

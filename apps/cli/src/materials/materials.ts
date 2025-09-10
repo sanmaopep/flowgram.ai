@@ -9,7 +9,7 @@ import fs from "fs";
 import { Project } from "../utils/project"; // Import ProjectInfo
 import { traverseRecursiveTsFiles } from "../utils/ts-file";
 
-// Added type definitions
+// Added type definitions、
 export interface Material {
   name: string;
   type: string;
