@@ -22,9 +22,8 @@ import {
   getNodeForm,
 } from '@flowgram.ai/free-layout-editor';
 
-import { GetGlobalVariableSchema } from '@/plugins/variable-panel-plugin/variable-panel-plugin';
-
 import { WorkflowRuntimeClient } from '../client';
+import { GetGlobalVariableSchema } from '../../variable-panel-plugin';
 import { WorkflowNodeType } from '../../../nodes';
 
 const SYNC_TASK_REPORT_INTERVAL = 500;

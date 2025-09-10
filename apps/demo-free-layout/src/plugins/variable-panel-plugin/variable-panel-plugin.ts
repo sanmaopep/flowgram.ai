@@ -8,7 +8,6 @@ import {
   definePluginCreator,
   GlobalScope,
   VariableDeclaration,
-  WorkflowDocument,
 } from '@flowgram.ai/free-layout-editor';
 import { IJsonSchema, JsonSchemaUtils } from '@flowgram.ai/form-materials';
 
