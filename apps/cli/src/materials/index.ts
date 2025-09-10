@@ -64,11 +64,13 @@ export async function syncMaterial(cliOpts: MaterialCliOptions) {
   // 4. Copy the materials to the project
   console.log(chalk.bold('🚀 The following materials will be added to your project'));
   console.log(selectedMaterials.map((material) => `📦 ${material.fullName}`).join('\n'));
+  console.log('\n');
+
   let { packagesToInstall } = copyMaterials(context);
 
   // 4. Install the dependencies
   await project.addDependencies(packagesToInstall);
-  console.log(chalk.bold('✅ These npm dependencies is added to your package.json'));
+  console.log(chalk.bold('\n✅ These npm dependencies is added to your package.json'));
   packagesToInstall.forEach((_package) => {
     console.log(`- ${_package}`);
   });

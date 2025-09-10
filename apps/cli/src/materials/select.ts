@@ -22,9 +22,9 @@ export const getSelectedMaterials = async (
 
   // 1. Check if materialName is provided and exists in materials
   if (materialName) {
-    const selectedMaterials = materialName
+    selectedMaterials = materialName
       .split(',')
-      .map((_name) => materials.find((_m) => _m.fullName === _name.trim()))
+      .map((_name) => materials.find((_m) => _m.fullName === _name.trim())!)
       .filter(Boolean);
   }
 
