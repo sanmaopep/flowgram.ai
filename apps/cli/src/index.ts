@@ -9,6 +9,7 @@ import { Command } from 'commander';
 
 import { updateFlowgramVersion } from './update-version';
 import { syncMaterial } from './materials';
+import { findUsedMaterials } from './find-materials';
 import { createApp } from './create-app';
 
 const program = new Command();
@@ -26,9 +27,13 @@ program
 program
   .command('materials')
   .description('Sync materials to the project')
-  .argument('[string]', 'Material name')
+  .argument(
+    '[string]',
+    'Material name or names\nExample 1: components/variable-selector \nExample2: components/variable-selector,effect/provideJsonSchemaOutputs'
+  )
   .option('--refresh-project-imports', 'Refresh project imports to copied materials', false)
   .option('--target-material-root-dir', 'Target directory to copy materials')
+  .option('--select-multiple', 'Select multiple materials', false)
   .action(async (materialName, options) => {
     await syncMaterial({
       materialName,
@@ -36,7 +41,15 @@ program
       targetMaterialRootDir: options.targetMaterialRootDir
         ? path.join(process.cwd(), options.targetMaterialRootDir)
         : undefined,
+      selectMultiple: options.selectMultiple,
     });
+  });
+
+program
+  .command('find-used-materials')
+  .description('Find used materials in the project')
+  .action(async () => {
+    await findUsedMaterials();
   });
 
 program

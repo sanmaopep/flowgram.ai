@@ -11,6 +11,7 @@ export interface MaterialCliOptions {
   materialName?: string;
   refreshProjectImports?: boolean;
   targetMaterialRootDir?: string;
+  selectMultiple?: boolean;
 }
 
 export interface SyncMaterialContext {

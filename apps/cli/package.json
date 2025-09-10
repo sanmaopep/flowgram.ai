@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --out-dir dist",
+    "watch": "tsup src/index.ts --format esm,cjs --out-dir dist --watch",
     "start": "node bin/index.js",
     "lint": "eslint ./src --cache",
     "lint:fix": "eslint ./src --fix"
