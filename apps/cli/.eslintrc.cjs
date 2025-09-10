@@ -10,6 +10,10 @@ module.exports = defineConfig({
   packageRoot: __dirname,
   rules: {
     'no-console': 'off',
-    'react/prop-types': 'off',
+  },
+  settings: {
+    react: {
+      version: '18',
+    },
   },
 });
