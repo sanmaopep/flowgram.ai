@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import path from 'path';
+import path, { join } from 'path';
 import fs from 'fs';
 
 import { assembleImport, ImportDeclaration, traverseFileImports } from './import';
@@ -81,7 +81,7 @@ class TsFile extends File {
         const lastImportStatement = newImports[oldImports.length - 1].statement;
         content = content.replace(
           lastImportStatement,
-          `${lastImportStatement}\n${restNewImports.map((item) => item.statement)}\n`
+          `${lastImportStatement}\n${restNewImports.map((item) => item.statement).join('\n')}\n`
         );
       }
       this.imports.push(...restNewImports);
