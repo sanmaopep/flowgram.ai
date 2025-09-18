@@ -110,7 +110,7 @@ export function createDefaultPreset<CTX extends EditorPluginContext = EditorPlug
             /**
              * Define node.scope & node.privateScope
              */
-            if (opts.nodeEngine && opts.variableEngine?.enable !== false) {
+            if (opts.variableEngine && opts.variableEngine.enable !== false) {
               let cache: FlowNodeScope | undefined;
               let privateCache: FlowNodeScope | undefined;
 
