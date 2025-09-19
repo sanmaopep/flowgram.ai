@@ -32,7 +32,7 @@ type Options = Partial<InferValues<Preset[number]>>;
 export interface CodeEditorPropsType extends React.PropsWithChildren<{}> {
   value?: string;
   onChange?: (value: string) => void;
-  languageId: 'python' | 'typescript' | 'shell' | 'json';
+  languageId: 'python' | 'typescript' | 'shell' | 'json' | 'sql';
   theme?: 'dark' | 'light';
   placeholder?: string;
   activeLinePlaceholder?: string;

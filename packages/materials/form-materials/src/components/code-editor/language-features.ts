@@ -13,6 +13,10 @@ export const dynamicLoadLanguages: Record<string, () => Promise<void>> = {
     import('@flowgram.ai/coze-editor/language-python').then((module) => {
       languages.register('python', module.python);
     }),
+  sql: () =>
+    import('@flowgram.ai/coze-editor/language-sql').then((module) => {
+      languages.register('sql', module.sql);
+    }),
   shell: () =>
     import('@flowgram.ai/coze-editor/language-shell').then((module) => {
       languages.register('shell', module.shell);
