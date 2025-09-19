@@ -25,7 +25,7 @@ export const loadTypescriptLanguage = () =>
     });
   });
 
-export const TypeScriptCodeEditor = CodeEditorFactory<false>(loadTypescriptLanguage, {
+export const TypeScriptCodeEditor = CodeEditorFactory<true>(loadTypescriptLanguage, {
   displayName: 'TypeScriptCodeEditor',
-  fixLanguageId: undefined,
+  fixLanguageId: 'typescript',
 });
