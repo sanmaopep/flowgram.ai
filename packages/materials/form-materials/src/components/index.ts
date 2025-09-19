@@ -8,7 +8,16 @@ export { AssignRows } from './assign-rows';
 export { BatchOutputs } from './batch-outputs';
 export { BatchVariableSelector } from './batch-variable-selector';
 export { BlurInput } from './blur-input';
-export { CodeEditor, type CodeEditorPropsType } from './code-editor';
+export {
+  BaseCodeEditor,
+  CodeEditor,
+  JsonCodeEditor,
+  PythonCodeEditor,
+  SQLCodeEditor,
+  ShellCodeEditor,
+  TypeScriptCodeEditor,
+  type CodeEditorPropsType,
+} from './code-editor';
 export { CodeEditorMini } from './code-editor-mini';
 export {
   ConditionPresetOp,
