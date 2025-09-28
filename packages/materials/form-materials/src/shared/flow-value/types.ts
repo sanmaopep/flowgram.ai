@@ -45,5 +45,5 @@ export type IFlowValue =
 export type IFlowConstantRefValue = IFlowConstantValue | IFlowRefValue;
 
 export interface IInputsValues {
-  [key: string]: IInputsValues | IFlowValue;
+  [key: string]: IInputsValues | IFlowValue | undefined;
 }
