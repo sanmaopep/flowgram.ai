@@ -25,7 +25,7 @@ import { type TreeNodeData } from '@douyinfe/semi-ui/lib/es/tree';
 import { Tree, Popover } from '@douyinfe/semi-ui';
 
 import { IInputsValues } from '@/shared/flow-value/types';
-import { IFlowValue, FlowValueUtils } from '@/shared';
+import { FlowValueUtils } from '@/shared';
 
 type VariableField = BaseVariableField<{ icon?: string | JSX.Element; title?: string }>;
 
