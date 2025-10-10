@@ -8,6 +8,13 @@ import { WorkflowJSON } from '@flowgram.ai/free-layout-editor';
 export const INITIAL_DATA: WorkflowJSON = {
   nodes: [
     {
+      type: 'custom',
+      id: 'custom_0',
+      data: {
+        title: 'Custom',
+      },
+    },
+    {
       type: 'start',
       id: 'start_0',
       data: {
@@ -61,13 +68,6 @@ export const INITIAL_DATA: WorkflowJSON = {
           success: { type: 'constant', content: true, schema: { type: 'boolean' } },
           message: { type: 'ref', content: ['start_0', 'str'] },
         },
-      },
-    },
-    {
-      type: 'custom',
-      id: 'custom_0',
-      data: {
-        title: 'Custom',
       },
     },
   ],

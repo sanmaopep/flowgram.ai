@@ -15,13 +15,16 @@ import {
   WorkflowAutoLayoutTool,
 } from '@flowgram.ai/free-layout-editor';
 
+import { createDebugPanelPlugin } from '../plugins/debug-panel-plugin';
+
 interface EditorProps {
   registries: FlowNodeRegistry[];
   initialData: WorkflowJSON;
   plugins?: FreeLayoutProps['plugins'];
+  onSave?: (data: WorkflowJSON) => void;
 }
 
-export const useEditorProps = ({ registries, initialData, plugins }: EditorProps) =>
+export const useEditorProps = ({ registries, initialData, plugins, onSave }: EditorProps) =>
   useMemo<FreeLayoutProps>(
     () => ({
       /**
@@ -74,7 +77,8 @@ export const useEditorProps = ({ registries, initialData, plugins }: EditorProps
        * Content change
        */
       onContentChange(ctx, event) {
-        // console.log('Auto Save: ', event, ctx.document.toJSON());
+        console.log('Auto Save: ', event, ctx.document.toJSON());
+        onSave?.(ctx.document.toJSON());
       },
       // /**
       //  * Node engine enable, you can configure formMeta in the FlowNodeRegistry
@@ -96,6 +100,11 @@ export const useEditorProps = ({ registries, initialData, plugins }: EditorProps
       onReady(ctx) {
         const autoLayoutTool = ctx.get(WorkflowAutoLayoutTool);
         autoLayoutTool.handle();
+
+        setTimeout(() => {
+          // layout after rendered
+          autoLayoutTool.handle();
+        }, 100);
       },
       /**
        * Playground render
@@ -110,7 +119,7 @@ export const useEditorProps = ({ registries, initialData, plugins }: EditorProps
       onDispose() {
         console.log('---- Playground Dispose ----');
       },
-      plugins: plugins,
+      plugins: (ctx) => [createDebugPanelPlugin({}), ...(plugins?.(ctx) || [])],
     }),
     []
   );

@@ -6,8 +6,20 @@
 import { Meta, StoryObj } from 'storybook-react-rsbuild';
 
 import { FreeMaterialStoryBuilder } from '../../components/free-material-story-builder';
+import { FormHeader } from '../../components/form-header';
 
-const Story = () => <FreeMaterialStoryBuilder />;
+const Story = () => (
+  <FreeMaterialStoryBuilder
+    formMeta={{
+      render: () => (
+        <div>
+          <FormHeader />
+          <div>TODO</div>
+        </div>
+      ),
+    }}
+  />
+);
 
 const meta: Meta<typeof FreeMaterialStoryBuilder> = {
   title: 'Form Components/VariableSelector',

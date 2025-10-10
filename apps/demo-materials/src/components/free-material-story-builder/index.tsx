@@ -36,12 +36,12 @@ export function FreeMaterialStoryBuilder(props: PropsType) {
   const initialDataWithDefault = useMemo(
     () => ({
       nodes: [
+        ...(initialData?.nodes || []),
         ...INITIAL_DATA.nodes.filter(
           (node) => !initialData?.nodes?.find((item) => item.id === node.id)
         ),
-        ...(initialData?.nodes || []),
       ],
-      edges: [...INITIAL_DATA.edges, ...(initialData?.edges || [])],
+      edges: [...(initialData?.edges || []), ...INITIAL_DATA.edges],
     }),
     [initialData]
   );
