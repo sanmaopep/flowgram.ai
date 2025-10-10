@@ -1,0 +1,163 @@
+import { SourceCode } from '@theme';
+import { BasicStory, FilterSchemaStory, CustomFilterStory } from 'components/form-materials/components/variable-selector';
+
+# VariableSelector
+
+## Case Run Down
+
+### Direct Usage
+
+<BasicStory />
+
+```tsx pure title="form-meta.tsx"
+import { VariableSelector } from '@flowgram.ai/form-materials';
+
+const formMeta = {
+  render: () => (
+    <>
+      <FormHeader />
+      <Field<string[] | undefined> name="variable_selector">
+        {({ field }) => (
+          <VariableSelector value={field.value} onChange={(value) => field.onChange(value)} />
+        )}
+      </Field>
+    </>
+  ),
+}
+```
+
+
+### Filter Variable Types
+
+<FilterSchemaStory />
+
+```tsx pure title="form-meta.tsx"
+import { VariableSelector } from '@flowgram.ai/form-materials';
+
+const formMeta = {
+  render: () => (
+    <>
+      <FormHeader />
+      <Field<string[] | undefined> name="variable_selector">
+        {({ field }) => (
+          <VariableSelector
+            value={field.value}
+            onChange={(value) => field.onChange(value)}
+            includeSchema={{ type: 'string' }}
+          />
+        )}
+      </Field>
+    </>
+  ),
+}
+```
+
+### Custom Filter Logic
+
+<CustomFilterStory />
+
+```tsx pure title="form-meta.tsx"
+import { VariableSelector } from '@flowgram.ai/form-materials';
+
+const formMeta = {
+  render: () => (
+    <VariableSelectorProvider skipVariable={(variable) => variable?.key === 'str'}>
+      <FormHeader />
+      <Field<string[] | undefined> name="variable_selector">
+        {({ field }) => (
+          <VariableSelector
+            value={field.value}
+            onChange={(value) => field.onChange(value)}
+          />
+        )}
+      </Field>
+    </VariableSelectorProvider>
+  ),
+}
+```
+
+
+## API Reference
+
+### VariableSelector Props
+
+| Property Name | Type | Default Value | Description |
+|--------|------|--------|------|
+| `value` | `string[]` | - | Selected variable path array |
+| `onChange` | `(value?: string[]) => void` | - | Callback function when variable selection changes |
+| `config` | `VariableSelectorConfig` | `{}` | Configuration object |
+| `includeSchema` | `IJsonSchema \| IJsonSchema[]` | - | Included variable type filter conditions |
+| `excludeSchema` | `IJsonSchema \| IJsonSchema[]` | - | Excluded variable type filter conditions |
+| `readonly` | `boolean` | `false` | Whether it is read-only mode |
+| `hasError` | `boolean` | `false` | Whether to display error state |
+| `style` | `React.CSSProperties` | - | Custom styles |
+| `triggerRender` | `(props: TriggerRenderProps) => React.ReactNode` | - | Custom trigger rendering |
+
+### VariableSelectorConfig
+
+| Property Name | Type | Default Value | Description |
+|--------|------|--------|------|
+| `placeholder` | `string` | `'Select Variable'` | Placeholder text |
+| `notFoundContent` | `string` | `'Not Defined'` | Display content when variable is not found |
+
+### VariableSelectorProvider Props
+
+| Property Name | Type | Default Value | Description |
+|--------|------|--------|------|
+| `skipVariable` | `(variable?: BaseVariableField) => boolean` | - | Custom variable filter function |
+| `children` | `React.ReactNode` | - | Child components |
+
+## Source Code Guide
+
+<SourceCode
+  href="https://github.com/bytedance/flowgram.ai/tree/main/packages/materials/form-materials/src/components/variable-selector"
+/>
+
+Use CLI command to copy source code to local:
+
+```bash
+npx @flowgram.ai/cli@latest materials components/variable-selector
+```
+
+### Directory Structure Explanation
+
+```
+variable-selector/
+├── index.tsx           # Main component implementation, contains VariableSelector core logic
+├── context.tsx         # Provides `VariableSelectorContext` context, supports global configuration of variable filtering logic
+├── use-variable-tree.tsx # Custom Hook, handles variable tree data transformation and filtering
+├── styles.tsx          # Style definitions, using styled-components
+└── README.md          # Component documentation
+```
+
+
+### Overall Process
+
+```mermaid
+graph LR
+    A[VariableSelector Component] --> B[useVariableTree Hook]
+    B --> C[useAvailableVariables]
+    C --> D[Get All Available Variables]
+    D --> E[Variable Type Transformation]
+    E --> F[Apply Filter Conditions]
+    F --> G[Generate Tree Structure]
+    G --> H[Render TreeSelect]
+    H --> I[User Interaction Selection]
+    I --> J[onChange Callback]
+
+    K[VariableSelectorProvider] --> L[Global Filter Configuration]
+    L --> F
+
+    M[includeSchema/excludeSchema] --> F
+```
+
+### Flowgram APIs Used
+
+#### @flowgram.ai/variable-core
+- `useAvailableVariables()`: Get all available variables in the current scope
+- `BaseVariableField`: Basic variable field type, contains variable key, type, metadata, etc.
+
+#### @flowgram.ai/json-schema
+- `useTypeManager()`: Get type manager for handling variable type display and validation
+- `IJsonSchema`: JSON Schema type definition for variable type validation
+- `JsonSchemaUtils`: JSON Schema utility class providing type matching and transformation functions
