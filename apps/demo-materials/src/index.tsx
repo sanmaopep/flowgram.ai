@@ -3,4 +3,4 @@
  * SPDX-License-Identifier: MIT
  */
 
-export { FreeMaterialStoryBuilder } from './components/free-material-story-builder';
+export { FreeFormMetaStoryBuilder as FreeMaterialStoryBuilder } from './components/free-form-meta-story-builder';

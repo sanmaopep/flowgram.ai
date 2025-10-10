@@ -68,7 +68,7 @@ export const useEditorProps = ({ registries, initialData, plugins, onSave }: Edi
           const { form } = useNodeRender();
           return (
             <WorkflowNodeRenderer className="demo-free-node" node={props.node}>
-              {form?.render()}
+              <div className="demo-free-node-wrapper">{form?.render()}</div>
             </WorkflowNodeRenderer>
           );
         },
@@ -100,11 +100,6 @@ export const useEditorProps = ({ registries, initialData, plugins, onSave }: Edi
       onReady(ctx) {
         const autoLayoutTool = ctx.get(WorkflowAutoLayoutTool);
         autoLayoutTool.handle();
-
-        setTimeout(() => {
-          // layout after rendered
-          autoLayoutTool.handle();
-        }, 100);
       },
       /**
        * Playground render

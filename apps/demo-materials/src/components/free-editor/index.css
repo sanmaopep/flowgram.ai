@@ -19,6 +19,12 @@
   position: relative;
 }
 
+.demo-free-node-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .demo-node-content {
   flex-grow: 1;
   width: 100%;

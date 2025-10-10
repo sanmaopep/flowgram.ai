@@ -5,7 +5,7 @@
 
 import { Meta, StoryObj } from 'storybook-react-rsbuild';
 import { Field, FormMeta } from '@flowgram.ai/free-layout-editor';
-import { VariableSelector } from '@flowgram.ai/form-materials';
+import { SQLEditorWithVariables } from '@flowgram.ai/form-materials';
 
 import { FreeFormMetaStoryBuilder } from '../../components/free-form-meta-story-builder';
 import { FormHeader } from '../../components/form-header';
@@ -15,7 +15,7 @@ const Story = (args: { formMeta: FormMeta }) => (
 );
 
 const meta: Meta<typeof Story> = {
-  title: 'Form Components/VariableSelector',
+  title: 'Form Components/SqlEditorWithVariables',
   component: Story,
   tags: ['autodocs'],
 };
@@ -28,9 +28,15 @@ export const Default: Story = {
       render: () => (
         <>
           <FormHeader />
-          <Field<string[] | undefined> name="variable_selector">
+          <Field<string | undefined>
+            name="editor"
+            defaultValue="SELECT * FROM users WHERE user_id = {{start_0.str}}"
+          >
             {({ field }) => (
-              <VariableSelector value={field.value} onChange={(value) => field.onChange(value)} />
+              <SQLEditorWithVariables
+                value={field.value}
+                onChange={(value) => field.onChange(value)}
+              />
             )}
           </Field>
         </>

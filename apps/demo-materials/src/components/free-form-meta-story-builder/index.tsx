@@ -16,7 +16,7 @@ interface PropsType {
   initialData?: WorkflowJSON;
 }
 
-export function FreeMaterialStoryBuilder(props: PropsType) {
+export function FreeFormMetaStoryBuilder(props: PropsType) {
   const { formMeta = DEFAULT_FORM_META, initialData } = props;
 
   const registries = useMemo(
