@@ -3,11 +3,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 import { Field, FieldRenderProps } from '@flowgram.ai/free-layout-editor';
 import { BlurInput } from '@flowgram.ai/form-materials';
-import { Typography, Input } from '@douyinfe/semi-ui';
+import { Typography } from '@douyinfe/semi-ui';
 
 import { Title } from './styles';
 const { Text } = Typography;
