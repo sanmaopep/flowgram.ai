@@ -18,6 +18,8 @@ const TypeSelector = React.lazy(() =>
 
 export const BasicStory = () => (
   <FreeFormMetaStoryBuilder
+    filterStartNode
+    filterEndNode
     formMeta={{
       render: () => (
         <>

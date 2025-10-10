@@ -23,6 +23,7 @@ const VariableSelectorProvider = React.lazy(() =>
 
 export const BasicStory = () => (
   <FreeFormMetaStoryBuilder
+    filterEndNode
     formMeta={{
       render: () => (
         <>
@@ -40,6 +41,7 @@ export const BasicStory = () => (
 
 export const FilterSchemaStory = () => (
   <FreeFormMetaStoryBuilder
+    filterEndNode
     formMeta={{
       render: () => (
         <>
@@ -61,6 +63,7 @@ export const FilterSchemaStory = () => (
 
 export const CustomFilterStory = () => (
   <FreeFormMetaStoryBuilder
+    filterEndNode
     formMeta={{
       render: () => (
         <VariableSelectorProvider skipVariable={(variable) => variable?.key === 'str'}>

@@ -5,8 +5,6 @@
 
 import React from 'react';
 
-import type { FormMeta } from '@flowgram.ai/free-layout-editor';
-
 const OriginFreeFormMetaStoryBuilder = React.lazy(() =>
   import('@flowgram.ai/demo-materials').then((module) => ({
     default: module.FreeFormMetaStoryBuilder,
@@ -19,9 +17,11 @@ const FormHeader = React.lazy(() =>
   }))
 );
 
-const FreeFormMetaStoryBuilder = ({ formMeta }: { formMeta: FormMeta }) => (
+const FreeFormMetaStoryBuilder = (
+  props: React.ComponentPropsWithoutRef<typeof OriginFreeFormMetaStoryBuilder>
+) => (
   <div style={{ position: 'relative', height: 400 }}>
-    <OriginFreeFormMetaStoryBuilder formMeta={formMeta} />
+    <OriginFreeFormMetaStoryBuilder {...props} />
   </div>
 );
 
