@@ -3,4 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-export { FreeMaterialStoryBuilder } from './components/free-material-story-builder';
+declare module '*.svg'
+declare module '*.png'
+declare module '*.jpg'
+declare module '*.module.less'

@@ -7,9 +7,9 @@ import { StorybookConfig } from 'storybook-react-rsbuild'
 
 const config: StorybookConfig = {
   stories: [
-    '../src/**/stories/*.stories.tsx',
-    '../src/**/stories/*.story.tsx',
-    '../src/**/stories/*.mdx',
+    '../src/**/stories/**/*.stories.tsx',
+    '../src/**/stories/**/*.story.tsx',
+    '../src/**/stories/**/*.mdx',
   ],
   framework: 'storybook-react-rsbuild',
   rsbuildFinal: (config) => {

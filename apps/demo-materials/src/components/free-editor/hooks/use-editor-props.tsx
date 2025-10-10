@@ -9,24 +9,19 @@ import {
   FreeLayoutProps,
   WorkflowNodeProps,
   WorkflowNodeRenderer,
-  Field,
   useNodeRender,
   FlowNodeRegistry,
   WorkflowJSON,
+  WorkflowAutoLayoutTool,
 } from '@flowgram.ai/free-layout-editor';
 
-import { DEFAULT_DEMO_REGISTRY } from '../node-registries';
-import { DEFAULT_INITIAL_DATA } from '../initial-data';
-
 interface EditorProps {
-  registries?: FlowNodeRegistry[];
-  initialData?: WorkflowJSON;
+  registries: FlowNodeRegistry[];
+  initialData: WorkflowJSON;
+  plugins?: FreeLayoutProps['plugins'];
 }
 
-export const useEditorProps = ({
-  registries = [DEFAULT_DEMO_REGISTRY],
-  initialData = DEFAULT_INITIAL_DATA,
-}: EditorProps) =>
+export const useEditorProps = ({ registries, initialData, plugins }: EditorProps) =>
   useMemo<FreeLayoutProps>(
     () => ({
       /**
@@ -47,6 +42,9 @@ export const useEditorProps = ({
        * 节点注册
        */
       nodeRegistries: registries,
+      variableEngine: {
+        enable: true,
+      },
       /**
        * Get the default node registry, which will be merged with the 'nodeRegistries'
        * 提供默认的节点注册，这个会和 nodeRegistries 做合并
@@ -56,23 +54,6 @@ export const useEditorProps = ({
           type,
           meta: {
             defaultExpanded: true,
-          },
-          formMeta: {
-            /**
-             * Render form
-             */
-            render: () => (
-              <>
-                <Field<string> name="title">
-                  {({ field }) => <div className="demo-free-node-title">{field.value}</div>}
-                </Field>
-                <div className="demo-free-node-content">
-                  <Field<string> name="content">
-                    <input />
-                  </Field>
-                </div>
-              </>
-            ),
           },
         };
       },
@@ -112,6 +93,10 @@ export const useEditorProps = ({
        * Playground init
        */
       onInit: (ctx) => {},
+      onReady(ctx) {
+        const autoLayoutTool = ctx.get(WorkflowAutoLayoutTool);
+        autoLayoutTool.handle();
+      },
       /**
        * Playground render
        */
@@ -125,7 +110,7 @@ export const useEditorProps = ({
       onDispose() {
         console.log('---- Playground Dispose ----');
       },
-      plugins: () => [],
+      plugins: plugins,
     }),
     []
   );

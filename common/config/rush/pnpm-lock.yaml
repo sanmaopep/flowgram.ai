@@ -411,6 +411,9 @@ importers:
       '@douyinfe/semi-ui':
         specifier: ^2.80.0
         version: 2.86.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@flowgram.ai/editor':
+        specifier: workspace:*
+        version: link:../../packages/client/editor
       '@flowgram.ai/fixed-layout-editor':
         specifier: workspace:*
         version: link:../../packages/client/fixed-layout-editor
