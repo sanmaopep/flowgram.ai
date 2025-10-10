@@ -2,6 +2,7 @@
   "name": "@flowgram.ai/demo-materials",
   "version": "0.1.0",
   "description": "",
+  "private": true,
   "keywords": [],
   "license": "MIT",
   "main": "./src/index.tsx",
