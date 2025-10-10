@@ -7,8 +7,6 @@ import React from 'react';
 
 import type { FormMeta } from '@flowgram.ai/free-layout-editor';
 
-import { PreviewEditor } from 'components/preview-editor';
-
 const OriginFreeFormMetaStoryBuilder = React.lazy(() =>
   import('@flowgram.ai/demo-materials').then((module) => ({
     default: module.FreeFormMetaStoryBuilder,
@@ -22,9 +20,9 @@ const FormHeader = React.lazy(() =>
 );
 
 const FreeFormMetaStoryBuilder = ({ formMeta }: { formMeta: FormMeta }) => (
-  <PreviewEditor files={{}} previewStyle={{ height: 500 }} editorStyle={{ height: 0 }}>
+  <div style={{ position: 'relative', height: 400 }}>
     <OriginFreeFormMetaStoryBuilder formMeta={formMeta} />
-  </PreviewEditor>
+  </div>
 );
 
 export { FreeFormMetaStoryBuilder, FormHeader };
