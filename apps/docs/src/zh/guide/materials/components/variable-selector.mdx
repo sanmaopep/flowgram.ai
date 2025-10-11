@@ -137,21 +137,21 @@ variable-selector/
 ### 整体流程
 
 ```mermaid
-graph LR
-    A[VariableSelector 组件] --> B[useVariableTree Hook]
-    B --> C[useAvailableVariables]
-    C --> D[获取所有可用变量]
-    D --> E[变量类型转换]
-    E --> F[应用过滤条件]
-    F --> G[生成树形结构]
-    G --> H[渲染 TreeSelect]
-    H --> I[用户交互选择]
-    I --> J[onChange 回调]
+graph TD
+    A[VariableSelector 组件] ---> useVariableTree
 
     K[VariableSelectorProvider] --> L[全局过滤配置]
+    subgraph useVariableTree
+      C[useAvailableVariables] --> D[获取所有可用变量]
+      D --> F[应用过滤条件]
+      F --> G[生成树形结构]
+      M[includeSchema/excludeSchema] --> F
+    end
+
+    G --> H[渲染 TreeSelect]
     L --> F
 
-    M[includeSchema/excludeSchema] --> F
+
 ```
 
 ### 使用到的 flowgram API

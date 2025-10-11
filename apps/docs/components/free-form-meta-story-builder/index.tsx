@@ -18,9 +18,11 @@ const FormHeader = React.lazy(() =>
 );
 
 const FreeFormMetaStoryBuilder = (
-  props: React.ComponentPropsWithoutRef<typeof OriginFreeFormMetaStoryBuilder>
+  props: React.ComponentPropsWithoutRef<typeof OriginFreeFormMetaStoryBuilder> & {
+    height?: number | string;
+  }
 ) => (
-  <div style={{ position: 'relative', height: 400 }}>
+  <div style={{ position: 'relative', height: props.height || 400 }}>
     <OriginFreeFormMetaStoryBuilder {...props} />
   </div>
 );
