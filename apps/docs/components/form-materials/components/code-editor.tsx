@@ -39,10 +39,10 @@ export const BasicStory = () => (
   <FreeFormMetaStoryBuilder
     filterStartNode
     filterEndNode
-    height={500}
+    height={600}
     formMeta={{
       render: () => (
-        <>
+        <div style={{ maxWidth: 500 }}>
           <FormHeader />
           <Field<string | undefined> name="code_editor" defaultValue={defaultTsCode}>
             {({ field }) => (
@@ -53,7 +53,7 @@ export const BasicStory = () => (
               />
             )}
           </Field>
-        </>
+        </div>
       ),
     }}
   />
