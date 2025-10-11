@@ -3,9 +3,14 @@ import { BasicStory, FilterSchemaStory, CustomFilterStory } from 'components/for
 
 # VariableSelector
 
-VariableSelector is a component used to select variables in the current scope. It can filter variables based on their types.
+VariableSelector is a component for selecting variables in the current scope, with filtering capabilities based on variable types.
 
-## Case Run Down
+<br />
+<div>
+  <img loading="lazy" src="/materials/variable-selector.png" alt="VariableSelector Component" style={{ width: '50%' }} />
+</div>
+
+## Demo
 
 ### Direct Usage
 
@@ -27,7 +32,6 @@ const formMeta = {
   ),
 }
 ```
-
 
 ### Filter Variable Types
 
@@ -78,34 +82,33 @@ const formMeta = {
 }
 ```
 
-
 ## API Reference
 
 ### VariableSelector Props
 
-| Property Name | Type | Default Value | Description |
-|--------|------|--------|------|
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
 | `value` | `string[]` | - | Selected variable path array |
 | `onChange` | `(value?: string[]) => void` | - | Callback function when variable selection changes |
 | `config` | `VariableSelectorConfig` | `{}` | Configuration object |
-| `includeSchema` | `IJsonSchema \| IJsonSchema[]` | - | Included variable type filter conditions |
-| `excludeSchema` | `IJsonSchema \| IJsonSchema[]` | - | Excluded variable type filter conditions |
-| `readonly` | `boolean` | `false` | Whether it is read-only mode |
+| `includeSchema` | `IJsonSchema \| IJsonSchema[]` | - | Variable type inclusion filter conditions |
+| `excludeSchema` | `IJsonSchema \| IJsonSchema[]` | - | Variable type exclusion filter conditions |
+| `readonly` | `boolean` | `false` | Whether it's read-only mode |
 | `hasError` | `boolean` | `false` | Whether to display error state |
 | `style` | `React.CSSProperties` | - | Custom styles |
-| `triggerRender` | `(props: TriggerRenderProps) => React.ReactNode` | - | Custom trigger rendering |
+| `triggerRender` | `(props: TriggerRenderProps) => React.ReactNode` | - | Custom trigger renderer |
 
 ### VariableSelectorConfig
 
-| Property Name | Type | Default Value | Description |
-|--------|------|--------|------|
-| `placeholder` | `string` | `'Select Variable'` | Placeholder text |
-| `notFoundContent` | `string` | `'Not Defined'` | Display content when variable is not found |
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `placeholder` | `string` | `'Select variable'` | Placeholder text |
+| `notFoundContent` | `string` | `'Not defined'` | Content displayed when variable is not found |
 
 ### VariableSelectorProvider Props
 
-| Property Name | Type | Default Value | Description |
-|--------|------|--------|------|
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
 | `skipVariable` | `(variable?: BaseVariableField) => boolean` | - | Custom variable filter function |
 | `children` | `React.ReactNode` | - | Child components |
 
@@ -115,7 +118,7 @@ const formMeta = {
   href="https://github.com/bytedance/flowgram.ai/tree/main/packages/materials/form-materials/src/components/variable-selector"
 />
 
-Use CLI command to copy source code to local:
+Use CLI command to copy source code locally:
 
 ```bash
 npx @flowgram.ai/cli@latest materials components/variable-selector
@@ -126,40 +129,37 @@ npx @flowgram.ai/cli@latest materials components/variable-selector
 ```
 variable-selector/
 ├── index.tsx           # Main component implementation, contains VariableSelector core logic
-├── context.tsx         # Provides `VariableSelectorContext` context, supports global configuration of variable filtering logic
-├── use-variable-tree.tsx # Custom Hook, handles variable tree data transformation and filtering
-├── styles.tsx          # Style definitions, using styled-components
+├── context.tsx         # Provides `VariableSelectorContext` for global variable filtering configuration
+├── use-variable-tree.tsx # Custom Hook for processing variable tree data transformation and filtering
+├── styles.tsx          # Style definitions using styled-components
 └── README.md          # Component documentation
 ```
-
 
 ### Overall Process
 
 ```mermaid
-graph LR
-    A[VariableSelector Component] --> B[useVariableTree Hook]
-    B --> C[useAvailableVariables]
-    C --> D[Get All Available Variables]
-    D --> E[Variable Type Transformation]
-    E --> F[Apply Filter Conditions]
-    F --> G[Generate Tree Structure]
+graph TD
+    A[VariableSelector Component] ---> useVariableTree
+
+    K[VariableSelectorProvider] --> L[Global filter configuration]
+    subgraph useVariableTree
+      C[useAvailableVariables] --> D[Get all available variables]
+      D --> F[Apply filter conditions]
+      F --> G[Generate tree structure]
+      M[includeSchema/excludeSchema] --> F
+    end
+
     G --> H[Render TreeSelect]
-    H --> I[User Interaction Selection]
-    I --> J[onChange Callback]
-
-    K[VariableSelectorProvider] --> L[Global Filter Configuration]
     L --> F
-
-    M[includeSchema/excludeSchema] --> F
 ```
 
 ### Flowgram APIs Used
 
 #### @flowgram.ai/variable-core
 - `useAvailableVariables()`: Get all available variables in the current scope
-- `BaseVariableField`: Basic variable field type, contains variable key, type, metadata, etc.
+- `BaseVariableField`: Basic variable field type, includes variable key, type, metadata, etc.
 
 #### @flowgram.ai/json-schema
 - `useTypeManager()`: Get type manager for handling variable type display and validation
 - `IJsonSchema`: JSON Schema type definition for variable type validation
-- `JsonSchemaUtils`: JSON Schema utility class providing type matching and transformation functions
+- `JsonSchemaUtils`: JSON Schema utility class, provides type matching and conversion functions
