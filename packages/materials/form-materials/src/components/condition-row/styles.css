@@ -3,29 +3,28 @@
  * SPDX-License-Identifier: MIT
  */
 
-import styled from 'styled-components';
-
-export const UIContainer = styled.div`
+.flowgram-condition-row-container {
   display: flex;
   align-items: center;
   gap: 4px;
-`;
+}
 
-export const UIOperator = styled.div``;
+.flowgram-condition-row-operator {
+}
 
-export const UILeft = styled.div`
+.flowgram-condition-row-left {
   width: 100%;
-`;
+}
 
-export const UIRight = styled.div`
+.flowgram-condition-row-right {
   width: 100%;
-`;
+}
 
-export const UIValues = styled.div`
+.flowgram-condition-row-values {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   overflow: hidden;
-`;
+}

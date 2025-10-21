@@ -3,13 +3,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-import styled, { css } from 'styled-components';
-
-export const TreeRow = styled.div`
+.flowgram-display-schema-tree-row {
   display: flex;
   align-items: center;
 
-  .tree-icon {
+  & .tree-icon {
     margin-right: 8px;
     width: 14px;
     height: 14px;
@@ -17,9 +15,9 @@ export const TreeRow = styled.div`
 
   height: 27px;
   white-space: nowrap;
-`;
+}
 
-export const HorizontalLine = styled.div`
+.flowgram-display-schema-tree-horizontal-line {
   position: relative;
 
   &::before,
@@ -35,14 +33,14 @@ export const HorizontalLine = styled.div`
     width: 15px;
     height: 1px;
   }
-`;
+}
 
-export const TreeTitle = styled.div`
-  // overflow: hidden;
-  // text-overflow: ellipsis;
-`;
+.flowgram-display-schema-tree-title {
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
+}
 
-export const TreeLevel = styled.div`
+.flowgram-display-schema-tree-level {
   padding-left: 30px;
   position: relative;
 
@@ -55,9 +53,9 @@ export const TreeLevel = styled.div`
     left: -22px;
     width: 1px;
   } */
-`;
+}
 
-export const TreeItem = styled.div<{ depth: number }>`
+.flowgram-display-schema-tree-item {
   position: relative;
 
   &::before {
@@ -80,11 +78,7 @@ export const TreeItem = styled.div<{ depth: number }>`
     left: -22px;
   }
 
-  ${(props) =>
-    props.depth === 0 &&
-    css`
-      &::before {
-        width: 0px !important;
-      }
-    `}
-`;
+  &.depth-0::before {
+    width: 0px !important;
+  }
+}

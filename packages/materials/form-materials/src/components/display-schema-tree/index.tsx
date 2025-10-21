@@ -11,7 +11,7 @@ import {
   useTypeManager,
 } from '@flowgram.ai/json-schema';
 
-import { HorizontalLine, TreeItem, TreeLevel, TreeRow, TreeTitle } from './styles';
+import './styles.css';
 
 interface PropsType {
   value?: IJsonSchema;
@@ -45,15 +45,15 @@ function SchemaTree(props: PropsType) {
   const childEntries = Object.entries(properties || {});
 
   return (
-    <TreeItem depth={depth} key={parentKey || 'root'}>
-      <TreeRow>
-        {depth !== 0 && <HorizontalLine />}
+    <div className={`flowgram-display-schema-tree-item depth-${depth}`} key={parentKey || 'root'}>
+      <div className="flowgram-display-schema-tree-row">
+        {depth !== 0 && <div className="flowgram-display-schema-tree-horizontal-line" />}
         {showIcon &&
           icon &&
           React.cloneElement(icon, {
             className: 'tree-icon',
           })}
-        <TreeTitle>
+        <div className="flowgram-display-schema-tree-title">
           {parentKey ? (
             <>
               {`${parentKey} (`}
@@ -63,15 +63,15 @@ function SchemaTree(props: PropsType) {
           ) : (
             title
           )}
-        </TreeTitle>
-      </TreeRow>
+        </div>
+      </div>
       {childEntries?.length ? (
-        <TreeLevel>
+        <div className="flowgram-display-schema-tree-level">
           {childEntries.map(([key, value]) => (
             <SchemaTree key={key} {...props} parentKey={key} value={value} depth={depth + 1} />
           ))}
-        </TreeLevel>
+        </div>
       ) : null}
-    </TreeItem>
+    </div>
   );
 }

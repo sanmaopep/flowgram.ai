@@ -14,7 +14,7 @@ import {
   useCurrentScope,
 } from '@flowgram.ai/editor';
 import { useInjector } from '@flowgram.ai/coze-editor/react';
-import { Popover } from '@douyinfe/semi-ui';
+import { Popover, Tag } from '@douyinfe/semi-ui';
 import { IconIssueStroked } from '@douyinfe/semi-icons';
 import {
   Decoration,
@@ -27,7 +27,7 @@ import {
 
 import { IPolyfillRoot, polyfillCreateRoot } from '@/shared';
 
-import { UIPopoverContent, UIRootTitle, UITag, UIVarName } from '../styles';
+import '../styles.css';
 
 class VariableTagWidget extends WidgetType {
   keyPath?: string[];
@@ -56,9 +56,10 @@ class VariableTagWidget extends WidgetType {
   renderVariable(v?: BaseVariableField) {
     if (!v) {
       this.root.render(
-        <UITag prefixIcon={<IconIssueStroked />} color="amber">
-          Unknown
-        </UITag>
+        <Tag className="flowgram-coze-editor-tag" color="amber">
+          <IconIssueStroked style={{ marginRight: '4px' }} />
+          <span>Unknown</span>
+        </Tag>
       );
       return;
     }
@@ -67,26 +68,30 @@ class VariableTagWidget extends WidgetType {
     const isRoot = v === rootField;
 
     const rootTitle = (
-      <UIRootTitle>
+      <span className="flowgram-coze-editor-root-title">
         {rootField.meta?.title ? `${rootField.meta.title} ${isRoot ? '' : '-'} ` : ''}
-      </UIRootTitle>
+      </span>
     );
     const rootIcon = this.renderIcon(rootField?.meta.icon);
 
     this.root.render(
       <Popover
         content={
-          <UIPopoverContent>
+          <div className="flowgram-coze-editor-popover-content">
             {rootIcon}
             {rootTitle}
-            <UIVarName>{v?.keyPath.slice(1).join('.')}</UIVarName>
-          </UIPopoverContent>
+            <span className="flowgram-coze-editor-var-name">{v?.keyPath.slice(1).join('.')}</span>
+          </div>
         }
       >
-        <UITag prefixIcon={rootIcon}>
+        <Tag
+          className="flowgram-coze-editor-tag"
+          style={{ display: 'inline-flex', alignItems: 'center' }}
+        >
+          {rootIcon}
           {rootTitle}
-          {!isRoot && <UIVarName>{v?.key}</UIVarName>}
-        </UITag>
+          {!isRoot && <span className="flowgram-coze-editor-var-name">{v?.key}</span>}
+        </Tag>
       </Popover>
     );
   }

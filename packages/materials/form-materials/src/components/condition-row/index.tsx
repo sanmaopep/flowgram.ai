@@ -15,7 +15,7 @@ import { InjectDynamicValueInput } from '@/components/dynamic-value-input';
 import { IConditionRule, ConditionOpConfigs, useCondition } from '@/components/condition-context';
 
 import { ConditionRowValueType } from './types';
-import { UIContainer, UILeft, UIOperator, UIRight, UIValues } from './styles';
+import './styles.css';
 
 interface PropTypes {
   value?: ConditionRowValueType;
@@ -74,10 +74,10 @@ export function ConditionRow({ style, value, onChange, readonly, ruleConfig }: P
   );
 
   return (
-    <UIContainer style={style}>
-      <UIOperator>{renderOpSelect()}</UIOperator>
-      <UIValues>
-        <UILeft>
+    <div className="flowgram-condition-row-container" style={style}>
+      <div className="flowgram-condition-row-operator">{renderOpSelect()}</div>
+      <div className="flowgram-condition-row-values">
+        <div className="flowgram-condition-row-left">
           <InjectVariableSelector
             readonly={readonly}
             style={{ width: '100%' }}
@@ -92,8 +92,8 @@ export function ConditionRow({ style, value, onChange, readonly, ruleConfig }: P
               })
             }
           />
-        </UILeft>
-        <UIRight>
+        </div>
+        <div className="flowgram-condition-row-right">
           {targetSchema ? (
             <InjectDynamicValueInput
               readonly={readonly || !rule}
@@ -109,9 +109,9 @@ export function ConditionRow({ style, value, onChange, readonly, ruleConfig }: P
               value={opConfig?.rightDisplay || I18n.t('Empty')}
             />
           )}
-        </UIRight>
-      </UIValues>
-    </UIContainer>
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -1,0 +1,11 @@
+/**
+ * Copyright (c) 2025 Bytedance Ltd. and/or its affiliates
+ * SPDX-License-Identifier: MIT
+ */
+
+.flowgram-code-editor-container {
+}
+
+.flowgram-code-editor-container.mini {
+  height: 24px;
+}
