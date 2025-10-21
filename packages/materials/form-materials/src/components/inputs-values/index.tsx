@@ -34,9 +34,9 @@ export function InputsValues({
 
   return (
     <div>
-      <div className="flowgram-inputs-values-rows" style={style}>
+      <div className="gedit-m-inputs-values-rows" style={style}>
         {list.map((item) => (
-          <div className="flowgram-inputs-values-row" key={item.id}>
+          <div className="gedit-m-inputs-values-row" key={item.id}>
             <BlurInput
               style={{ width: 100, minWidth: 100, maxWidth: 100 }}
               disabled={readonly}

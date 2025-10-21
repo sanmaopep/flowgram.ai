@@ -60,7 +60,7 @@ export function DBConditionRow({
 
   const renderDBOptionSelect = () => (
     <Select
-      className="flowgram-db-condition-row-select"
+      className="gedit-m-db-condition-row-select"
       disabled={readonly}
       size="small"
       style={{ width: '100%' }}
@@ -74,7 +74,7 @@ export function DBConditionRow({
       optionList={
         options?.map((item) => ({
           label: (
-            <div className="flowgram-db-condition-row-option-label">
+            <div className="gedit-m-db-condition-row-option-label">
               <Icon size="small" svg={typeManager.getDisplayIcon(item.schema)} />
               {item.label}
             </div>
@@ -107,11 +107,11 @@ export function DBConditionRow({
   );
 
   return (
-    <div className="flowgram-db-condition-row-container" style={style}>
-      <div className="flowgram-db-condition-row-operator">{renderOpSelect()}</div>
-      <div className="flowgram-db-condition-row-values">
-        <div className="flowgram-db-condition-row-left">{renderDBOptionSelect()}</div>
-        <div className="flowgram-db-condition-row-right">
+    <div className="gedit-m-db-condition-row-container" style={style}>
+      <div className="gedit-m-db-condition-row-operator">{renderOpSelect()}</div>
+      <div className="gedit-m-db-condition-row-values">
+        <div className="gedit-m-db-condition-row-left">{renderDBOptionSelect()}</div>
+        <div className="gedit-m-db-condition-row-right">
           {targetSchema ? (
             <InjectDynamicValueInput
               readonly={readonly || !rule}

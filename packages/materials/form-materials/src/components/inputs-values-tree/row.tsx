@@ -80,22 +80,22 @@ export function InputValueRow(
   return (
     <>
       <div
-        className={`flowgram-inputs-values-tree-tree-item-left ${$level > 0 ? 'show-line' : ''} ${
+        className={`gedit-m-inputs-values-tree-tree-item-left ${$level > 0 ? 'show-line' : ''} ${
           $isLast ? 'is-last' : ''
         } ${hasChildren ? 'show-collapse' : ''}`}
       >
         {hasChildren && (
           <div
-            className="flowgram-inputs-values-tree-collapse-trigger"
+            className="gedit-m-inputs-values-tree-collapse-trigger"
             onClick={() => setCollapse((_collapse) => !_collapse)}
           >
             {collapse ? <IconChevronDown size="small" /> : <IconChevronRight size="small" />}
           </div>
         )}
       </div>
-      <div className="flowgram-inputs-values-tree-tree-item-right">
-        <div className="flowgram-inputs-values-tree-tree-item-main">
-          <div className="flowgram-inputs-values-tree-row">
+      <div className="gedit-m-inputs-values-tree-tree-item-right">
+        <div className="gedit-m-inputs-values-tree-tree-item-main">
+          <div className="gedit-m-inputs-values-tree-row">
             <BlurInput
               style={{ width: 100, minWidth: 100, maxWidth: 100 }}
               disabled={readonly}
@@ -115,7 +115,7 @@ export function InputValueRow(
                 strategies,
               }}
             />
-            <div className="flowgram-inputs-values-tree-actions">
+            <div className="gedit-m-inputs-values-tree-actions">
               {canAddField && (
                 <IconButton
                   disabled={readonly}
@@ -143,8 +143,8 @@ export function InputValueRow(
           </div>
         </div>
         {hasChildren && (
-          <div className={`flowgram-inputs-values-tree-collapsible ${collapse ? 'collapse' : ''}`}>
-            <div className="flowgram-inputs-values-tree-tree-items shrink">
+          <div className={`gedit-m-inputs-values-tree-collapsible ${collapse ? 'collapse' : ''}`}>
+            <div className="gedit-m-inputs-values-tree-tree-items shrink">
               {list.map((_item, index) => (
                 <InputValueRow
                   readonly={readonly}

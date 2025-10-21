@@ -51,10 +51,7 @@ export function PromptEditor(props: PromptEditorPropsType) {
   }, [value]);
 
   return (
-    <div
-      className={`flowgram-prompt-editor-container ${hasError ? 'has-error' : ''}`}
-      style={style}
-    >
+    <div className={`gedit-m-prompt-editor-container ${hasError ? 'has-error' : ''}`} style={style}>
       <EditorProvider>
         <Renderer
           didMount={(editor: EditorAPI) => {

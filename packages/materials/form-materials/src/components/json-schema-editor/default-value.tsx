@@ -24,7 +24,7 @@ export function DefaultValue(props: {
   const { value, schema, onChange, placeholder } = props;
 
   return (
-    <div className="flowgram-json-schema-editor-constant-input-wrapper">
+    <div className="gedit-m-json-schema-editor-constant-input-wrapper">
       <ConstantInput
         value={value}
         onChange={(_v) => onChange(_v)}

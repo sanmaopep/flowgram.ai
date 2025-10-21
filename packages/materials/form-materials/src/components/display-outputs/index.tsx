@@ -50,7 +50,7 @@ export function DisplayOutputs({ value, showIconInTree, displayFromScope }: Prop
   const childEntries = Object.entries(properties || {});
 
   return (
-    <div className="flowgram-display-outputs-wrapper">
+    <div className="gedit-m-display-outputs-wrapper">
       {childEntries.map(([key, schema]) => (
         <DisplaySchemaTag
           key={key}

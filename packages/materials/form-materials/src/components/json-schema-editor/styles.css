@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-.flowgram-json-schema-editor-container {
+.gedit-m-json-schema-editor-container {
   /* & .semi-input {
     background-color: #fff;
     border-radius: 6px;
@@ -11,48 +11,48 @@
   } */
 }
 
-.flowgram-json-schema-editor-row {
+.gedit-m-json-schema-editor-row {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.flowgram-json-schema-editor-collapse-trigger {
+.gedit-m-json-schema-editor-collapse-trigger {
   cursor: pointer;
   margin-right: 5px;
 }
 
-.flowgram-json-schema-editor-expand-detail {
+.gedit-m-json-schema-editor-expand-detail {
   display: flex;
   flex-direction: column;
 }
 
-.flowgram-json-schema-editor-label {
+.gedit-m-json-schema-editor-label {
   font-size: 12px;
   color: #999;
   font-weight: 400;
   margin-bottom: 2px;
 }
 
-.flowgram-json-schema-editor-tree-items {
+.gedit-m-json-schema-editor-tree-items {
   display: grid;
   grid-template-columns: auto 1fr;
 }
 
-.flowgram-json-schema-editor-tree-items.shrink {
+.gedit-m-json-schema-editor-tree-items.shrink {
   padding-left: 3px;
   margin-top: 10px;
 }
 
-.flowgram-json-schema-editor-tree-item-left {
+.gedit-m-json-schema-editor-tree-item-left {
   grid-column: 1;
   position: relative;
   width: 16px;
 }
 
-.flowgram-json-schema-editor-tree-item-left.show-line::before {
+.gedit-m-json-schema-editor-tree-item-left.show-line::before {
   /* 竖线 */
-  content: '';
+  content: "";
   height: var(--line-height, 100%);
   position: absolute;
   left: -14px;
@@ -62,9 +62,9 @@
   display: block;
 }
 
-.flowgram-json-schema-editor-tree-item-left.show-line::after {
+.gedit-m-json-schema-editor-tree-item-left.show-line::after {
   /* 横线 */
-  content: '';
+  content: "";
   position: absolute;
   left: -14px; /* 横线起点和竖线对齐 */
   top: 8px; /* 跟随你的行高调整 */
@@ -74,15 +74,15 @@
   display: block;
 }
 
-.flowgram-json-schema-editor-tree-item-left.show-line.is-last::before {
+.gedit-m-json-schema-editor-tree-item-left.show-line.is-last::before {
   height: 24px;
 }
 
-.flowgram-json-schema-editor-tree-item-left.show-line.show-collapse::after {
+.gedit-m-json-schema-editor-tree-item-left.show-line.show-collapse::after {
   width: 12px;
 }
 
-.flowgram-json-schema-editor-tree-item-right {
+.gedit-m-json-schema-editor-tree-item-right {
   grid-column: 2;
   margin-bottom: 10px;
 
@@ -91,40 +91,40 @@
   }
 }
 
-.flowgram-json-schema-editor-tree-item-main {
+.gedit-m-json-schema-editor-tree-item-main {
   display: flex;
   flex-direction: column;
   gap: 10px;
   position: relative;
 }
 
-.flowgram-json-schema-editor-collapsible {
+.gedit-m-json-schema-editor-collapsible {
   display: none;
 }
 
-.flowgram-json-schema-editor-collapsible.collapse {
+.gedit-m-json-schema-editor-collapsible.collapse {
   display: block;
 }
 
-.flowgram-json-schema-editor-name {
+.gedit-m-json-schema-editor-name {
   flex-grow: 1;
 }
 
-.flowgram-json-schema-editor-type {
+.gedit-m-json-schema-editor-type {
 }
 
-.flowgram-json-schema-editor-required {
+.gedit-m-json-schema-editor-required {
 }
 
-.flowgram-json-schema-editor-actions {
+.gedit-m-json-schema-editor-actions {
   white-space: nowrap;
 }
 
-.flowgram-json-schema-editor-default-value-wrapper {
+.gedit-m-json-schema-editor-default-value-wrapper {
   margin: 0;
 }
 
-.flowgram-json-schema-editor-constant-input-wrapper {
+.gedit-m-json-schema-editor-constant-input-wrapper {
   flex-grow: 1;
 
   & .semi-tree-select,

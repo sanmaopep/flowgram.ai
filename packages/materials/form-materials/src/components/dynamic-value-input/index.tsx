@@ -144,10 +144,10 @@ export function DynamicValueInput({
   );
 
   return (
-    <div className="flowgram-dynamic-value-input-container" style={style}>
-      <div className="flowgram-dynamic-value-input-type">{renderTypeSelector()}</div>
-      <div className="flowgram-dynamic-value-input-main">{renderMain()}</div>
-      <div className="flowgram-dynamic-value-input-trigger">{renderTrigger()}</div>
+    <div className="gedit-m-dynamic-value-input-container" style={style}>
+      <div className="gedit-m-dynamic-value-input-type">{renderTypeSelector()}</div>
+      <div className="gedit-m-dynamic-value-input-main">{renderMain()}</div>
+      <div className="gedit-m-dynamic-value-input-trigger">{renderTrigger()}</div>
     </div>
   );
 }

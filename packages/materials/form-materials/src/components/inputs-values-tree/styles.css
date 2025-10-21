@@ -3,39 +3,39 @@
  * SPDX-License-Identifier: MIT
  */
 
-.flowgram-inputs-values-tree-container {
+.gedit-m-inputs-values-tree-container {
 }
 
-.flowgram-inputs-values-tree-row {
+.gedit-m-inputs-values-tree-row {
   display: flex;
   align-items: flex-start;
   gap: 5px;
 }
 
-.flowgram-inputs-values-tree-collapse-trigger {
+.gedit-m-inputs-values-tree-collapse-trigger {
   cursor: pointer;
   margin-right: 5px;
 }
 
-.flowgram-inputs-values-tree-tree-items {
+.gedit-m-inputs-values-tree-tree-items {
   display: grid;
   grid-template-columns: auto 1fr;
 }
 
-.flowgram-inputs-values-tree-tree-items.shrink {
+.gedit-m-inputs-values-tree-tree-items.shrink {
   padding-left: 3px;
   margin-top: 10px;
 }
 
-.flowgram-inputs-values-tree-tree-item-left {
+.gedit-m-inputs-values-tree-tree-item-left {
   grid-column: 1;
   position: relative;
   width: 16px;
 }
 
-.flowgram-inputs-values-tree-tree-item-left.show-line::before {
+.gedit-m-inputs-values-tree-tree-item-left.show-line::before {
   /* 竖线 */
-  content: '';
+  content: "";
   height: var(--line-height, 100%);
   position: absolute;
   left: -14px;
@@ -45,9 +45,9 @@
   display: block;
 }
 
-.flowgram-inputs-values-tree-tree-item-left.show-line::after {
+.gedit-m-inputs-values-tree-tree-item-left.show-line::after {
   /* 横线 */
-  content: '';
+  content: "";
   position: absolute;
   left: -14px; /* 横线起点和竖线对齐 */
   top: 8px; /* 跟随你的行高调整 */
@@ -57,15 +57,15 @@
   display: block;
 }
 
-.flowgram-inputs-values-tree-tree-item-left.show-line.is-last::before {
+.gedit-m-inputs-values-tree-tree-item-left.show-line.is-last::before {
   height: 24px;
 }
 
-.flowgram-inputs-values-tree-tree-item-left.show-line.show-collapse::after {
+.gedit-m-inputs-values-tree-tree-item-left.show-line.show-collapse::after {
   width: 12px;
 }
 
-.flowgram-inputs-values-tree-tree-item-right {
+.gedit-m-inputs-values-tree-tree-item-right {
   grid-column: 2;
   margin-bottom: 10px;
 
@@ -74,21 +74,21 @@
   }
 }
 
-.flowgram-inputs-values-tree-tree-item-main {
+.gedit-m-inputs-values-tree-tree-item-main {
   display: flex;
   flex-direction: column;
   gap: 10px;
   position: relative;
 }
 
-.flowgram-inputs-values-tree-collapsible {
+.gedit-m-inputs-values-tree-collapsible {
   display: none;
 }
 
-.flowgram-inputs-values-tree-collapsible.collapse {
+.gedit-m-inputs-values-tree-collapsible.collapse {
   display: block;
 }
 
-.flowgram-inputs-values-tree-actions {
+.gedit-m-inputs-values-tree-actions {
   white-space: nowrap;
 }

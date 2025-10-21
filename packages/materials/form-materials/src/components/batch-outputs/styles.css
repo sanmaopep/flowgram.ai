@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: MIT
  */
 
-.flowgram-batch-outputs-rows {
+.gedit-m-batch-outputs-rows {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 10px;
 }
 
-.flowgram-batch-outputs-row {
+.gedit-m-batch-outputs-row {
   display: flex;
   align-items: center;
   gap: 5px;

@@ -29,7 +29,7 @@ export function InputsValuesTree(props: PropsType) {
 
   return (
     <div>
-      <div className="flowgram-inputs-values-tree-tree-items">
+      <div className="gedit-m-inputs-values-tree-tree-items">
         {list.map((item) => (
           <InputValueRow
             key={item.id}

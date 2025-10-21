@@ -65,7 +65,7 @@ export function BaseCodeEditor({
   }, [value]);
 
   return (
-    <div className={`flowgram-code-editor-container ${mini ? 'mini' : ''}`}>
+    <div className={`gedit-m-code-editor-container ${mini ? 'mini' : ''}`}>
       <EditorProvider>
         <OriginCodeEditor
           defaultValue={String(value || '')}

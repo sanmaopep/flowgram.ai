@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-.flowgram-coze-editor-root-title {
+.gedit-m-coze-editor-root-title {
   margin-right: 4px;
   min-width: 20px;
   overflow: hidden;
@@ -12,13 +12,13 @@
   color: var(--semi-color-text-2);
 }
 
-.flowgram-coze-editor-var-name {
+.gedit-m-coze-editor-var-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.flowgram-coze-editor-tag {
+.gedit-m-coze-editor-tag {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
@@ -33,7 +33,7 @@
   }
 }
 
-.flowgram-coze-editor-popover-content {
+.gedit-m-coze-editor-popover-content {
   padding: 10px;
   display: inline-flex;
   align-items: center;

@@ -12,7 +12,7 @@ import { CodeEditor, type CodeEditorPropsType } from '@/components/code-editor';
  */
 export function CodeEditorMini(props: CodeEditorPropsType) {
   return (
-    <div className="flowgram-code-editor-mini">
+    <div className="gedit-m-code-editor-mini">
       <CodeEditor
         {...props}
         options={{

@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: MIT
  */
 
-.flowgram-code-editor-container {
+.gedit-m-code-editor-container {
 }
 
-.flowgram-code-editor-container.mini {
+.gedit-m-code-editor-container.mini {
   height: 24px;
 }

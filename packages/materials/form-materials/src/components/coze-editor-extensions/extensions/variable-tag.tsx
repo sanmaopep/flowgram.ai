@@ -56,7 +56,7 @@ class VariableTagWidget extends WidgetType {
   renderVariable(v?: BaseVariableField) {
     if (!v) {
       this.root.render(
-        <Tag className="flowgram-coze-editor-tag" color="amber">
+        <Tag className="gedit-m-coze-editor-tag" color="amber">
           <IconIssueStroked style={{ marginRight: '4px' }} />
           <span>Unknown</span>
         </Tag>
@@ -68,7 +68,7 @@ class VariableTagWidget extends WidgetType {
     const isRoot = v === rootField;
 
     const rootTitle = (
-      <span className="flowgram-coze-editor-root-title">
+      <span className="gedit-m-coze-editor-root-title">
         {rootField.meta?.title ? `${rootField.meta.title} ${isRoot ? '' : '-'} ` : ''}
       </span>
     );
@@ -77,20 +77,20 @@ class VariableTagWidget extends WidgetType {
     this.root.render(
       <Popover
         content={
-          <div className="flowgram-coze-editor-popover-content">
+          <div className="gedit-m-coze-editor-popover-content">
             {rootIcon}
             {rootTitle}
-            <span className="flowgram-coze-editor-var-name">{v?.keyPath.slice(1).join('.')}</span>
+            <span className="gedit-m-coze-editor-var-name">{v?.keyPath.slice(1).join('.')}</span>
           </div>
         }
       >
         <Tag
-          className="flowgram-coze-editor-tag"
+          className="gedit-m-coze-editor-tag"
           style={{ display: 'inline-flex', alignItems: 'center' }}
         >
           {rootIcon}
           {rootTitle}
-          {!isRoot && <span className="flowgram-coze-editor-var-name">{v?.key}</span>}
+          {!isRoot && <span className="gedit-m-coze-editor-var-name">{v?.key}</span>}
         </Tag>
       </Popover>
     );

@@ -22,9 +22,9 @@ export function BatchOutputs(props: PropsType) {
 
   return (
     <div>
-      <div className="flowgram-batch-outputs-rows" style={style}>
+      <div className="gedit-m-batch-outputs-rows" style={style}>
         {list.map((item) => (
-          <div className="flowgram-batch-outputs-row" key={item.id}>
+          <div className="gedit-m-batch-outputs-row" key={item.id}>
             <Input
               style={{ width: 100 }}
               disabled={readonly}

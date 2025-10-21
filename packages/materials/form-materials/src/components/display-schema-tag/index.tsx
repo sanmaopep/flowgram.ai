@@ -28,17 +28,17 @@ export function DisplaySchemaTag({ value = {}, showIconInTree, title, warning }:
   return (
     <Popover
       content={
-        <div className="flowgram-display-schema-tag-popover-content">
+        <div className="gedit-m-display-schema-tag-popover-content">
           <DisplaySchemaTree value={value} typeManager={typeManager} showIcon={showIconInTree} />
         </div>
       }
     >
-      <Tag color={warning ? 'amber' : 'white'} className="flowgram-display-schema-tag-tag">
+      <Tag color={warning ? 'amber' : 'white'} className="gedit-m-display-schema-tag-tag">
         {icon &&
           React.cloneElement(icon, {
             className: 'tag-icon',
           })}
-        {title && <span className="flowgram-display-schema-tag-title">{title}</span>}
+        {title && <span className="gedit-m-display-schema-tag-title">{title}</span>}
       </Tag>
     </Popover>
   );

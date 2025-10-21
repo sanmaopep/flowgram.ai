@@ -45,15 +45,15 @@ function SchemaTree(props: PropsType) {
   const childEntries = Object.entries(properties || {});
 
   return (
-    <div className={`flowgram-display-schema-tree-item depth-${depth}`} key={parentKey || 'root'}>
-      <div className="flowgram-display-schema-tree-row">
-        {depth !== 0 && <div className="flowgram-display-schema-tree-horizontal-line" />}
+    <div className={`gedit-m-display-schema-tree-item depth-${depth}`} key={parentKey || 'root'}>
+      <div className="gedit-m-display-schema-tree-row">
+        {depth !== 0 && <div className="gedit-m-display-schema-tree-horizontal-line" />}
         {showIcon &&
           icon &&
           React.cloneElement(icon, {
             className: 'tree-icon',
           })}
-        <div className="flowgram-display-schema-tree-title">
+        <div className="gedit-m-display-schema-tree-title">
           {parentKey ? (
             <>
               {`${parentKey} (`}
@@ -66,7 +66,7 @@ function SchemaTree(props: PropsType) {
         </div>
       </div>
       {childEntries?.length ? (
-        <div className="flowgram-display-schema-tree-level">
+        <div className="gedit-m-display-schema-tree-level">
           {childEntries.map(([key, value]) => (
             <SchemaTree key={key} {...props} parentKey={key} value={value} depth={depth + 1} />
           ))}

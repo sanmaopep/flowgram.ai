@@ -24,7 +24,7 @@ export function DisplayInputsValues({ value, showIconInTree }: PropsType) {
   const childEntries = Object.entries(value || {});
 
   return (
-    <div className="flowgram-display-inputs-wrapper">
+    <div className="gedit-m-display-inputs-wrapper">
       {childEntries.map(([key, value]) => {
         if (FlowValueUtils.isFlowValue(value)) {
           return (

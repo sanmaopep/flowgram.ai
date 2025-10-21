@@ -3,11 +3,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-.flowgram-display-schema-tag-popover-content {
+.gedit-m-display-schema-tag-popover-content {
   padding: 10px;
 }
 
-.flowgram-display-schema-tag-tag {
+.gedit-m-display-schema-tag-tag {
   padding: 4px;
 
   & .tag-icon {
@@ -16,7 +16,7 @@
   }
 }
 
-.flowgram-display-schema-tag-title {
+.gedit-m-display-schema-tag-title {
   display: inline-block;
   margin-left: 4px;
   margin-top: -1px;

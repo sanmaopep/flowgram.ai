@@ -43,8 +43,8 @@ export function JsonSchemaEditor(props: {
   );
 
   return (
-    <div className="flowgram-json-schema-editor-container">
-      <div className="flowgram-json-schema-editor-tree-items">
+    <div className="gedit-m-json-schema-editor-container">
+      <div className="gedit-m-json-schema-editor-tree-items">
         {propertyList.map((_property) => (
           <PropertyEdit
             readonly={readonly}
@@ -106,23 +106,23 @@ function PropertyEdit(props: {
   return (
     <>
       <div
-        className={`flowgram-json-schema-editor-tree-item-left ${$level > 0 ? 'show-line' : ''} ${
+        className={`gedit-m-json-schema-editor-tree-item-left ${$level > 0 ? 'show-line' : ''} ${
           $isLast ? 'is-last' : ''
         } ${showCollapse ? 'show-collapse' : ''}`}
       >
         {showCollapse && (
           <div
-            className="flowgram-json-schema-editor-collapse-trigger"
+            className="gedit-m-json-schema-editor-collapse-trigger"
             onClick={() => setCollapse((_collapse) => !_collapse)}
           >
             {collapse ? <IconChevronDown size="small" /> : <IconChevronRight size="small" />}
           </div>
         )}
       </div>
-      <div className="flowgram-json-schema-editor-tree-item-right">
-        <div className="flowgram-json-schema-editor-tree-item-main">
-          <div className="flowgram-json-schema-editor-row">
-            <div className="flowgram-json-schema-editor-name">
+      <div className="gedit-m-json-schema-editor-tree-item-right">
+        <div className="gedit-m-json-schema-editor-tree-item-main">
+          <div className="gedit-m-json-schema-editor-row">
+            <div className="gedit-m-json-schema-editor-name">
               <BlurInput
                 disabled={readonly}
                 placeholder={config?.placeholder ?? I18n.t('Input Variable Name')}
@@ -131,7 +131,7 @@ function PropertyEdit(props: {
                 onChange={(value) => onChange('name', value)}
               />
             </div>
-            <div className="flowgram-json-schema-editor-type">
+            <div className="gedit-m-json-schema-editor-type">
               <InjectTypeSelector
                 value={typeSelectorValue}
                 readonly={readonly}
@@ -143,14 +143,14 @@ function PropertyEdit(props: {
                 }}
               />
             </div>
-            <div className="flowgram-json-schema-editor-required">
+            <div className="gedit-m-json-schema-editor-required">
               <Checkbox
                 disabled={readonly}
                 checked={isPropertyRequired}
                 onChange={(e) => onChange('isPropertyRequired', e.target.checked)}
               />
             </div>
-            <div className="flowgram-json-schema-editor-actions">
+            <div className="gedit-m-json-schema-editor-actions">
               <IconButton
                 disabled={readonly}
                 size="small"
@@ -182,8 +182,8 @@ function PropertyEdit(props: {
             </div>
           </div>
           {expand && (
-            <div className="flowgram-json-schema-editor-expand-detail">
-              <div className="flowgram-json-schema-editor-label">
+            <div className="gedit-m-json-schema-editor-expand-detail">
+              <div className="gedit-m-json-schema-editor-label">
                 {config?.descTitle ?? I18n.t('Description')}
               </div>
               <BlurInput
@@ -197,10 +197,10 @@ function PropertyEdit(props: {
               />
               {$level === 0 && (
                 <>
-                  <div className="flowgram-json-schema-editor-label" style={{ marginTop: 10 }}>
+                  <div className="gedit-m-json-schema-editor-label" style={{ marginTop: 10 }}>
                     {config?.defaultValueTitle ?? I18n.t('Default Value')}
                   </div>
-                  <div className="flowgram-json-schema-editor-default-value-wrapper">
+                  <div className="gedit-m-json-schema-editor-default-value-wrapper">
                     <DefaultValue
                       value={defaultValue}
                       schema={value}
@@ -214,8 +214,8 @@ function PropertyEdit(props: {
           )}
         </div>
         {showCollapse && (
-          <div className={`flowgram-json-schema-editor-collapsible ${collapse ? 'collapse' : ''}`}>
-            <div className="flowgram-json-schema-editor-tree-items shrink">
+          <div className={`gedit-m-json-schema-editor-collapsible ${collapse ? 'collapse' : ''}`}>
+            <div className="gedit-m-json-schema-editor-tree-items shrink">
               {propertyList.map((_property, index) => (
                 <PropertyEdit
                   readonly={readonly}

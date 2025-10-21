@@ -74,10 +74,10 @@ export function ConditionRow({ style, value, onChange, readonly, ruleConfig }: P
   );
 
   return (
-    <div className="flowgram-condition-row-container" style={style}>
-      <div className="flowgram-condition-row-operator">{renderOpSelect()}</div>
-      <div className="flowgram-condition-row-values">
-        <div className="flowgram-condition-row-left">
+    <div className="gedit-m-condition-row-container" style={style}>
+      <div className="gedit-m-condition-row-operator">{renderOpSelect()}</div>
+      <div className="gedit-m-condition-row-values">
+        <div className="gedit-m-condition-row-left">
           <InjectVariableSelector
             readonly={readonly}
             style={{ width: '100%' }}
@@ -93,7 +93,7 @@ export function ConditionRow({ style, value, onChange, readonly, ruleConfig }: P
             }
           />
         </div>
-        <div className="flowgram-condition-row-right">
+        <div className="gedit-m-condition-row-right">
           {targetSchema ? (
             <InjectDynamicValueInput
               readonly={readonly || !rule}

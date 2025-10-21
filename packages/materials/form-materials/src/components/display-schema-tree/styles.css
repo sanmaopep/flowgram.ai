@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-.flowgram-display-schema-tree-row {
+.gedit-m-display-schema-tree-row {
   display: flex;
   align-items: center;
 
@@ -17,12 +17,12 @@
   white-space: nowrap;
 }
 
-.flowgram-display-schema-tree-horizontal-line {
+.gedit-m-display-schema-tree-horizontal-line {
   position: relative;
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     background-color: var(--semi-color-text-3);
   }
@@ -35,12 +35,12 @@
   }
 }
 
-.flowgram-display-schema-tree-title {
+.gedit-m-display-schema-tree-title {
   /* overflow: hidden;
   text-overflow: ellipsis; */
 }
 
-.flowgram-display-schema-tree-level {
+.gedit-m-display-schema-tree-level {
   padding-left: 30px;
   position: relative;
 
@@ -55,11 +55,11 @@
   } */
 }
 
-.flowgram-display-schema-tree-item {
+.gedit-m-display-schema-tree-item {
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     background-color: var(--semi-color-text-3);
   }
