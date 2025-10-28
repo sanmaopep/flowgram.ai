@@ -15,10 +15,7 @@ import { UnionJSON } from './union';
  *
  * All other types should extend this class.
  */
-export abstract class BaseType<JSON extends ASTNodeJSON = any, InjectOpts = any> extends ASTNode<
-  JSON,
-  InjectOpts
-> {
+export abstract class BaseType<JSON extends ASTNodeJSON = any> extends ASTNode<JSON> {
   public flags: number = ASTNodeFlags.BasicType;
 
   /**
