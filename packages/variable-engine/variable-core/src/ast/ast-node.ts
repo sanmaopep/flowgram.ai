@@ -13,6 +13,7 @@ import {
   tap,
 } from 'rxjs';
 import { nanoid } from 'nanoid';
+import { isNil, omitBy } from 'lodash-es';
 import { shallowEqual } from 'fast-equals';
 import { Disposable, DisposableCollection } from '@flowgram.ai/utils';
 
@@ -153,6 +154,19 @@ export abstract class ASTNode<JSON extends ASTNodeJSON = any> implements Disposa
 
     // All `fireChange` calls within the subsequent `fromJSON` will be merged into one.
     this.fromJSON = this.withBatchUpdate(this.fromJSON.bind(this));
+
+    // Add the kind field to the JSON output.
+    const rawToJSON = this.toJSON?.bind(this);
+    this.toJSON = () =>
+      omitBy(
+        {
+          // always include kind
+          kind: this.kind,
+          ...(rawToJSON?.() || {}),
+        },
+        // remove undefined fields
+        isNil
+      ) as JSON;
   }
 
   /**
@@ -182,14 +196,7 @@ export abstract class ASTNode<JSON extends ASTNodeJSON = any> implements Disposa
    * Serializes the current ASTNode to ASTNodeJSON.
    * @returns
    */
-  toJSON(): ASTNodeJSON {
-    // Prompt the user to implement the toJSON method for the ASTNode themselves, instead of using the fallback implementation.
-    console.warn('[VariableEngine] Please Implement toJSON method for ' + this.kind);
-
-    return {
-      kind: this.kind,
-    };
-  }
+  abstract toJSON(): JSON;
 
   /**
    * Creates a child ASTNode.

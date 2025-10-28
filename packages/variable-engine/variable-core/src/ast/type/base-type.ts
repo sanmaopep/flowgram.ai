@@ -46,14 +46,4 @@ export abstract class BaseType<JSON extends ASTNodeJSON = any> extends ASTNode<J
   getByKeyPath(keyPath: string[] = []): BaseVariableField | undefined {
     throw new Error(`Get By Key Path is not implemented for Type: ${this.kind}`);
   }
-
-  /**
-   * Serialize the node to a JSON object.
-   * @returns The JSON representation of the node.
-   */
-  toJSON(): ASTNodeJSON {
-    return {
-      kind: this.kind,
-    };
-  }
 }

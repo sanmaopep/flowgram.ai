@@ -3,9 +3,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { ASTKind, ASTNodeJSON } from '../types';
+import { injectToAST } from '../utils/inversify';
+import { ASTKind } from '../types';
 import { GlobalEventActionType } from '../types';
 import { ASTNode } from '../ast-node';
+import { VariableEngine } from '../../variable-engine';
 import { type VariableDeclarationJSON, VariableDeclaration } from './variable-declaration';
 
 export interface VariableDeclarationListJSON<VariableMeta = any> {
@@ -103,7 +105,7 @@ export class VariableDeclarationList extends ASTNode<VariableDeclarationListJSON
    * Serialize the `VariableDeclarationList` to the `VariableDeclarationListJSON`.
    * @returns ASTJSON representation of `VariableDeclarationList`
    */
-  toJSON(): ASTNodeJSON {
+  toJSON() {
     return {
       kind: ASTKind.VariableDeclarationList,
       declarations: this.declarations.map((_declaration) => _declaration.toJSON()),

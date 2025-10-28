@@ -36,6 +36,8 @@ export class KeyPathExpression<
 
   protected _keyPath: string[] = [];
 
+  protected _rawPathJson: CustomPathJSON;
+
   /**
    * The key path of the variable.
    */
@@ -98,6 +100,7 @@ export class KeyPathExpression<
 
     if (!shallowEqual(keyPath, this._keyPath)) {
       this._keyPath = keyPath;
+      this._rawPathJson = json;
 
       // After the keyPath is updated, the referenced variables need to be refreshed.
       this.refreshRefs();
@@ -146,10 +149,7 @@ export class KeyPathExpression<
    * Serialize the `KeyPathExpression` to `KeyPathExpressionJSON`.
    * @returns The JSON representation of `KeyPathExpression`.
    */
-  toJSON(): ASTNodeJSON {
-    return {
-      kind: ASTKind.KeyPathExpression,
-      keyPath: this._keyPath,
-    };
+  toJSON() {
+    return this._rawPathJson;
   }
 }
