@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+import { distinctUntilChanged } from 'rxjs';
 import { shallowEqual } from 'fast-equals';
 
 import { checkRefCycle } from '../utils/expression';
@@ -116,8 +117,6 @@ export class KeyPathExpression<
     return _ref?.type?.toJSON();
   }
 
-  protected prevRefTypeHash: string | undefined;
-
   constructor(params: CreateASTParams, opts: any) {
     super(params, opts);
 
@@ -133,14 +132,17 @@ export class KeyPathExpression<
         }
       }),
       subsToDisposable(
-        this.refs$.subscribe((_type) => {
-          const [ref] = this._refs;
-
-          if (this.prevRefTypeHash !== ref?.type?.hash) {
-            this.prevRefTypeHash = ref?.type?.hash;
+        this.refs$
+          .pipe(
+            distinctUntilChanged(
+              (prev, next) => prev === next,
+              (_refs) => _refs?.[0]?.type?.hash
+            )
+          )
+          .subscribe((_type) => {
+            const [ref] = this._refs;
             this.updateChildNodeByKey('_returnType', this.getReturnTypeJSONByRef(ref));
-          }
-        })
+          })
       ),
     ]);
   }
