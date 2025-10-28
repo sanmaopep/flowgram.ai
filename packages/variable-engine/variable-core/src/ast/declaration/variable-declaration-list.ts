@@ -3,11 +3,9 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { injectToAST } from '../utils/inversify';
 import { ASTKind } from '../types';
 import { GlobalEventActionType } from '../types';
 import { ASTNode } from '../ast-node';
-import { VariableEngine } from '../../variable-engine';
 import { type VariableDeclarationJSON, VariableDeclaration } from './variable-declaration';
 
 export interface VariableDeclarationListJSON<VariableMeta = any> {
