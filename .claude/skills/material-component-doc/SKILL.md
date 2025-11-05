@@ -14,7 +14,7 @@ metadata:
 - **中文文档**: `apps/docs/src/zh`
 - **Story 组件**: `apps/docs/components/form-materials/components`
 - **物料源码**: `packages/materials/form-materials/src/components`
-- **文档模板**: `.claude/skills/material-doc/templates/material.mdx`
+- **文档模板**: `./templates/material.mdx`
 
 # 组件物料文档撰写流程
 
@@ -54,7 +54,7 @@ metadata:
 
 ## 5. 文档撰写
 
-基于模板 `.claude/skills/material-doc/templates/material.mdx` 撰写完整文档。
+基于模板 `./templates/material.mdx` 撰写完整文档。
 
 **文档位置**：
 - 中文：`apps/docs/src/zh/materials/components/{物料名称}.mdx`
@@ -223,7 +223,7 @@ export const FilterSchemaStory = () => (
 
 ## 使用模板
 
-**模板文件**: `.claude/skills/material-doc/templates/material.mdx`
+**模板文件**: `./templates/material.mdx`
 
 文档必须严格按照模板格式编写，包含以下章节：
 1. Import 语句
@@ -360,9 +360,6 @@ export const FilterSchemaStory = () => (
 # 启动文档站点
 rush dev:docs
 
-# 构建文档
-rush build --to @flowgram.ai/docs
-
 # 查看修改
 git diff
 git diff --cached
@@ -377,10 +374,5 @@ git diff --cached
 | `apps/docs/src/en/materials/components` | 英文文档 |
 | `apps/docs/components/form-materials/components` | Story 组件 |
 | `apps/docs/src/public/materials` | 图片资源 |
-| `.claude/skills/material-doc/templates` | 文档模板 |
+| `./templates` | 文档模板 |
 
-## 在线资源
-
-- **Mermaid 语法**: https://mermaid.js.org/
-- **MDX 文档**: https://mdxjs.com/
-- **FlowGram 文档**: https://flowgram.ai/
