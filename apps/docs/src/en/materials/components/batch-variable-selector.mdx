@@ -7,9 +7,9 @@ BatchVariableSelector is a component for selecting array-type variables. It's a 
 
 **Core Features:**
 
-- 🔍 **Auto Filtering**: Only displays array-type (`type: 'array'`) variables, based on [JSON Schema filtering](../../guide/variable/variable-consume#drilling-down-array-type-variables)
+- 🔍 **Auto Filtering**: Only displays array-type (`type: 'array'`) variables
 - 🔐 **Private Scope**: Provides isolated variable scope through [`PrivateScopeProvider`](../../guide/variable/concept#node-private-scope)
-- 🎯 **Specialized Scenarios**: Designed for batch processing, loops, and other scenarios requiring array data sources, refer to [batch variable implementation ideas](../../guide/variable/cases/case-batch-variable)
+- 🎯 **Specialized Scenarios**: Designed for batch processing, loops, and other scenarios requiring array data sources
 - 📦 **Ready to Use**: No need to manually configure schema filtering conditions, automatically applies array type constraints
 
 ## Examples
@@ -169,58 +169,6 @@ sequenceDiagram
 [**VariableSelector**](./variable-selector) Base variable selector component
 - `VariableSelector`: Core variable selection component, BatchVariableSelector is its wrapper version
 - `VariableSelectorProps`: Property type definitions
-
-## Use Cases
-
-### Loop Node
-
-The most common use case for BatchVariableSelector is in Loop nodes to select the array data source to iterate over:
-
-```tsx pure title="loop-form-meta.tsx"
-import { BatchVariableSelector, provideBatchInputEffect } from '@flowgram.ai/form-materials';
-
-export const LoopFormRender = ({ form }) => {
-  return (
-    <>
-      <FormHeader />
-      <Field<IFlowRefValue> name="loopFor">
-        {({ field, fieldState }) => (
-          <FormItem name="loopFor" type="array" required>
-            <BatchVariableSelector
-              value={field.value?.content}
-              onChange={(val) => field.onChange({ type: 'ref', content: val })}
-              hasError={Object.keys(fieldState?.errors || {}).length > 0}
-            />
-          </FormItem>
-        )}
-      </Field>
-    </>
-  );
-};
-
-export const formMeta = {
-  render: LoopFormRender,
-  effect: {
-    loopFor: provideBatchInputEffect,
-  },
-};
-```
-
-### Batch Processing Node
-
-In nodes that need to process batch data, using BatchVariableSelector ensures users can only select array-type data sources:
-
-```tsx pure
-<Field<string[] | undefined> name="batchInput">
-  {({ field }) => (
-    <BatchVariableSelector
-      value={field.value}
-      onChange={(value) => field.onChange(value)}
-      config={{ placeholder: 'Select batch data source' }}
-    />
-  )}
-</Field>
-```
 
 ## FAQ
 
